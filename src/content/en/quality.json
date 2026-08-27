@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "[[TODO: quality meta title]]",
+    "description": "[[TODO: quality meta description]]"
+  },
+  "intro": {
+    "heading": "Quality & Certifications",
+    "body": "[[TODO: 2–3 sentences — how quality is controlled, framed in process terms, not adjectives]]"
+  },
+  "certifications": {
+    "heading": "Certifications",
+    "_comment": "Certificate data comes from company.json (certifications.items)."
+  },
+  "processControl": {
+    "heading": "In-process quality control",
+    "body": "[[TODO: paragraph — incoming material inspection, first-article inspection, in-line checks, measurement equipment used]]",
+    "points": [
+      "[[TODO: control point 1, e.g. 'Incoming material: mill certificates checked against order']]",
+      "[[TODO: control point 2]]",
+      "[[TODO: control point 3]]"
+    ]
+  },
+  "testing": {
+    "heading": "Product testing standards",
+    "body": "[[TODO: paragraph — which standards products are tested to (e.g. EN 1728, EN 16139, BIFMA), in-house vs external lab]]",
+    "standards": [
+      { "code": "[[TODO: standard code, e.g. EN 1728]]", "scope": "[[TODO: what it covers]]" },
+      { "code": "[[TODO: standard code]]", "scope": "[[TODO: what it covers]]" }
+    ]
+  }
+}

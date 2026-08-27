@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "[[TODO: about meta title]]",
+    "description": "[[TODO: about meta description]]"
+  },
+  "intro": {
+    "heading": "About us",
+    "body": "[[TODO: 2–3 sentences — family business since 1990, Dobrich, what the company is today in one breath]]"
+  },
+  "timeline": {
+    "heading": "Since 1990",
+    "_comment": "One entry per milestone. Keep entries factual: year + what happened.",
+    "items": [
+      { "year": "1990", "event": "[[TODO: founding — by whom, making what]]" },
+      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. first export client]]" },
+      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. second site opened]]" },
+      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. wood processing added]]" },
+      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. solar installation commissioned]]" }
+    ]
+  },
+  "sites": {
+    "heading": "Two production sites",
+    "_comment": "Site data comes from company.json (sites.items)."
+  },
+  "people": {
+    "heading": "Ownership and team",
+    "body": "[[TODO: paragraph — family ownership, generation currently leading, team size, key roles a buyer would deal with]]",
+    "teamSizeNote": "Team size figure comes from company.json (keyFigures)."
+  },
+  "position": {
+    "heading": "One of the last in Europe",
+    "body": "[[TODO: section — the company's position as one of very few remaining tubular furniture manufacturers in Europe; verifiable framing, no superlatives]]"
+  }
+}

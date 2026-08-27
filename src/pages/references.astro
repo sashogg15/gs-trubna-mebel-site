@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import LogoWall from '../components/LogoWall.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared } from '../lib/content';
+
+const t = loadPage('references');
+const shared = loadShared();
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/references' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  <Section tone="mist">
+    <h2 class="font-heading text-h2 font-bold">{t.logoWall.heading}</h2>
+    <div class="mt-10">
+      <LogoWall logos={t.logoWall.logos} />
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.caseStudies.heading}</h2>
+    <div class="mt-10 space-y-16">
+      {t.caseStudies.items.map((item: any) => <CaseStudy item={item} />)}
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>

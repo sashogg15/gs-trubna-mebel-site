@@ -1,0 +1,112 @@
+---
+/**
+ * Structured RFQ form. Static HTML posting to /contact.php (plain PHP on
+ * the shared host). Spam protection: honeypot field ("website") plus a
+ * time check — contact.php rejects submissions faster than a human could
+ * type. The timestamp field is filled by a tiny inline script; without JS
+ * the field stays empty and contact.php still accepts the submission.
+ */
+import { loadPage } from '../lib/content';
+
+const rfq = loadPage('request-a-quote');
+const L = rfq.form.labels;
+
+const fieldClass =
+  'w-full border border-line bg-paper px-4 py-3 text-body rounded-field focus:border-signal focus:outline-none';
+const labelClass = 'mb-1.5 block text-small font-medium';
+---
+
+<form
+  method="post"
+  action="/contact.php"
+  enctype="multipart/form-data"
+  class="grid gap-6 md:grid-cols-2"
+>
+  <div>
+    <label for="company" class={labelClass}>{L.company} *</label>
+    <input type="text" id="company" name="company" required autocomplete="organization" class={fieldClass} />
+  </div>
+  <div>
+    <label for="country" class={labelClass}>{L.country} *</label>
+    <input type="text" id="country" name="country" required autocomplete="country-name" class={fieldClass} />
+  </div>
+  <div>
+    <label for="contact_name" class={labelClass}>{L.contactName} *</label>
+    <input type="text" id="contact_name" name="contact_name" required autocomplete="name" class={fieldClass} />
+  </div>
+  <div>
+    <label for="email" class={labelClass}>{L.email} *</label>
+    <input type="email" id="email" name="email" required autocomplete="email" class={fieldClass} />
+  </div>
+  <div>
+    <label for="phone" class={labelClass}>{L.phone}</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" class={fieldClass} />
+  </div>
+  <div>
+    <label for="product_type" class={labelClass}>{L.productType} *</label>
+    <input type="text" id="product_type" name="product_type" required placeholder={L.productTypePlaceholder} class={fieldClass} />
+  </div>
+
+  <fieldset class="md:col-span-2">
+    <legend class={labelClass}>{L.material} *</legend>
+    <div class="flex flex-wrap gap-6">
+      <label class="flex items-center gap-2 text-body">
+        <input type="radio" name="material" value="metal" required class="accent-signal" /> {L.materialOptions.metal}
+      </label>
+      <label class="flex items-center gap-2 text-body">
+        <input type="radio" name="material" value="wood" class="accent-signal" /> {L.materialOptions.wood}
+      </label>
+      <label class="flex items-center gap-2 text-body">
+        <input type="radio" name="material" value="both" class="accent-signal" /> {L.materialOptions.both}
+      </label>
+    </div>
+  </fieldset>
+
+  <div>
+    <label for="annual_volume" class={labelClass}>{L.annualVolume} *</label>
+    <input type="text" id="annual_volume" name="annual_volume" required placeholder={L.annualVolumePlaceholder} class={fieldClass} />
+  </div>
+  <div>
+    <label for="timeline" class={labelClass}>{L.timeline}</label>
+    <input type="text" id="timeline" name="timeline" placeholder={L.timelinePlaceholder} class={fieldClass} />
+  </div>
+
+  <div class="md:col-span-2">
+    <label for="drawings" class={labelClass}>{L.drawings}</label>
+    <input
+      type="file"
+      id="drawings"
+      name="drawings[]"
+      multiple
+      accept=".pdf,.dwg,.dxf,.step,.stp,.zip"
+      class="block w-full text-small text-steel file:mr-4 file:border file:border-line file:bg-mist file:px-4 file:py-2.5 file:text-small file:font-medium"
+    />
+  </div>
+
+  <div class="md:col-span-2">
+    <label for="message" class={labelClass}>{L.message} *</label>
+    <textarea id="message" name="message" rows="6" required class={fieldClass}></textarea>
+  </div>
+
+  <!-- Honeypot: hidden from humans, bots fill it in. contact.php rejects any submission where it is non-empty. -->
+  <div class="hidden" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="form_ts" id="form_ts" value="" />
+
+  <div class="md:col-span-2">
+    <button
+      type="submit"
+      class="bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"
+    >
+      {L.submit}
+    </button>
+    <p class="mt-4 text-small text-steel">{rfq.form.reassurance}</p>
+  </div>
+</form>
+
+<script>
+  const ts = document.getElementById('form_ts') as HTMLInputElement | null;
+  if (ts) ts.value = String(Math.floor(Date.now() / 1000));
+</script>

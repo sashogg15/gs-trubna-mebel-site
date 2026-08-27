@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "[[TODO: home meta title, ~55 chars, e.g. 'GS Trubna Mebel — Contract furniture manufacturing, EU']]",
+    "description": "[[TODO: home meta description, ~155 chars]]"
+  },
+  "hero": {
+    "headline": "Complete metal + wood programmes from a single European factory.",
+    "subline": "[[TODO: one supporting line — concrete, e.g. what we make, for whom, since when]]",
+    "ctaLabel": "Request a quote",
+    "backgroundImage": {
+      "src": "[[TODO: /images/hero-factory.webp — full-width factory photograph]]",
+      "alt": "[[TODO: alt text describing the factory photograph]]",
+      "aspect": "16/7"
+    }
+  },
+  "capabilityBlocks": {
+    "heading": "What we manufacture",
+    "items": [
+      {
+        "title": "Metal",
+        "body": "[[TODO: one short paragraph — tube laser cutting, bending, welding, powder coating; concrete operations, no adjectives]]",
+        "href": "/capabilities#metal",
+        "linkLabel": "Metal capabilities"
+      },
+      {
+        "title": "Wood",
+        "body": "[[TODO: one short paragraph — panel processing, tops/panels in large volumes, case goods capacity]]",
+        "href": "/capabilities#wood",
+        "linkLabel": "Wood capabilities"
+      },
+      {
+        "title": "Complete programmes",
+        "body": "[[TODO: one short paragraph — metal + wood combined under one roof, one supplier, one QC chain]]",
+        "href": "/capabilities#complete-programmes",
+        "linkLabel": "Complete programmes"
+      }
+    ]
+  },
+  "howWeWork": {
+    "heading": "How we work",
+    "steps": [
+      { "title": "Co-design", "body": "[[TODO: 1–2 sentences — engineering input on the client's drawings]]" },
+      { "title": "Prototype", "body": "[[TODO: 1–2 sentences — prototype lead time, what the client receives]]" },
+      { "title": "Industrialisation", "body": "[[TODO: 1–2 sentences — jigs, fixtures, process setup]]" },
+      { "title": "Series production", "body": "[[TODO: 1–2 sentences — batch sizes, repeatability, QC]]" },
+      { "title": "Packing & shipping", "body": "[[TODO: 1–2 sentences — packing options, logistics, Incoterms]]" }
+    ]
+  },
+  "whyEurope": {
+    "heading": "Why a European partner",
+    "body": "[[TODO: short section — EU location, tariff exposure, supply chain proximity, lead times vs Asia, Scope 3 reporting. Concrete arguments, no slogans.]]"
+  },
+  "proofBand": {
+    "heading": "[[TODO: proof band heading, e.g. 'Verified, not claimed']]",
+    "note": "Certification logos, solar capacity and years in operation are pulled from company.json."
+  },
+  "closingCta": {
+    "heading": "[[TODO: closing CTA heading]]",
+    "body": "[[TODO: one sentence — who reads the enquiry and how fast they answer]]",
+    "ctaLabel": "Request a quote"
+  }
+}

@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared, isTodo } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('sustainability');
+const shared = loadShared();
+const sus = company.sustainability;
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/sustainability' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  <Section tone="mist">
+    <h2 class="font-heading text-h2 font-bold">{t.solar.heading}</h2>
+    <p class="mt-6 max-w-3xl text-body text-steel">{t.solar.body}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        sus.solarInstallations.map((s) => (
+          <div class="border border-line bg-paper px-6 py-6">
+            <p class="text-label uppercase text-steel">{s.site}</p>
+            <p class="mt-3 font-heading text-h1 font-bold text-signal">
+              {s.capacityKwp}
+              <span class="text-h3"> kWp</span>
+            </p>
+            <dl class="mt-4 space-y-2 text-small">
+              <div class="flex justify-between gap-4">
+                <dt class="text-steel">Commissioned</dt>
+                <dd class="font-medium">{s.commissioned}</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-steel">Share of site consumption</dt>
+                <dd class="font-medium">{s.shareOfConsumptionPercent}%</dd>
+              </div>
+            </dl>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.co2.heading}</h2>
+      <p class="mt-6 text-body text-steel">{sus.co2.statement}</p>
+    </div>
+  </Section>
+
+  <Section tone="mist">
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.csrd.heading}</h2>
+      <p class="mt-6 text-body text-steel">{sus.csrdReadiness}</p>
+      {!isTodo(t.csrd.body) && t.csrd.body && <p class="mt-4 text-body text-steel">{t.csrd.body}</p>}
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>

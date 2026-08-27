@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "[[TODO: downloads meta title]]",
+    "description": "[[TODO: downloads meta description]]"
+  },
+  "intro": {
+    "heading": "Downloads",
+    "body": "[[TODO: one sentence — what these documents are for]]"
+  },
+  "groups": [
+    {
+      "heading": "Capability brochure",
+      "files": [
+        { "title": "[[TODO: brochure title]]", "file": "[[TODO: /downloads/brochure.pdf]]", "size": "[[TODO: file size, e.g. 4.2 MB]]", "language": "EN" }
+      ]
+    },
+    {
+      "heading": "Datasheets",
+      "files": [
+        { "title": "[[TODO: datasheet title]]", "file": "[[TODO: /downloads/xxx.pdf]]", "size": "[[TODO]]", "language": "EN" }
+      ]
+    },
+    {
+      "heading": "Certificates",
+      "files": [
+        { "title": "[[TODO: certificate PDF title]]", "file": "[[TODO: /downloads/cert-xxx.pdf]]", "size": "[[TODO]]", "language": "EN" }
+      ]
+    }
+  ]
+}

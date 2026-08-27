@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import MachineCard from '../components/MachineCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared, isTodo } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('equipment');
+const shared = loadShared();
+
+const labels = t.categoryLabels as Record<string, string>;
+const machines = company.machines.items;
+
+// Group by category, preserving the label order defined in the content file.
+const groups = Object.keys(labels)
+  .map((key) => ({
+    key,
+    label: labels[key],
+    machines: machines.filter((m) => m.category === key),
+  }))
+  .filter((g) => g.machines.length > 0);
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/equipment' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  {
+    groups.map((group) => (
+      <Section tone="mist" class="!py-14">
+        <h2 class="font-heading text-h2 font-bold">{group.label}</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {group.machines.map((machine) => (
+            <MachineCard machine={machine} />
+          ))}
+        </div>
+      </Section>
+    ))
+  }
+
+  {
+    !isTodo(t.outro.body) && t.outro.body && (
+      <Section>
+        <p class="max-w-3xl text-body text-steel">{t.outro.body}</p>
+      </Section>
+    )
+  }
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>

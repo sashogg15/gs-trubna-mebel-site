@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "[[TODO: equipment meta title]]",
+    "description": "[[TODO: equipment meta description]]"
+  },
+  "intro": {
+    "heading": "Equipment",
+    "body": "[[TODO: 2–3 sentences — the machine park as evidence of capability; investment policy, e.g. 'machines listed with exact parameters']]"
+  },
+  "_comment": "The machine list itself lives in company.json (machines.items) — this file only holds page copy and category labels.",
+  "categoryLabels": {
+    "tube-laser": "Tube laser cutting",
+    "tube-bending": "Tube bending",
+    "welding": "Welding",
+    "powder-coating": "Powder coating",
+    "panel-processing": "Panel processing",
+    "other": "Other equipment"
+  },
+  "outro": {
+    "body": "[[TODO: optional closing paragraph — e.g. maintenance regime, planned investments — or leave empty]]"
+  }
+}

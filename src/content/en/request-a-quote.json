@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "[[TODO: RFQ meta title]]",
+    "description": "[[TODO: RFQ meta description]]"
+  },
+  "intro": {
+    "heading": "Request a quote",
+    "body": "[[TODO: 2–3 sentences — who reads the enquiry (a real engineer), what happens next, typical response time]]"
+  },
+  "form": {
+    "labels": {
+      "company": "Company",
+      "country": "Country",
+      "contactName": "Contact person",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "productType": "Product type",
+      "productTypePlaceholder": "e.g. chair frame, table base, complete chair",
+      "material": "Material",
+      "materialOptions": { "metal": "Metal", "wood": "Wood", "both": "Metal + wood" },
+      "annualVolume": "Estimated annual volume",
+      "annualVolumePlaceholder": "e.g. 5,000–20,000 units",
+      "timeline": "Target timeline",
+      "timelinePlaceholder": "e.g. prototypes Q1, series from Q3",
+      "drawings": "Drawings (PDF, DWG, DXF, STEP — max 10 MB total)",
+      "message": "Message",
+      "submit": "Send enquiry"
+    },
+    "reassurance": "[[TODO: one line under the form — e.g. 'Your enquiry goes directly to our engineering team. NDA on request.']]"
+  }
+}

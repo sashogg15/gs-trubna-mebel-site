@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { loadPage } from '../lib/content';
+
+const t = loadPage('downloads');
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/downloads' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  {
+    t.groups.map((group: any) => (
+      <Section tone="mist" class="!py-12">
+        <h2 class="font-heading text-h3 font-bold uppercase">{group.heading}</h2>
+        <ul class="mt-6 divide-y divide-line border-b border-t border-line">
+          {group.files.map((file: any) => (
+            <li>
+              <a href={file.file} class="flex flex-col gap-1 bg-paper px-5 py-4 hover:text-signal sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <span class="text-body font-medium">{file.title}</span>
+                <span class="text-small text-steel sm:shrink-0">
+                  PDF · {file.size} · {file.language}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    ))
+  }
+</Base>

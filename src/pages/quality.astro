@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CertCard from '../components/CertCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('quality');
+const shared = loadShared();
+const certs = company.certifications.items;
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/quality' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  <Section tone="mist">
+    <h2 class="font-heading text-h2 font-bold">{t.certifications.heading}</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {certs.map((cert) => <CertCard cert={cert} />)}
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.processControl.heading}</h2>
+      <p class="mt-6 text-body text-steel">{t.processControl.body}</p>
+      <ul class="mt-8 divide-y divide-line border-b border-t border-line">
+        {
+          t.processControl.points.map((point: string) => (
+            <li class="flex items-start gap-3 py-4 text-body">
+              <span class="mt-2 h-2 w-2 shrink-0 bg-signal" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Section>
+
+  <Section tone="mist">
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.testing.heading}</h2>
+      <p class="mt-6 text-body text-steel">{t.testing.body}</p>
+    </div>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full max-w-3xl border border-line text-left">
+        <thead>
+          <tr class="border-b border-line bg-paper">
+            <th class="px-5 py-3 text-label uppercase text-steel">Standard</th>
+            <th class="px-5 py-3 text-label uppercase text-steel">Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            t.testing.standards.map((s: any) => (
+              <tr class="border-b border-line bg-paper last:border-b-0">
+                <td class="px-5 py-3 text-body font-medium">{s.code}</td>
+                <td class="px-5 py-3 text-body text-steel">{s.scope}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>

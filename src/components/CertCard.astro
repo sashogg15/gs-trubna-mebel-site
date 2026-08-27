@@ -1,0 +1,34 @@
+---
+interface Props {
+  cert: {
+    name: string;
+    issuingBody: string;
+    certificateNumber: string;
+    validUntil: string;
+    scope: string;
+  };
+}
+const { cert } = Astro.props;
+---
+
+<article class="border border-line px-6 py-5">
+  <h3 class="font-heading text-h3 font-bold">{cert.name}</h3>
+  <dl class="mt-4 space-y-2 text-small">
+    <div class="flex justify-between gap-4">
+      <dt class="text-steel">Issuing body</dt>
+      <dd class="text-right font-medium">{cert.issuingBody}</dd>
+    </div>
+    <div class="flex justify-between gap-4">
+      <dt class="text-steel">Certificate no.</dt>
+      <dd class="text-right font-medium">{cert.certificateNumber}</dd>
+    </div>
+    <div class="flex justify-between gap-4">
+      <dt class="text-steel">Valid until</dt>
+      <dd class="text-right font-medium">{cert.validUntil}</dd>
+    </div>
+    <div class="flex justify-between gap-4">
+      <dt class="text-steel">Scope</dt>
+      <dd class="text-right font-medium">{cert.scope}</dd>
+    </div>
+  </dl>
+</article>

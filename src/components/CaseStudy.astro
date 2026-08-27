@@ -1,0 +1,57 @@
+---
+/**
+ * Repeatable case study card. Supports named clients and anonymised
+ * entries (NDA): when `anonymised` is true the sector is shown in place
+ * of the client name.
+ */
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+interface Props {
+  item: {
+    client: string;
+    anonymised: boolean;
+    sector: string;
+    productType: string;
+    volumes: string;
+    leadTime: string;
+    market: string;
+    body: string;
+    image: { src: string; alt: string; aspect: string };
+  };
+}
+const { item } = Astro.props;
+const displayName = item.anonymised || !item.client ? item.sector : item.client;
+const facts = [
+  { label: 'Sector', value: item.sector },
+  { label: 'Product type', value: item.productType },
+  { label: 'Volumes', value: item.volumes },
+  { label: 'Lead time', value: item.leadTime },
+  { label: 'Market served', value: item.market },
+];
+---
+
+<article class="grid gap-8 border-t border-line pt-10 md:grid-cols-2">
+  <ImagePlaceholder
+    src={item.image.src}
+    alt={item.image.alt}
+    aspect={item.image.aspect}
+    label={`Case study photo — ${displayName}`}
+  />
+  <div>
+    <h3 class="font-heading text-h3 font-bold">
+      {displayName}
+      {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel">(name under NDA)</span>}
+    </h3>
+    <p class="mt-4 text-body text-steel">{item.body}</p>
+    <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-small">
+      {
+        facts.map((f) => (
+          <div>
+            <dt class="text-label uppercase text-steel">{f.label}</dt>
+            <dd class="mt-0.5 font-medium">{f.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</article>

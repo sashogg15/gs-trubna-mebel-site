@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import SpecTable from '../components/SpecTable.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('capabilities');
+const shared = loadShared();
+
+const terms = company.productionTerms as Record<string, string>;
+const specRows = t.specTable.rows.map((row: any) => ({
+  label: row.label,
+  value: terms[row.companyKey] ?? '',
+}));
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/capabilities' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  {
+    t.sections.map((section: any, i: number) => (
+      <Section id={section.id} tone={i % 2 === 0 ? 'mist' : 'paper'}>
+        <div class="grid items-start gap-10 lg:grid-cols-2">
+          <div>
+            <h2 class="font-heading text-h2 font-bold">{section.title}</h2>
+            <p class="mt-6 text-body text-steel">{section.body}</p>
+            {section.operations.length > 0 && (
+              <ul class="mt-8 divide-y divide-line border-b border-t border-line">
+                {section.operations.map((op: any) => (
+                  <li class="py-4">
+                    {/* Each operation can later become a link to its own sub-page (op.href) without restructuring. */}
+                    <h3 class="font-heading text-body font-bold uppercase">
+                      {op.href ? (
+                        <a href={op.href} class="hover:text-signal">
+                          {op.title} →
+                        </a>
+                      ) : (
+                        op.title
+                      )}
+                    </h3>
+                    <p class="mt-1 text-small text-steel">{op.body}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <ImagePlaceholder
+            src={section.image.src}
+            alt={section.image.alt}
+            aspect={section.image.aspect}
+            label={`${section.title} — photo`}
+          />
+        </div>
+      </Section>
+    ))
+  }
+
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.specTable.heading}</h2>
+    <div class="mt-10">
+      <SpecTable caption={t.specTable.heading} rows={specRows} />
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>

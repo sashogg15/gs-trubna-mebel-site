@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "title": "[[TODO: legal meta title, e.g. 'Legal & Privacy — GS Trubna Mebel']]",
+    "description": "[[TODO: legal meta description]]"
+  },
+  "companyDetails": {
+    "heading": "Company details",
+    "_comment": "Legal name, VAT/EIK, address come from company.json (identity, contacts)."
+  },
+  "privacy": {
+    "heading": "Privacy",
+    "body": "[[TODO: privacy notice — what personal data the RFQ form collects, legal basis, retention, controller contact, GDPR rights. Have this reviewed before launch.]]"
+  }
+}

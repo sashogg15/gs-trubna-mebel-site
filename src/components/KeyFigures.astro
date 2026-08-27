@@ -1,0 +1,22 @@
+---
+/** Large-type key figures strip, fed exclusively from company.json. */
+import company from '../data/company.json';
+
+const figures = company.keyFigures.items;
+---
+
+<section class="border-b border-t border-line bg-paper">
+  <div class="mx-auto grid max-w-site grid-cols-2 gap-x-6 gap-y-10 px-4 py-14 md:grid-cols-3 md:px-6 lg:grid-cols-6">
+    {
+      figures.map((f) => (
+        <div>
+          <p class="font-heading text-h1 font-bold leading-none text-signal md:text-figure">
+            <span class="break-words text-[clamp(1.5rem,4vw,3.5rem)] leading-tight">{f.value}</span>
+            {f.unit && <span class="text-h3 font-bold">{f.unit}</span>}
+          </p>
+          <p class="mt-2 text-small text-steel">{f.label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

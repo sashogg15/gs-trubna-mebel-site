@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import { loadPage } from '../lib/content';
+
+const t = loadPage('thank-you');
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/thank-you' }}>
+  <Section>
+    <div class="max-w-2xl">
+      <h1 class="font-heading text-h1 font-bold">{t.heading}</h1>
+      <p class="mt-6 text-body text-steel">{t.body}</p>
+      <a
+        href="/"
+        class="mt-10 inline-block border border-ink px-6 py-3 text-small font-bold uppercase tracking-wide hover:border-signal hover:text-signal"
+      >
+        {t.backLabel}
+      </a>
+    </div>
+  </Section>
+</Base>

@@ -1,0 +1,19 @@
+---
+/** Horizontal 5-step how-we-work sequence; stacks vertically on mobile. */
+interface Props {
+  steps: { title: string; body: string }[];
+}
+const { steps } = Astro.props;
+---
+
+<ol class="grid gap-8 md:grid-cols-5">
+  {
+    steps.map((step, i) => (
+      <li class="relative border-t-2 border-line pt-6 md:border-t-2">
+        <span class="font-heading text-h2 font-bold text-signal">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="mt-2 font-heading text-body font-bold uppercase">{step.title}</h3>
+        <p class="mt-2 text-small text-steel">{step.body}</p>
+      </li>
+    ))
+  }
+</ol>

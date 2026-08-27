@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import KeyFigures from '../components/KeyFigures.astro';
+import Section from '../components/Section.astro';
+import CapabilityBlock from '../components/CapabilityBlock.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ProofBand from '../components/ProofBand.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage } from '../lib/content';
+
+const t = loadPage('home');
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/' }}>
+  <!-- 1. Hero -->
+  <Hero
+    headline={t.hero.headline}
+    subline={t.hero.subline}
+    ctaLabel={t.hero.ctaLabel}
+    ctaHref="/request-a-quote"
+    image={t.hero.backgroundImage}
+  />
+
+  <!-- 2. Key figures strip -->
+  <KeyFigures />
+
+  <!-- 3. Three capability blocks -->
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.capabilityBlocks.heading}</h2>
+    <div class="mt-10 grid gap-10 md:grid-cols-3">
+      {t.capabilityBlocks.items.map((item: any) => <CapabilityBlock {...item} />)}
+    </div>
+  </Section>
+
+  <!-- 4. How we work -->
+  <Section tone="mist">
+    <h2 class="font-heading text-h2 font-bold">{t.howWeWork.heading}</h2>
+    <div class="mt-10">
+      <ProcessSteps steps={t.howWeWork.steps} />
+    </div>
+  </Section>
+
+  <!-- 5. Why a European partner -->
+  <Section>
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.whyEurope.heading}</h2>
+      <p class="mt-6 text-body text-steel">{t.whyEurope.body}</p>
+    </div>
+  </Section>
+
+  <!-- 6. Proof band -->
+  <Section tone="graphite">
+    <ProofBand heading={t.proofBand.heading} />
+  </Section>
+
+  <!-- 7. Closing CTA -->
+  <Section tone="mist">
+    <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
+  </Section>
+</Base>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  href: string;
+  linkLabel: string;
+}
+const { title, body, href, linkLabel } = Astro.props;
+---
+
+<div class="border-t-2 border-ink pt-6">
+  <h3 class="font-heading text-h3 font-bold uppercase">{title}</h3>
+  <p class="mt-4 text-body text-steel">{body}</p>
+  <a href={href} class="mt-6 inline-block text-small font-bold uppercase tracking-wide text-signal hover:text-signal-dark">
+    {linkLabel} →
+  </a>
+</div>

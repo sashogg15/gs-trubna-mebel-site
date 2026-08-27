@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "[[TODO: sustainability meta title]]",
+    "description": "[[TODO: sustainability meta description]]"
+  },
+  "intro": {
+    "heading": "Sustainability",
+    "body": "[[TODO: 2–3 sentences — energy, emissions and reporting, in numbers; no green slogans]]"
+  },
+  "solar": {
+    "heading": "Solar generation",
+    "body": "[[TODO: paragraph introducing the solar installations]]",
+    "_comment": "Installation data (capacity, share of consumption) comes from company.json (sustainability.solarInstallations)."
+  },
+  "co2": {
+    "heading": "CO₂ data",
+    "_comment": "Statement comes from company.json (sustainability.co2.statement)."
+  },
+  "csrd": {
+    "heading": "CSRD & Scope 3 readiness",
+    "_comment": "Statement comes from company.json (sustainability.csrdReadiness).",
+    "body": "[[TODO: optional extra paragraph — what supplier data packages clients receive, in which format, on what cadence]]"
+  }
+}

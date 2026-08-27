@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import RfqForm from '../components/RfqForm.astro';
+import { loadPage } from '../lib/content';
+
+const t = loadPage('request-a-quote');
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/request-a-quote' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+    <div class="mt-12 max-w-3xl">
+      <RfqForm />
+    </div>
+  </Section>
+</Base>

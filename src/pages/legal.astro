@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { loadPage } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('legal');
+const addr = company.contacts.address;
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/legal' }}>
+  <Section>
+    <PageIntro heading={t.companyDetails.heading} />
+    <dl class="mt-10 max-w-2xl divide-y divide-line border-b border-t border-line">
+      <div class="flex justify-between gap-4 py-4">
+        <dt class="text-body text-steel">Legal name</dt>
+        <dd class="text-right text-body font-medium">{company.identity.legalName}</dd>
+      </div>
+      <div class="flex justify-between gap-4 py-4">
+        <dt class="text-body text-steel">VAT / EIK</dt>
+        <dd class="text-right text-body font-medium">{company.identity.vatNumber}</dd>
+      </div>
+      <div class="flex justify-between gap-4 py-4">
+        <dt class="text-body text-steel">Address</dt>
+        <dd class="text-right text-body font-medium">
+          {addr.street}, {addr.postalCode} {addr.city}, {addr.country}
+        </dd>
+      </div>
+      <div class="flex justify-between gap-4 py-4">
+        <dt class="text-body text-steel">Email</dt>
+        <dd class="text-right text-body font-medium">{company.contacts.email}</dd>
+      </div>
+      <div class="flex justify-between gap-4 py-4">
+        <dt class="text-body text-steel">Phone</dt>
+        <dd class="text-right text-body font-medium">{company.contacts.phone}</dd>
+      </div>
+    </dl>
+  </Section>
+
+  <Section tone="mist">
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.privacy.heading}</h2>
+      <p class="mt-6 whitespace-pre-line text-body text-steel">{t.privacy.body}</p>
+    </div>
+  </Section>
+</Base>

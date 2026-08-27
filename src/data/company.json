@@ -1,0 +1,169 @@
+{
+  "_readme": "SINGLE SOURCE OF TRUTH for every company fact used anywhere on the site. A number is defined once here and never diverges between pages. Every '[[TODO: ...]]' value must be replaced with a verified figure from internal sources before launch — an empty marker is correct, an invented number is a failure. '_comment' keys describe what to supply and in what unit; they are ignored by the templates. Values marked 'from brief' came from the project brief and should still be confirmed.",
+
+  "identity": {
+    "_comment": "Legal and brand identity. Used in the footer, /legal, /about and the JSON-LD Organization schema.",
+    "brandName": "GS Trubna Mebel",
+    "legalName": "[[TODO: full registered legal name, e.g. 'GS Trubna Mebel OOD']]",
+    "domain": "gstrubnamebel.eu",
+    "foundedYear": 1990,
+    "foundedYearComment": "from brief — family business since 1990",
+    "vatNumber": "[[TODO: VAT / EIK number]]",
+    "registrationCity": "Dobrich, Bulgaria",
+    "positioning": "Complete metal + wood programmes from a single European factory.",
+    "positioningComment": "The core positioning sentence. Every page serves it. Edit only deliberately."
+  },
+
+  "contacts": {
+    "_comment": "Public contact details. Used in footer, /legal, /request-a-quote and JSON-LD.",
+    "email": "[[TODO: sales/enquiry email address]]",
+    "phone": "[[TODO: phone number in international format, e.g. +359 ...]]",
+    "address": {
+      "street": "[[TODO: street address of headquarters]]",
+      "city": "Dobrich",
+      "postalCode": "[[TODO: postal code]]",
+      "country": "Bulgaria",
+      "countryCode": "BG"
+    },
+    "rfqRecipientEmail": "[[TODO: email address that receives RFQ form submissions — also set it in public/contact.php]]"
+  },
+
+  "keyFigures": {
+    "_comment": "The 5–6 numbers on the home page key-figures strip, large type. 'value' is the big number, 'unit' the small suffix, 'label' the caption underneath. Order matters. Supply exact, verifiable figures only.",
+    "items": [
+      { "value": "[[TODO: years in operation — or compute from 1990]]", "unit": "", "label": "years of manufacturing since 1990" },
+      { "value": "[[TODO: export share, e.g. 97]]", "unit": "%", "label": "of output exported (from brief: 97% — confirm)" },
+      { "value": "[[TODO: units produced per year, e.g. chairs/frames]]", "unit": "", "label": "[[TODO: caption, e.g. 'chairs produced per year']]" },
+      { "value": "[[TODO: total production area]]", "unit": "m²", "label": "production area across two sites" },
+      { "value": "[[TODO: team size]]", "unit": "", "label": "employees" },
+      { "value": "[[TODO: solar capacity]]", "unit": "kWp", "label": "on-site solar capacity" }
+    ]
+  },
+
+  "markets": {
+    "_comment": "Export markets. From brief: mainly Italy, Denmark and, through Danish clients, the US. Confirm and extend.",
+    "primary": ["Italy", "Denmark"],
+    "secondary": ["United States (through Danish clients)"],
+    "targetAudience": ["Denmark", "Italy", "Germany", "Sweden", "Netherlands"]
+  },
+
+  "sites": {
+    "_comment": "The two production sites. Areas in m². Used on /about and /sustainability.",
+    "items": [
+      {
+        "name": "[[TODO: site 1 name/designation]]",
+        "location": "[[TODO: site 1 address or district, Dobrich]]",
+        "areaM2": "[[TODO: site 1 area in m²]]",
+        "function": "[[TODO: what is produced there, e.g. metal fabrication]]"
+      },
+      {
+        "name": "[[TODO: site 2 name/designation]]",
+        "location": "[[TODO: site 2 address or district]]",
+        "areaM2": "[[TODO: site 2 area in m²]]",
+        "function": "[[TODO: what is produced there, e.g. panel processing]]"
+      }
+    ]
+  },
+
+  "machines": {
+    "_comment": "The machine park — primary credibility asset, shown on /equipment. One entry per machine. 'parameters' is a list of {name, value} pairs shown in the card; give exact specs (max diameter, wall thickness, working length, axis count...). 'category' groups the grid: tube-laser | tube-bending | welding | powder-coating | panel-processing | other.",
+    "items": [
+      {
+        "category": "tube-laser",
+        "name": "[[TODO: machine name, e.g. ADIGE LT5]]",
+        "manufacturer": "[[TODO: manufacturer, e.g. BLM Group]]",
+        "model": "[[TODO: exact model]]",
+        "year": "[[TODO: year of commissioning]]",
+        "parameters": [
+          { "name": "Max tube diameter", "value": "[[TODO: e.g. Ø xx mm]]" },
+          { "name": "Max wall thickness", "value": "[[TODO: x mm]]" },
+          { "name": "[[TODO: parameter name]]", "value": "[[TODO: value]]" }
+        ]
+      },
+      {
+        "category": "tube-bending",
+        "name": "[[TODO: machine name]]",
+        "manufacturer": "[[TODO]]",
+        "model": "[[TODO]]",
+        "year": "[[TODO]]",
+        "parameters": [
+          { "name": "[[TODO: parameter name]]", "value": "[[TODO: value]]" }
+        ]
+      },
+      {
+        "category": "welding",
+        "name": "[[TODO: machine/cell name, e.g. robotic welding cell]]",
+        "manufacturer": "[[TODO]]",
+        "model": "[[TODO]]",
+        "year": "[[TODO]]",
+        "parameters": [
+          { "name": "[[TODO: parameter name]]", "value": "[[TODO: value]]" }
+        ]
+      },
+      {
+        "category": "powder-coating",
+        "name": "[[TODO: powder coating line]]",
+        "manufacturer": "[[TODO]]",
+        "model": "[[TODO]]",
+        "year": "[[TODO]]",
+        "parameters": [
+          { "name": "[[TODO: e.g. max part dimensions]]", "value": "[[TODO: value]]" }
+        ]
+      },
+      {
+        "category": "panel-processing",
+        "name": "[[TODO: panel processing machine, e.g. CNC nesting centre]]",
+        "manufacturer": "[[TODO]]",
+        "model": "[[TODO]]",
+        "year": "[[TODO]]",
+        "parameters": [
+          { "name": "[[TODO: parameter name]]", "value": "[[TODO: value]]" }
+        ]
+      }
+    ]
+  },
+
+  "certifications": {
+    "_comment": "Certificates shown on /quality (cards) and the home proof band (names/logos). Add one object per certificate.",
+    "items": [
+      {
+        "name": "[[TODO: certificate name, e.g. ISO 9001:2015]]",
+        "issuingBody": "[[TODO: issuing body]]",
+        "certificateNumber": "[[TODO: certificate number]]",
+        "validUntil": "[[TODO: valid-until date, YYYY-MM-DD]]",
+        "scope": "[[TODO: certified scope]]",
+        "logoImage": "[[TODO: path to logo file, e.g. /images/certs/iso9001.webp]]"
+      }
+    ]
+  },
+
+  "productionTerms": {
+    "_comment": "Commercial/production parameters shown in the /capabilities specifications table.",
+    "minimumOrderQuantity": "[[TODO: MOQ, with unit]]",
+    "typicalBatchSize": "[[TODO: typical batch size range]]",
+    "leadTimeSeries": "[[TODO: typical series production lead time, weeks]]",
+    "leadTimePrototype": "[[TODO: typical prototype lead time, weeks]]",
+    "tolerances": "[[TODO: standard tolerances / standard referenced]]"
+  },
+
+  "sustainability": {
+    "_comment": "Data for /sustainability and the home proof band. Exact figures only.",
+    "solarInstallations": [
+      {
+        "site": "[[TODO: which site]]",
+        "capacityKwp": "[[TODO: installed capacity, kWp]]",
+        "commissioned": "[[TODO: year commissioned]]",
+        "shareOfConsumptionPercent": "[[TODO: share of site electricity consumption covered, %]]"
+      }
+    ],
+    "co2": {
+      "statement": "[[TODO: CO2 data — measured scope 1/2 emissions, reduction achieved, baseline year]]"
+    },
+    "csrdReadiness": "[[TODO: statement on CSRD / Scope 3 supplier reporting readiness — what data can be provided to clients and in what format]]"
+  },
+
+  "social": {
+    "_comment": "Public profile URLs for JSON-LD sameAs. Leave [] entries out if none.",
+    "linkedin": "[[TODO: LinkedIn company page URL, or remove]]"
+  }
+}

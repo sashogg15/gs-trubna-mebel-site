@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "[[TODO: capabilities meta title]]",
+    "description": "[[TODO: capabilities meta description]]"
+  },
+  "intro": {
+    "heading": "Capabilities",
+    "body": "[[TODO: 2–3 sentence page intro — what the factory does, framed for a sourcing director]]"
+  },
+  "_sectionsComment": "Each section can later link out to a dedicated sub-page per operation (/capabilities/tube-laser-cutting etc.) — the 'operations' array items each carry an optional 'href' for that. Leave href empty until the sub-page exists.",
+  "sections": [
+    {
+      "id": "metal",
+      "title": "Metal",
+      "body": "[[TODO: paragraph — tubular and metal furniture manufacturing scope]]",
+      "image": { "src": "[[TODO: /images/capabilities-metal.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
+      "operations": [
+        { "title": "Tube laser cutting", "body": "[[TODO: 1–2 sentences, key parameters]]", "href": "" },
+        { "title": "Tube bending", "body": "[[TODO: 1–2 sentences]]", "href": "" },
+        { "title": "Welding", "body": "[[TODO: 1–2 sentences — manual + robotic]]", "href": "" },
+        { "title": "Powder coating", "body": "[[TODO: 1–2 sentences]]", "href": "" }
+      ]
+    },
+    {
+      "id": "wood",
+      "title": "Wood",
+      "body": "[[TODO: paragraph — panel processing, tops and panels in large volumes, case goods capacity]]",
+      "image": { "src": "[[TODO: /images/capabilities-wood.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
+      "operations": [
+        { "title": "Panel processing", "body": "[[TODO: 1–2 sentences — cutting, edgebanding, CNC]]", "href": "" },
+        { "title": "[[TODO: operation]]", "body": "[[TODO: 1–2 sentences]]", "href": "" }
+      ]
+    },
+    {
+      "id": "complete-programmes",
+      "title": "Complete programmes",
+      "body": "[[TODO: paragraph — combined metal + wood products from one factory: one supplier, one QC chain, one shipment]]",
+      "image": { "src": "[[TODO: /images/capabilities-complete.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
+      "operations": []
+    }
+  ],
+  "specTable": {
+    "heading": "Production parameters",
+    "note": "Values are pulled from company.json (productionTerms) so they never diverge between pages.",
+    "rows": [
+      { "label": "Minimum order quantity", "companyKey": "minimumOrderQuantity" },
+      { "label": "Typical batch size", "companyKey": "typicalBatchSize" },
+      { "label": "Prototype lead time", "companyKey": "leadTimePrototype" },
+      { "label": "Series lead time", "companyKey": "leadTimeSeries" },
+      { "label": "Tolerances", "companyKey": "tolerances" }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/inter';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { canonicalUrl, organizationSchema, type PageMeta } from '../lib/seo';
+import company from '../data/company.json';
+
+interface Props {
+  meta: PageMeta;
+}
+
+const { meta } = Astro.props;
+const canonical = canonicalUrl(meta.path);
+const ogImage = meta.ogImage ?? '/images/og-default.jpg'; // [[TODO: provide og-default.jpg, 1200×630]]
+const lang = meta.lang ?? 'en';
+const schema = JSON.stringify(organizationSchema());
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={company.identity.brandName} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, 'https://gstrubnamebel.eu').href} />
+
+    <script type="application/ld+json" set:html={schema} />
+  </head>
+  <body class="bg-paper font-body text-body text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-signal focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

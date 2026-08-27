@@ -1,0 +1,30 @@
+{
+  "_comment": "Strings shared across all pages: navigation, footer, common CTAs. To add a language, copy the whole en/ folder and translate the values — never touch templates.",
+  "nav": {
+    "home": "Home",
+    "capabilities": "Capabilities",
+    "equipment": "Equipment",
+    "quality": "Quality",
+    "sustainability": "Sustainability",
+    "references": "References",
+    "about": "About us",
+    "rfqButton": "Request a quote"
+  },
+  "footer": {
+    "downloads": "Downloads",
+    "careers": "Careers",
+    "legal": "Legal",
+    "tagline": "Complete metal + wood programmes from a single European factory.",
+    "copyrightName": "GS Trubna Mebel"
+  },
+  "cta": {
+    "primary": "Request a quote",
+    "secondary": "See our capabilities",
+    "closingTitle": "[[TODO: closing CTA heading, e.g. 'Send us a drawing. Get a real answer.']]",
+    "closingBody": "[[TODO: one supporting sentence for the closing CTA band]]"
+  },
+  "misc": {
+    "imagePlaceholderNote": "Photo placeholder",
+    "todoNote": "Content pending"
+  }
+}

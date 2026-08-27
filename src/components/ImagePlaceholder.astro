@@ -1,0 +1,57 @@
+---
+/**
+ * Labelled placeholder block at the final aspect ratio, so real WebP
+ * photography drops in later without layout changes.
+ *
+ * When `src` no longer contains a [[TODO]] marker, it renders a real <img>
+ * with width/height and lazy loading; until then it renders a labelled block.
+ */
+import { isTodo } from '../lib/content';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  /** CSS aspect-ratio value, e.g. "16/7", "3/2", "4/3". */
+  aspect?: string;
+  /** Label shown inside the placeholder block. */
+  label?: string;
+  /** Set true for above-the-fold images (disables lazy loading). */
+  eager?: boolean;
+  class?: string;
+}
+
+const { src = '', alt = '', aspect = '3/2', label = 'Photo placeholder', eager = false, class: className = '' } = Astro.props;
+const isPlaceholder = !src || isTodo(src);
+
+// width/height derived from the aspect ratio at a nominal 1600px width,
+// so the browser reserves space before the image loads.
+const [w, h] = aspect.split('/').map(Number);
+const width = 1600;
+const height = Math.round((width * h) / w);
+---
+
+{
+  isPlaceholder ? (
+    <div
+      class:list={['flex items-center justify-center border border-dashed border-steel bg-mist', className]}
+      style={`aspect-ratio: ${aspect};`}
+      role="img"
+      aria-label={label}
+    >
+      <span class="px-4 text-center text-small uppercase tracking-wide text-steel">
+        {label} · {aspect.replace('/', ':')}
+      </span>
+    </div>
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class:list={['h-auto w-full object-cover', className]}
+      style={`aspect-ratio: ${aspect};`}
+    />
+  )
+}

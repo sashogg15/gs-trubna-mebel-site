@@ -1,0 +1,31 @@
+{
+  "_comment": "This page is in BULGARIAN — it targets local recruitment in Dobrich, not export clients. It lives in the en/ folder because the site currently has a single content tree; it moves with it if languages are split later.",
+  "meta": {
+    "title": "[[TODO: careers мета заглавие, напр. 'Работа в GS Trubna Mebel — Добрич']]",
+    "description": "[[TODO: careers мета описание]]"
+  },
+  "lang": "bg",
+  "intro": {
+    "heading": "Работа при нас",
+    "body": "[[TODO: 2–3 изречения — семейно предприятие от 1990 г., какво произвеждаме, защо си струва да работиш тук — конкретно, без клишета]]"
+  },
+  "openPositions": {
+    "heading": "Свободни позиции",
+    "_comment": "Едно entry на позиция. Ако няма отворени позиции, оставете items празен — страницата показва emptyMessage.",
+    "emptyMessage": "[[TODO: съобщение при липса на отворени позиции + покана за спонтанна кандидатура]]",
+    "items": [
+      {
+        "title": "[[TODO: длъжност, напр. 'Заварчик']]",
+        "type": "[[TODO: пълно/непълно работно време]]",
+        "location": "Добрич",
+        "body": "[[TODO: кратко описание — задължения, изисквания, какво предлагаме]]"
+      }
+    ]
+  },
+  "howToApply": {
+    "heading": "Как да кандидатствате",
+    "body": "[[TODO: как се кандидатства — имейл/телефон/на място, какви документи]]",
+    "email": "[[TODO: имейл за кандидатури]]",
+    "phone": "[[TODO: телефон за връзка]]"
+  }
+}

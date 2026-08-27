@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Timeline from '../components/Timeline.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, loadShared } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('about');
+const shared = loadShared();
+const sites = company.sites.items;
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/about' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+  </Section>
+
+  <Section tone="mist">
+    <h2 class="font-heading text-h2 font-bold">{t.timeline.heading}</h2>
+    <div class="mt-10 max-w-2xl">
+      <Timeline items={t.timeline.items} />
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.sites.heading}</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        sites.map((site) => (
+          <div class="border border-line px-6 py-6">
+            <h3 class="font-heading text-h3 font-bold">{site.name}</h3>
+            <p class="mt-1 text-small text-steel">{site.location}</p>
+            <p class="mt-4 font-heading text-h1 font-bold text-signal">
+              {site.areaM2}
+              <span class="text-h3"> m²</span>
+            </p>
+            <p class="mt-3 text-body text-steel">{site.function}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section tone="mist">
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.people.heading}</h2>
+      <p class="mt-6 text-body text-steel">{t.people.body}</p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2 class="font-heading text-h2 font-bold">{t.position.heading}</h2>
+      <p class="mt-6 text-body text-steel">{t.position.body}</p>
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  </Section>
+</Base>
