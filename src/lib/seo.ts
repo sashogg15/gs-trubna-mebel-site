@@ -9,7 +9,7 @@ export interface PageMeta {
   path: string;
   /** Optional page-specific OG image path (root-relative). */
   ogImage?: string;
-  /** Page language, defaults to 'en'. The careers page is 'bg'. */
+  /** Page language, defaults to 'en'. */
   lang?: string;
 }
 

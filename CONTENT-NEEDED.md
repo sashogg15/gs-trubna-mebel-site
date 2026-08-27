@@ -177,26 +177,20 @@ Copy is written. Remaining:
 - [ ] Certificate PDFs (files + titles + sizes)
 - [ ] Upload the actual files to `public/downloads/`
 
-## 11. Careers (Bulgarian) — `src/content/en/careers.json`
-- [ ] Мета заглавие + описание
-- [ ] Интро (2–3 изречения)
-- [ ] Свободни позиции (или съобщение при липса + спонтанна кандидатура)
-- [ ] Как да кандидатствате: текст, имейл, телефон
-
-## 12. Legal — `src/content/en/legal.json`
+## 11. Legal — `src/content/en/legal.json`
 - [ ] Meta title + description
 - [ ] Privacy notice (GDPR — form data, legal basis, retention, rights).
       Have this legally reviewed.
 
-## 13. Thank-you — `src/content/en/thank-you.json`
+## 12. Thank-you — `src/content/en/thank-you.json`
 - [ ] Response-time sentence
 
-## 14. Shared strings — `src/content/en/shared.json`
+## 13. Shared strings — `src/content/en/shared.json`
 - [ ] Closing CTA heading + supporting sentence (used on most pages)
 
 ---
 
-## 15. Non-content items
+## 14. Non-content items
 
 - [ ] `public/contact.php`: set `$RECIPIENT` and `$FROM` (see DEPLOY.md)
 - [ ] `public/.htaccess`: paste old WordPress URL 301 redirect list into the
