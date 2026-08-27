@@ -1,22 +1,82 @@
 {
+  "_comment": "Copy for /equipment. Machine DATA (names, specs, years, counts) lives in company.json; this file holds only the English text. Descriptions are keyed by machine id — max two sentences, one for highlighted machines. Register: what the machine does and within what limits. No marketing adjectives, present tense, no first person.",
   "meta": {
-    "title": "[[TODO: equipment meta title]]",
-    "description": "[[TODO: equipment meta description]]"
+    "title": "Equipment — tube laser, robotic welding, CNC panel processing | GS Trubna Mebel",
+    "description": "The GS Trubna Mebel machine park: BLM Group LT5 tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres and an automated powder coating line — two complete production chains in one factory."
   },
   "intro": {
     "heading": "Equipment",
-    "body": "[[TODO: 2–3 sentences — the machine park as evidence of capability; investment policy, e.g. 'machines listed with exact parameters']]"
+    "body": "Two complete production chains operate in one facility: metal fabrication and wood panel processing. Below are all {count} machine groups in process order — what each machine does and within what limits.",
+    "_bodyNote": "{count} is replaced at build time with the number of machine groups in company.json, so the figure never diverges from the list."
   },
-  "_comment": "The machine list itself lives in company.json (machines.items) — this file only holds page copy and category labels.",
-  "categoryLabels": {
-    "tube-laser": "Tube laser cutting",
-    "tube-bending": "Tube bending",
+  "chains": {
+    "metal": {
+      "heading": "Metal",
+      "sequence": ["Cutting", "Bending", "Punching", "Welding", "Blasting", "Powder coating"]
+    },
+    "wood": {
+      "heading": "Wood",
+      "sequence": ["Cutting", "Nesting", "Machining", "Edging", "Sanding", "Painting"]
+    }
+  },
+  "stageLabels": {
+    "cutting": "Cutting",
+    "bending": "Bending",
+    "punching": "Punching",
+    "forming": "Forming",
     "welding": "Welding",
-    "powder-coating": "Powder coating",
-    "panel-processing": "Panel processing",
-    "other": "Other equipment"
+    "sanding": "Sanding",
+    "surface-prep": "Surface preparation",
+    "coating": "Powder coating",
+    "nesting": "Nesting",
+    "machining": "Machining",
+    "edging": "Edgebanding",
+    "planing": "Planing",
+    "painting": "Painting"
   },
-  "outro": {
-    "body": "[[TODO: optional closing paragraph — e.g. maintenance regime, planned investments — or leave empty]]"
+  "descriptions": {
+    "blm-lt5": "Cuts round tube from Ø10 to Ø120 mm and profiles from 15×15 to 120×120 mm, up to 5 mm wall, in carbon steel, stainless steel, aluminium, brass and alloy steels.",
+    "adige-cutting": "Cuts tube to ±0.05 mm at 2,500–3,000 pieces per shift, with automated tube feeding and a self-cleaning system.",
+    "band-cutting": "Semi-automatic and manual band saws with programmable automatic infeed and angled cuts.",
+    "disc-cutting": "Cutting with chrome-vanadium and abrasive discs, plus angle grinding.",
+    "crippa-ca532": "Bends tube up to Ø32 mm and profiles up to 35×35 mm on five CNC-programmed axes with automated infeed.",
+    "alfa-bending": "Hydraulic and semi-automated benders for horizontal, vertical and variable-radius bending of tube and profile.",
+    "three-roll-bending": "Contour bending, roundness correction and radius adjustment for coils, arcs and round profiles.",
+    "hydraulic-punching": "Die cutting, hole punching and embossing with a quick-change tooling system. Built to GS Trubna Mebel specification.",
+    "presses-63t": "63 t presses for forming, bending, punching and cutting.",
+    "fanuc-welding": "Two welding robots, each serving two stations so welding runs as a continuous process.",
+    "kuka-sanding": "Sands welded frames with automated infeed and sensor-based quality monitoring.",
+    "shot-blasting": "Three-turbine blasting with an overhead hook system for full surface access; prepares surfaces for coating adhesion.",
+    "powder-coating-line": "Conveyor line at 0.75–2.0 m/min: pretreatment, drying, a six-gun automated powder chamber and gas curing — with a second powder chamber and oven in line, so a second coat is applied without removing the part from the conveyor.",
+    "homag-nesting": "Boring, milling and cutting of plywood, timber panels, MDF and chipboard across two working stations.",
+    "homag-venture": "Drilling, sawing and cutting of MDF, chipboard, plywood and timber across two working stations.",
+    "mayer-panel-saw": "Panel sizing with integrated cutting-plan software and multi-panel processing.",
+    "fravol-edgebander": "Edgebanding at up to 20 m/min with pre-milling, glue pot, edge trimming and a polishing station.",
+    "paoloni-spindle-moulder": "Spindle moulder for profiling solid timber and panel components.",
+    "paoloni-thicknesser": "Three-phase thicknesser for dimensioning timber to thickness.",
+    "paoloni-surface-planer": "Surface planer for flattening and squaring timber faces.",
+    "centorrino-belt-sander": "Surface sanding and levelling in preparation for painting.",
+    "slipcon-brush-sander": "Two brush rollers and two oscillating brush discs for surface finishing.",
+    "superfici-spray-line": "Spray line with two sets of oscillating guns, low- and high-pressure regulation, a cleaning unit and a line supervision system."
+  },
+  "robotics": {
+    "heading": "Robotics",
+    "body": "Two Fanuc welding robots and one Kuka sanding robot run in the metal chain. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
+    "stats": [
+      { "value": "2", "label": "Fanuc welding robots" },
+      { "value": "1", "label": "Kuka sanding robot" }
+    ]
+  },
+  "labels": {
+    "units": "units",
+    "unit": "unit",
+    "year": "Year",
+    "count": "Units",
+    "photoLabel": "Machine photo"
+  },
+  "closingCta": {
+    "heading": "Send a drawing. Get an assessment.",
+    "body": "Enquiries are read by engineers who work with these machines daily. You get an answer on manufacturability, tolerances and realistic batch sizes — not a brochure.",
+    "ctaLabel": "Request a quote"
   }
 }

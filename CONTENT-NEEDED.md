@@ -37,16 +37,50 @@ These numbers appear on multiple pages; each is defined once here.
 - [ ] Site 1: name, location, area m², function
 - [ ] Site 2: name, location, area m², function
 
-### Machine park (one entry per machine — primary credibility asset)
-For **each** machine: name, manufacturer, exact model, year, and 2–4 exact
-parameters (e.g. max tube diameter, wall thickness, working length, axes).
-Placeholder entries exist for:
-- [ ] Tube laser (e.g. ADIGE LT5 — max tube diameter, max wall thickness)
-- [ ] Tube bending machine(s)
-- [ ] Welding (manual stations + robotic cells)
-- [ ] Powder coating line (max part dimensions)
-- [ ] Panel processing (CNC, edgebanding…)
-- [ ] Add every other machine worth naming — duplicate the JSON object
+### Machine park — CHECKLIST FOR PRODUCTION (take this to the factory floor)
+
+All 23 machines are entered in `company.json` from the old website's data
+(last updated ~2020) and every entry carries `needsConfirmation: true`.
+The build prints the full open list on every `npm run build`.
+
+**A. Confirm for ALL 23 machines** (then remove `needsConfirmation`):
+- [ ] Machine still in operation (old site is ~6 years old — anything retired? anything new to add?)
+- [ ] Specs as listed are still correct
+
+**B. Two blocking questions — page must not go live without answers:**
+- [ ] **Powder coating line:** an EU-funded project (~BGN 930,000) for a new
+      powder coating facility + welding robot was approved. Is the listed line
+      the existing one (new one separate), or the upgraded line?
+- [ ] **Paoloni planing:** old site described the surface planer as a
+      "combined surfacer-thicknesser", but the thicknesser is listed as a
+      separate machine. One combined machine or two separate ones?
+
+**C. Missing values per machine** (marked `[[TODO]]` in company.json):
+- [ ] ADIGE tube cutting — exact model designation
+- [ ] Band cutting (×3) — manufacturer, year
+- [ ] Additional cutting (×4) — manufacturer, year
+- [ ] Alfa benders (×6) — year
+- [ ] Three-roll bending (×2) — manufacturer, year
+- [ ] Hydraulic punching (×7) — year
+- [ ] Presses 63 t (×3) — manufacturer, year
+- [ ] Fanuc robotic welding (×2) — exact model, year, welding process (MIG/MAG/TIG)
+- [ ] Kuka robotic sanding — exact model, year
+- [ ] Shot blasting — manufacturer, year
+- [ ] Powder coating line — line manufacturer, year, max part dimensions
+- [ ] HOMAG WEEKE nesting centre — year, count, max panel dimensions
+- [ ] HOMAG WEEKE Venture — year, count
+- [ ] Mayer panel saw — year, count
+- [ ] FRAVOL edgebander — year, count
+- [ ] Paoloni spindle moulder — year, count
+- [ ] Paoloni thicknesser — year, count
+- [ ] Paoloni surface planer — year, count (see question B)
+- [ ] Centorrino belt sander — year, count
+- [ ] Slip Con Perfection brush sander — year, count
+- [ ] SUPERFICI spray line — year, max part dimensions, throughput
+
+**D. Photography for highlighted machines** (4:3, WebP):
+- [ ] BLM Group LT5 · ADIGE cutting · Crippa CA 532 · Fanuc robots ·
+      Kuka robot · powder coating line · HOMAG nesting centre · SUPERFICI line
 
 ### Certifications (×N)
 For each: name, issuing body, certificate number, valid-until date, scope,
@@ -87,10 +121,10 @@ logo file.
 - [ ] Complete programmes section: paragraph + photo
 
 ## 4. Equipment — `src/content/en/equipment.json`
-- [ ] Meta title + description
-- [ ] Page intro (2–3 sentences)
-- [ ] Optional closing paragraph (maintenance regime / planned investments)
-- (machine data itself → section 1, company.json)
+- [x] Meta title + description — written from confirmed machine data
+- [x] Page intro, section copy, machine descriptions — written
+- (open machine data gaps → section 1.C above; all copy final pending
+  production's confirmation of the underlying facts)
 
 ## 5. Quality — `src/content/en/quality.json`
 - [ ] Meta title + description

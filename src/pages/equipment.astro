@@ -2,54 +2,117 @@
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
 import PageIntro from '../components/PageIntro.astro';
+import MachineFeature from '../components/MachineFeature.astro';
 import MachineCard from '../components/MachineCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { loadPage, loadShared, isTodo } from '../lib/content';
+import { loadPage } from '../lib/content';
 import company from '../data/company.json';
 
 const t = loadPage('equipment');
-const shared = loadShared();
+const machines = company.machines.items as any[];
+const stageLabels = t.stageLabels as Record<string, string>;
 
-const labels = t.categoryLabels as Record<string, string>;
-const machines = company.machines.items;
+// ---------------------------------------------------------------------------
+// Build-time warning: every machine still carrying needsConfirmation or a
+// [[TODO]] marker is listed in the build output so the whole list can be
+// confirmed with production before launch.
+const flagged = machines.filter(
+  (m) => m.needsConfirmation || JSON.stringify(m).includes('[[TODO')
+);
+if (flagged.length > 0) {
+  const lines = flagged.map((m) => {
+    const todos = (JSON.stringify(m).match(/\[\[TODO/g) || []).length;
+    const parts = [`  - ${m.name} (${m.manufacturer}${m.model ? ' ' + m.model : ''})`];
+    if (todos > 0) parts.push(`— ${todos} open [[TODO]]`);
+    if (m._confirm) parts.push(`— CONFIRM: ${m._confirm}`);
+    return parts.join(' ');
+  });
+  console.warn(
+    `\n[equipment] ${flagged.length} of ${machines.length} machines need confirmation with production before launch:\n` +
+      lines.join('\n') +
+      '\n'
+  );
+}
+// ---------------------------------------------------------------------------
 
-// Group by category, preserving the label order defined in the content file.
-const groups = Object.keys(labels)
-  .map((key) => ({
-    key,
-    label: labels[key],
-    machines: machines.filter((m) => m.category === key),
-  }))
-  .filter((g) => g.machines.length > 0);
+// {count} in the intro is computed from the data so it never diverges.
+const introBody = t.intro.body.replace('{count}', String(machines.length));
+
+// Items in company.json are kept in PROCESS ORDER within each chain;
+// the page renders them as a flow, not alphabetically.
+const chains = [
+  { key: 'metal', ...t.chains.metal, machines: machines.filter((m) => m.chain === 'metal') },
+  { key: 'wood', ...t.chains.wood, machines: machines.filter((m) => m.chain === 'wood') },
+];
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/equipment' }}>
   <Section>
-    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+    <PageIntro heading={t.intro.heading} body={introBody} />
   </Section>
 
   {
-    groups.map((group) => (
-      <Section tone="mist" class="!py-14">
-        <h2 class="font-heading text-h2 font-bold">{group.label}</h2>
-        <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {group.machines.map((machine) => (
-            <MachineCard machine={machine} />
-          ))}
-        </div>
-      </Section>
+    chains.map((chain) => (
+      <>
+        <Section id={chain.key} tone="mist">
+          <div class="border-t-4 border-ink pt-6">
+            <h2 class="font-heading text-h1 font-bold uppercase">{chain.heading}</h2>
+            <p class="mt-3 text-body text-steel">
+              {chain.sequence.map((step: string, i: number) => (
+                <>
+                  {i > 0 && <span class="mx-2 text-signal" aria-hidden="true">→</span>}
+                  <span class="whitespace-nowrap">{step}</span>
+                </>
+              ))}
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {chain.machines.map((machine) =>
+              machine.highlight ? (
+                <div class="md:col-span-2 lg:col-span-3">
+                  <MachineFeature
+                    machine={machine}
+                    description={t.descriptions[machine.id] ?? ''}
+                    stageLabel={stageLabels[machine.category] ?? machine.category}
+                    labels={t.labels}
+                  />
+                </div>
+              ) : (
+                <MachineCard
+                  machine={machine}
+                  description={t.descriptions[machine.id] ?? ''}
+                  stageLabel={stageLabels[machine.category] ?? machine.category}
+                  labels={t.labels}
+                />
+              )
+            )}
+          </div>
+        </Section>
+
+        {chain.key === 'metal' && (
+          <Section tone="graphite">
+            <div class="grid items-center gap-10 md:grid-cols-3">
+              <div class="md:col-span-2">
+                <h2 class="font-heading text-h2 font-bold">{t.robotics.heading}</h2>
+                <p class="mt-4 max-w-2xl text-body text-fog">{t.robotics.body}</p>
+              </div>
+              <div class="flex gap-10">
+                {t.robotics.stats.map((stat: any) => (
+                  <div>
+                    <p class="font-heading text-figure font-bold leading-none text-signal">{stat.value}</p>
+                    <p class="mt-2 text-small text-fog">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Section>
+        )}
+      </>
     ))
   }
 
-  {
-    !isTodo(t.outro.body) && t.outro.body && (
-      <Section>
-        <p class="max-w-3xl text-body text-steel">{t.outro.body}</p>
-      </Section>
-    )
-  }
-
-  <Section tone="graphite">
-    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  <Section tone="mist">
+    <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
   </Section>
 </Base>

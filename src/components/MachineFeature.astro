@@ -1,0 +1,65 @@
+---
+/**
+ * Large card for highlighted machines — the recognisable manufacturer name
+ * is the headline element. Full-width row: photo placeholder + description
+ * + scannable parameter table.
+ */
+import ImagePlaceholder from './ImagePlaceholder.astro';
+import { nbspUnits } from '../lib/format';
+
+interface Props {
+  machine: {
+    id: string;
+    name: string;
+    manufacturer: string;
+    model: string;
+    year: string | number;
+    count: string | number;
+    parameters: { name: string; value: string }[];
+  };
+  description: string;
+  stageLabel: string;
+  labels: Record<string, string>;
+}
+const { machine, description, stageLabel, labels } = Astro.props;
+const countLabel =
+  machine.count === 1 || machine.count === '1' ? labels.unit : labels.units;
+---
+
+<article class="border-2 border-ink bg-paper">
+  <div class="grid lg:grid-cols-2">
+    <ImagePlaceholder
+      aspect="4/3"
+      label={`${labels.photoLabel} — ${machine.manufacturer} ${machine.model || machine.name}`}
+      class="h-full border-b border-line lg:border-b-0 lg:border-r"
+    />
+    <div class="flex flex-col p-6 md:p-8">
+      <p class="text-label uppercase text-signal">{stageLabel}</p>
+      <h3 class="mt-2 font-heading text-h2 font-bold leading-tight">
+        {machine.manufacturer}
+        {machine.model && <span class="text-steel"> {machine.model}</span>}
+      </h3>
+      <p class="mt-1 text-body font-medium text-steel">{machine.name}</p>
+      <p class="mt-4 text-body">{nbspUnits(description)}</p>
+
+      <dl class="mt-6 border-t border-line">
+        {
+          machine.parameters.map((p) => (
+            <div class="flex justify-between gap-6 border-b border-line py-2.5 text-small">
+              <dt class="text-steel">{p.name}</dt>
+              <dd class="text-right font-medium tabular-nums">{nbspUnits(p.value)}</dd>
+            </div>
+          ))
+        }
+        <div class="flex justify-between gap-6 border-b border-line py-2.5 text-small">
+          <dt class="text-steel">{labels.year}</dt>
+          <dd class="text-right font-medium tabular-nums">{machine.year}</dd>
+        </div>
+        <div class="flex justify-between gap-6 py-2.5 text-small">
+          <dt class="text-steel">{labels.count}</dt>
+          <dd class="text-right font-medium tabular-nums">{machine.count} {countLabel}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article>

@@ -1,32 +1,48 @@
 ---
-/** One machine in the equipment grid — name, manufacturer, model, year, parameters table. */
+/** Compact card for non-highlighted machines in the equipment grid. */
+import { nbspUnits } from '../lib/format';
+
 interface Props {
   machine: {
+    id: string;
     name: string;
     manufacturer: string;
     model: string;
     year: string | number;
+    count: string | number;
     parameters: { name: string; value: string }[];
   };
+  description: string;
+  stageLabel: string;
+  labels: Record<string, string>;
 }
-const { machine } = Astro.props;
+const { machine, description, stageLabel, labels } = Astro.props;
+const countLabel =
+  machine.count === 1 || machine.count === '1' ? labels.unit : labels.units;
 ---
 
-<article class="flex flex-col border border-line">
-  <div class="border-b border-line bg-mist px-6 py-5">
-    <h3 class="font-heading text-h3 font-bold">{machine.name}</h3>
+<article class="flex flex-col border border-line bg-paper">
+  <div class="border-b border-line px-6 py-5">
+    <p class="text-label uppercase text-steel">{stageLabel}</p>
+    <h3 class="mt-1 font-heading text-h3 font-bold leading-tight">{machine.name}</h3>
     <p class="mt-1 text-small text-steel">
-      {machine.manufacturer} · {machine.model} · {machine.year}
+      {machine.manufacturer}{machine.model && ` · ${machine.model}`} · {machine.count}
+      {countLabel}
     </p>
   </div>
-  <dl class="flex-1 px-6 py-5">
+  <div class="flex flex-1 flex-col px-6 py-5">
+    <p class="text-small">{nbspUnits(description)}</p>
     {
-      machine.parameters.map((p) => (
-        <div class="flex justify-between gap-4 border-b border-line py-2.5 text-small last:border-b-0">
-          <dt class="text-steel">{p.name}</dt>
-          <dd class="text-right font-medium">{p.value}</dd>
-        </div>
-      ))
+      machine.parameters.length > 0 && (
+        <dl class="mt-4 border-t border-line">
+          {machine.parameters.map((p) => (
+            <div class="flex justify-between gap-4 border-b border-line py-2 text-small last:border-b-0">
+              <dt class="shrink-0 text-steel">{p.name}</dt>
+              <dd class="text-right font-medium tabular-nums">{nbspUnits(p.value)}</dd>
+            </div>
+          ))}
+        </dl>
+      )
     }
-  </dl>
+  </div>
 </article>
