@@ -5,27 +5,55 @@ import KeyFigures from '../components/KeyFigures.astro';
 import Section from '../components/Section.astro';
 import CapabilityBlock from '../components/CapabilityBlock.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
-import ProofBand from '../components/ProofBand.astro';
+import LogoWall from '../components/LogoWall.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { loadPage } from '../lib/content';
+import { nbspUnits } from '../lib/format';
+import company from '../data/company.json';
 
 const t = loadPage('home');
+
+// ---------------------------------------------------------------------------
+// Build-time warning: interview-sourced key figures still unconfirmed.
+const unconfirmed = (company.keyFigures.items as any[]).filter((f) => f.needsConfirmation);
+if (unconfirmed.length > 0) {
+  console.warn(
+    `\n[home] ${unconfirmed.length} key figure(s) still need confirmation before launch:\n` +
+      unconfirmed
+        .map((f) => `  - "${f.value}${f.unit} — ${f.label}" (source: ${f.source ?? 'unknown'})`)
+        .join('\n') +
+      '\n'
+  );
+}
+// ---------------------------------------------------------------------------
+
+const years = new Date().getFullYear() - company.identity.foundedYear;
+const proofStats = t.proofBand.stats.map((s: any) => ({
+  ...s,
+  value: s.value.replace('{years}', String(years)),
+}));
+
+// Version A/B switch for the client section: named logo wall renders only
+// when permission is confirmed in company.json (clients.permissionToDisplay).
+const showClientNames =
+  company.clients.permissionToDisplay && company.clients.named.length > 0;
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/' }}>
-  <!-- 1. Hero -->
+  <!-- 1. Hero — capacity-first positioning. -->
   <Hero
     headline={t.hero.headline}
     subline={t.hero.subline}
+    supportLine={t.hero.supportLine}
     ctaLabel={t.hero.ctaLabel}
     ctaHref="/request-a-quote"
     image={t.hero.backgroundImage}
   />
 
-  <!-- 2. Key figures strip -->
+  <!-- 2. Key figures — four real numbers, no fillers. -->
   <KeyFigures />
 
-  <!-- 3. Three capability blocks -->
+  <!-- 3. What we manufacture: Metal, Wood, Complete programmes — in this order. -->
   <Section>
     <h2 class="font-heading text-h2 font-bold">{t.capabilityBlocks.heading}</h2>
     <div class="mt-10 grid gap-10 md:grid-cols-3">
@@ -33,7 +61,7 @@ const t = loadPage('home');
     </div>
   </Section>
 
-  <!-- 4. How we work -->
+  <!-- 4. How we work — six stages; 3 and 4 carry emphasis. -->
   <Section tone="mist">
     <h2 class="font-heading text-h2 font-bold">{t.howWeWork.heading}</h2>
     <div class="mt-10">
@@ -41,20 +69,81 @@ const t = loadPage('home');
     </div>
   </Section>
 
-  <!-- 5. Why a European partner -->
-  <Section>
+  <!-- 5. Repeatability — proof point, not a topic. -->
+  <Section tone="graphite">
     <div class="max-w-3xl">
-      <h2 class="font-heading text-h2 font-bold">{t.whyEurope.heading}</h2>
-      <p class="mt-6 text-body text-steel">{t.whyEurope.body}</p>
+      <h2 class="font-heading text-h2 font-bold">{t.repeatability.heading}</h2>
+      <ul class="mt-6 space-y-2">
+        {
+          t.repeatability.lines.map((line: string) => (
+            <li class="flex items-start gap-3 text-body text-fog">
+              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-signal" aria-hidden="true" />
+              {nbspUnits(line)}
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href={t.repeatability.linkHref}
+        class="mt-8 inline-block text-small font-bold uppercase tracking-wide text-signal hover:text-paper"
+      >
+        {t.repeatability.linkLabel} →
+      </a>
     </div>
   </Section>
 
-  <!-- 6. Proof band -->
-  <Section tone="graphite">
-    <ProofBand heading={t.proofBand.heading} />
+  <!-- 6. Why a European partner — concrete arguments, location stated plainly. -->
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.whyEurope.heading}</h2>
+    <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        t.whyEurope.points.map((point: any) => (
+          <div class="border-t-2 border-line pt-5">
+            <h3 class="font-heading text-body font-bold uppercase">{point.title}</h3>
+            <p class="mt-2 text-small text-steel">{point.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-10 text-small text-steel">{t.whyEurope.locationNote}</p>
   </Section>
 
-  <!-- 7. Closing CTA -->
+  <!-- 7. Clients / proof band — Version B (no names) until permission is confirmed. -->
+  <Section tone="graphite">
+    {
+      showClientNames && (
+        <div class="mb-12">
+          <LogoWall logos={company.clients.named} />
+        </div>
+      )
+    }
+    <div class="grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="font-heading text-h2 font-bold">{t.proofBand.heading}</h2>
+        <p class="mt-4 text-body text-fog">{t.proofBand.body}</p>
+      </div>
+      <div class="grid grid-cols-3 items-end gap-6">
+        {
+          proofStats.map((stat: any) => (
+            <div>
+              <p class="font-heading text-h1 font-bold leading-none text-signal">{stat.value}</p>
+              <p class="mt-2 text-small text-fog">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  <!-- 8. Family ownership — brief, and only after credibility is established. -->
+  <Section>
+    <div class="max-w-2xl">
+      <h2 class="font-heading text-h3 font-bold">{t.family.heading}</h2>
+      <p class="mt-4 text-body text-steel">{t.family.body}</p>
+    </div>
+  </Section>
+
+  <!-- 9. Closing CTA — names what the buyer receives. -->
   <Section tone="mist">
     <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
   </Section>

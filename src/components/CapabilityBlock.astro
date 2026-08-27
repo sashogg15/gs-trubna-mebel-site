@@ -1,16 +1,31 @@
 ---
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
 interface Props {
   title: string;
   body: string;
   href: string;
   linkLabel: string;
+  /** Factory/machine/process photo only — never product or lifestyle shots. */
+  image?: { src: string; alt: string; aspect: string };
 }
-const { title, body, href, linkLabel } = Astro.props;
+const { title, body, href, linkLabel, image } = Astro.props;
 ---
 
-<div class="border-t-2 border-ink pt-6">
+<div class="flex flex-col border-t-2 border-ink pt-6">
+  {
+    image && (
+      <ImagePlaceholder
+        src={image.src}
+        alt={image.alt}
+        aspect={image.aspect}
+        label={`Factory photo — ${title}`}
+        class="mb-6"
+      />
+    )
+  }
   <h3 class="font-heading text-h3 font-bold uppercase">{title}</h3>
-  <p class="mt-4 text-body text-steel">{body}</p>
+  <p class="mt-4 flex-1 text-body text-steel">{body}</p>
   <a href={href} class="mt-6 inline-block text-small font-bold uppercase tracking-wide text-signal hover:text-signal-dark">
     {linkLabel} →
   </a>

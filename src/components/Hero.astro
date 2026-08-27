@@ -4,11 +4,13 @@ import ImagePlaceholder from './ImagePlaceholder.astro';
 interface Props {
   headline: string;
   subline: string;
+  /** Smaller third line — establishes OEM/discretion; do not cut. */
+  supportLine?: string;
   ctaLabel: string;
   ctaHref: string;
   image: { src: string; alt: string; aspect: string };
 }
-const { headline, subline, ctaLabel, ctaHref, image } = Astro.props;
+const { headline, subline, supportLine, ctaLabel, ctaHref, image } = Astro.props;
 ---
 
 <section class="relative bg-graphite text-paper">
@@ -17,14 +19,15 @@ const { headline, subline, ctaLabel, ctaHref, image } = Astro.props;
       src={image.src}
       alt={image.alt}
       aspect={image.aspect}
-      label="Full-width factory photograph"
+      label="Factory photo — wide shot of a production hall (never product/lifestyle)"
       eager={true}
       class="h-full w-full opacity-40"
     />
   </div>
   <div class="relative mx-auto max-w-site px-4 py-28 md:px-6 md:py-40">
     <h1 class="max-w-4xl font-heading text-h1 font-bold md:text-display">{headline}</h1>
-    <p class="mt-6 max-w-2xl text-body text-fog">{subline}</p>
+    <p class="mt-6 max-w-2xl text-body text-paper">{subline}</p>
+    {supportLine && <p class="mt-4 max-w-2xl text-small text-fog">{supportLine}</p>}
     <a
       href={ctaHref}
       class="mt-10 inline-block bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"

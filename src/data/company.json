@@ -29,15 +29,24 @@
   },
 
   "keyFigures": {
-    "_comment": "The 5–6 numbers on the home page key-figures strip, large type. 'value' is the big number, 'unit' the small suffix, 'label' the caption underneath. Order matters. Supply exact, verifiable figures only.",
+    "_comment": "Home page key-figures strip, large type. Four REAL figures only — a strip of four real numbers is stronger than six with two guesses; never invent a figure to fill a slot. Items with needsConfirmation:true came from a 2025 interview and trigger a build warning until confirmed.",
+    "_conflict": "EMPLOYEES AND PRODUCTION AREA ARE DELIBERATELY ABSENT: the old website published '66 employees' and '5,000 m²', which conflicts with later statements of two ~9,000 m² sites and ~60 people in production. Both figures are unusable until resolved with the company — see 'pending' below. Do not publish either number anywhere before that.",
     "items": [
-      { "value": "[[TODO: years in operation — or compute from 1990]]", "unit": "", "label": "years of manufacturing since 1990" },
-      { "value": "[[TODO: export share, e.g. 97]]", "unit": "%", "label": "of output exported (from brief: 97% — confirm)" },
-      { "value": "[[TODO: units produced per year, e.g. chairs/frames]]", "unit": "", "label": "[[TODO: caption, e.g. 'chairs produced per year']]" },
-      { "value": "[[TODO: total production area]]", "unit": "m²", "label": "production area across two sites" },
-      { "value": "[[TODO: team size]]", "unit": "", "label": "employees" },
-      { "value": "[[TODO: solar capacity]]", "unit": "kWp", "label": "on-site solar capacity" }
+      { "value": "97", "unit": "%", "label": "of output exported", "needsConfirmation": false },
+      { "value": "200,000", "unit": "", "label": "chairs per year", "needsConfirmation": true, "source": "2025 interview" },
+      { "value": "35–45", "unit": "t", "label": "metal processed per month", "needsConfirmation": true, "source": "2025 interview" },
+      { "value": "1990", "unit": "", "label": "family-owned since", "needsConfirmation": false }
+    ],
+    "pending": [
+      { "label": "employees", "value": "[[TODO: employee count — old site said 66, later statements say ~60 in production; conflict unresolved]]" },
+      { "label": "production area", "value": "[[TODO: total production area — old site said 5,000 m², later statements say two ~9,000 m² sites; conflict unresolved]]" }
     ]
+  },
+
+  "clients": {
+    "_comment": "BLOCKED — named client display is not permitted yet. The old site listed 18 client/partner names including Calligaris and Norr11; permission to show them has NOT been confirmed. Until it is, the home page and any proof band run Version B (no names, clients described by type only). When permission is confirmed: set permissionToDisplay true and fill named[] with {name, image} — the pages switch to the named logo wall (Version A) automatically, no rebuild.",
+    "permissionToDisplay": false,
+    "named": []
   },
 
   "markets": {

@@ -1,15 +1,17 @@
 {
+  "_comment": "Home page copy. Order of argument is deliberate and must not be reordered: capacity first, family story second-to-last. Never use 'quality' as a claim. No MOQ anywhere — volume is discussed one-to-one via the RFQ form. British English.",
   "meta": {
-    "title": "[[TODO: home meta title, ~55 chars, e.g. 'GS Trubna Mebel — Contract furniture manufacturing, EU']]",
-    "description": "[[TODO: home meta description, ~155 chars]]"
+    "title": "GS Trubna Mebel — contract manufacturing in metal and wood, EU",
+    "description": "OEM furniture manufacturing from one European factory: tube laser cutting, robotic welding and powder coating plus a full CNC panel chain. 97% exported to European brands — under their names. Dobrich, Bulgaria, since 1990."
   },
   "hero": {
-    "headline": "Complete metal + wood programmes from a single European factory.",
-    "subline": "[[TODO: one supporting line — concrete, e.g. what we make, for whom, since when]]",
+    "headline": "From your drawing to the packed pallet.",
+    "subline": "You own the design. We make it manufacturable, sample it, and produce it — metal, wood, or both, from one European factory.",
+    "supportLine": "Contract manufacturing for European furniture brands since 1990. 97% of what we make is exported — under our clients' names.",
     "ctaLabel": "Request a quote",
     "backgroundImage": {
-      "src": "[[TODO: /images/hero-factory.webp — full-width factory photograph]]",
-      "alt": "[[TODO: alt text describing the factory photograph]]",
+      "src": "[[TODO: /images/hero-hall.webp — REQUIRED SUBJECT: wide shot of a production hall, machines and people at work. Never a furnished interior or styled product shot.]]",
+      "alt": "Production hall at GS Trubna Mebel, Dobrich",
       "aspect": "16/7"
     }
   },
@@ -18,45 +20,124 @@
     "items": [
       {
         "title": "Metal",
-        "body": "[[TODO: one short paragraph — tube laser cutting, bending, welding, powder coating; concrete operations, no adjectives]]",
+        "body": "Tube laser cutting, five-axis bending, robotic welding, shot blasting and powder coating — the full chain for chair frames, table bases, metal structures and components.",
         "href": "/capabilities#metal",
-        "linkLabel": "Metal capabilities"
+        "linkLabel": "Metal capabilities",
+        "image": {
+          "src": "[[TODO: /images/home-metal.webp — REQUIRED SUBJECT: machine/process shot, e.g. the LT5 cutting or sparks at a welding cell]]",
+          "alt": "Tube laser cutting at GS Trubna Mebel",
+          "aspect": "3/2"
+        }
       },
       {
         "title": "Wood",
-        "body": "[[TODO: one short paragraph — panel processing, tops/panels in large volumes, case goods capacity]]",
+        "body": "CNC nesting and machining, panel sawing, edgebanding, sanding and automated spray painting for MDF, chipboard, plywood and timber panels — tops, seats, panels and fronts in series volumes.",
         "href": "/capabilities#wood",
-        "linkLabel": "Wood capabilities"
+        "linkLabel": "Wood capabilities",
+        "image": {
+          "src": "[[TODO: /images/home-wood.webp — REQUIRED SUBJECT: process shot, e.g. panels on the HOMAG nesting centre]]",
+          "alt": "Panel processing on the CNC nesting centre",
+          "aspect": "3/2"
+        }
       },
       {
         "title": "Complete programmes",
-        "body": "[[TODO: one short paragraph — metal + wood combined under one roof, one supplier, one QC chain]]",
+        "body": "Metal and wood are two complete production chains in the same facility. A chair with a steel frame and a wooden seat leaves as one finished, packed product from one supplier, on one quality chain, in one shipment.",
         "href": "/capabilities#complete-programmes",
-        "linkLabel": "Complete programmes"
+        "linkLabel": "Complete programmes",
+        "image": {
+          "src": "[[TODO: /images/home-complete.webp — REQUIRED SUBJECT: packed pallets ready for dispatch, or parts on the powder coating conveyor]]",
+          "alt": "Packed pallets ready for dispatch",
+          "aspect": "3/2"
+        }
       }
     ]
   },
   "howWeWork": {
     "heading": "How we work",
+    "_comment": "Register is deliberately calibrated: we propose, the client approves — design ownership stays with the client, explicitly. Stages 3 and 4 carry emphasis: 3 answers the repeatability question, 4 (short runs → full series) is the most underused advantage vs Asian suppliers.",
     "steps": [
-      { "title": "Co-design", "body": "[[TODO: 1–2 sentences — engineering input on the client's drawings]]" },
-      { "title": "Prototype", "body": "[[TODO: 1–2 sentences — prototype lead time, what the client receives]]" },
-      { "title": "Industrialisation", "body": "[[TODO: 1–2 sentences — jigs, fixtures, process setup]]" },
-      { "title": "Series production", "body": "[[TODO: 1–2 sentences — batch sizes, repeatability, QC]]" },
-      { "title": "Packing & shipping", "body": "[[TODO: 1–2 sentences — packing options, logistics, Incoterms]]" }
+      {
+        "title": "Drawing review",
+        "body": "Send a drawing, a 3D file or a physical sample. We come back with a manufacturability assessment: where a detail drives cost, where a radius or a joint can be simplified without changing the design intent, and what it means for tooling. You decide what to change.",
+        "emphasis": false
+      },
+      {
+        "title": "Sampling",
+        "body": "A first physical sample from the actual process that will run in series — not a hand-made one-off. What you approve is what production repeats.",
+        "emphasis": false
+      },
+      {
+        "title": "Tooling and fixtures",
+        "body": "Punching dies, jigs and welding fixtures are designed and built in-house to the part. This is why the second thousand looks like the first.",
+        "emphasis": true
+      },
+      {
+        "title": "Series production",
+        "body": "Short runs and full series on the same equipment. A model can launch as a market test and scale to full volume without changing supplier or re-tooling.",
+        "emphasis": true
+      },
+      {
+        "title": "Finishing",
+        "body": "Powder coating for metal, spray painting for MDF and panels — both lines in-house. Finishing is not subcontracted, so colour and adhesion stay inside one quality chain.",
+        "emphasis": false
+      },
+      {
+        "title": "Packing and dispatch",
+        "body": "Packed to your specification, labelled under your brand, ready for your warehouse or direct dispatch.",
+        "emphasis": false
+      }
     ]
+  },
+  "repeatability": {
+    "heading": "The same part, batch after batch",
+    "lines": [
+      "Two Fanuc welding robots and a Kuka sanding robot run in the metal chain.",
+      "Automatic tube cutting holds ±0.05 mm.",
+      "Dies, jigs and welding fixtures are built in-house to the part — geometry does not drift between batches."
+    ],
+    "linkLabel": "See the full machine park",
+    "linkHref": "/equipment"
   },
   "whyEurope": {
     "heading": "Why a European partner",
-    "body": "[[TODO: short section — EU location, tariff exposure, supply chain proximity, lead times vs Asia, Scope 3 reporting. Concrete arguments, no slogans.]]"
+    "points": [
+      {
+        "title": "Inside the EU",
+        "body": "No customs, no origin questions, no tariff exposure on EU-bound goods."
+      },
+      {
+        "title": "Days, not weeks",
+        "body": "Road freight to Western Europe in days."
+      },
+      {
+        "title": "Reporting-ready",
+        "body": "Solar generation on site — [[TODO: solar capacity in kWp and share of consumption covered]] — and supplier-level data available for your own reporting."
+      },
+      {
+        "title": "One framework",
+        "body": "One time zone, one contract, one legal framework."
+      }
+    ],
+    "locationNote": "Production in Dobrich, Bulgaria — two sites, EU territory."
   },
   "proofBand": {
-    "heading": "[[TODO: proof band heading, e.g. 'Verified, not claimed']]",
-    "note": "Certification logos, solar capacity and years in operation are pulled from company.json."
+    "_comment": "VERSION B — no client names. The old site listed 18 client/partner names incl. Calligaris and Norr11, but permission to display them is NOT confirmed. When it is, set clients.permissionToDisplay=true in company.json and fill clients.named[] — the named logo wall (Version A) renders automatically above these stats. Until then clients are described by type only, never by name.",
+    "heading": "Who we produce for",
+    "body": "European furniture and contract brands. What we make carries their names, not ours — 97% of output leaves the factory under our clients' brands, and their names stay off our website unless they decide otherwise.",
+    "stats": [
+      { "value": "97%", "label": "of output exported" },
+      { "value": "2+1", "label": "welding robots + sanding robot" },
+      { "value": "{years}", "label": "years in operation", "_note": "{years} computed at build from foundedYear" }
+    ]
+  },
+  "family": {
+    "heading": "Family-owned since 1990",
+    "body": "The two founders and the next generation are both in the business, and the people who make your decisions are the people who own the company."
   },
   "closingCta": {
-    "heading": "[[TODO: closing CTA heading]]",
-    "body": "[[TODO: one sentence — who reads the enquiry and how fast they answer]]",
+    "heading": "Send a drawing.",
+    "body": "We come back with a manufacturability assessment and an indicative price. [[TODO: role/name of who reads enquiries and typical response time, e.g. 'Enquiries are read by X — you hear back within Y working days.']]",
     "ctaLabel": "Request a quote"
   }
 }

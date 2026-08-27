@@ -25,13 +25,17 @@ These numbers appear on multiple pages; each is defined once here.
 - [ ] RFQ recipient email (also set in `public/contact.php` — two places)
 - [ ] LinkedIn company page URL (or remove the entry)
 
-### Key figures strip (home page — 5–6 exact numbers)
-- [ ] Years in operation (or confirm computing from 1990)
-- [ ] Export share, % (brief says 97% — confirm)
-- [ ] Units produced per year + what unit (e.g. chairs)
-- [ ] Total production area, m²
-- [ ] Team size
-- [ ] Solar capacity, kWp
+### Key figures strip (home page)
+Four real figures are live: 97% exported · 200,000 chairs/year · 35–45 t
+metal/month · since 1990. The build warns until the two interview-sourced
+ones are confirmed.
+- [ ] **Confirm 200,000 chairs per year** (source: 2025 interview)
+- [ ] **Confirm 35–45 t metal processed per month** (source: 2025 interview)
+- [ ] **Resolve the employees/area conflict** — old site said 66 employees and
+      5,000 m²; later statements say two ~9,000 m² sites and ~60 in
+      production. Both numbers are blocked from publication until resolved.
+      Once resolved they can join the strip (recorded in company.json →
+      keyFigures.pending).
 
 ### Production sites (×2)
 - [ ] Site 1: name, location, area m², function
@@ -102,15 +106,21 @@ logo file.
 ---
 
 ## 2. Home — `src/content/en/home.json`
-- [ ] Meta title + meta description
-- [ ] Hero supporting line
-- [ ] Hero background photo (16:7) + alt text
-- [ ] Capability blocks: one paragraph each — Metal / Wood / Complete programmes
-- [ ] How we work: 1–2 sentences per step (co-design, prototype,
-      industrialisation, series production, packing & shipping)
-- [ ] "Why a European partner" section copy (tariffs, proximity, Scope 3)
-- [ ] Proof band heading
-- [ ] Closing CTA heading + sentence
+Copy is written. Remaining:
+- [ ] Hero photo (16:7) — wide shot of a production hall, people at work
+- [ ] Capability block photos (3:2 ×3) — LT5 cutting / panels on the HOMAG /
+      packed pallets or powder line. **Factory, machine, process or
+      people-at-work subjects only — never furnished interiors or styled
+      product shots** (that is the clients' territory)
+- [ ] Solar figure for "Why a European partner" — capacity in kWp and share
+      of consumption covered
+- [ ] Closing CTA: role/name of who reads enquiries + typical response time
+- [ ] **Client names (Version A)** — old site listed 18 client/partner names
+      incl. Calligaris and Norr11. Get written permission per client; then set
+      `clients.permissionToDisplay: true` + fill `clients.named[]` in
+      company.json and the named logo wall renders automatically. Until then
+      Version B (no names) ships.
+- (200,000 and 35–45 t confirmations → section 1 above)
 
 ## 3. Capabilities — `src/content/en/capabilities.json`
 - [ ] Meta title + description
