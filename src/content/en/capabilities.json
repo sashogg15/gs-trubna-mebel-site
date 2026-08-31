@@ -1,53 +1,169 @@
 {
+  "_comment": "Copy for /capabilities — written in processes and limits, not machines. Every numeric limit is a {token} resolved at build time from company.json (machine parameters / productionTerms), never a literal, so a corrected figure updates everywhere. Machines are referenced only as evidence, linked to /equipment. NO minimum order quantity, maximum, or volume threshold anywhere on this page — volume is discussed via the RFQ form. British English.",
   "meta": {
-    "title": "[[TODO: capabilities meta title]]",
-    "description": "[[TODO: capabilities meta description]]"
+    "title": "Capabilities — process limits in metal and wood | GS Trubna Mebel",
+    "description": "The process window: tube {tubeRange} cut to {cutTolerance}, five-axis bending to {bendTube}, robotic welding, powder coating, CNC panel processing and edgebanding at {edgeSpeed} — and complete metal + wood programmes from one factory."
   },
   "intro": {
     "heading": "Capabilities",
-    "body": "[[TODO: 2–3 sentence page intro — what the factory does, framed for a sourcing director]]"
+    "body": "One question decides whether we fit: does your part sit inside our process window? This page lays that window out — processes and limits, metal and wood. The machines behind the limits are on the equipment page."
   },
-  "_sectionsComment": "Each section can later link out to a dedicated sub-page per operation (/capabilities/tube-laser-cutting etc.) — the 'operations' array items each carry an optional 'href' for that. Leave href empty until the sub-page exists.",
-  "sections": [
-    {
-      "id": "metal",
-      "title": "Metal",
-      "body": "[[TODO: paragraph — tubular and metal furniture manufacturing scope]]",
-      "image": { "src": "[[TODO: /images/capabilities-metal.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
-      "operations": [
-        { "title": "Tube laser cutting", "body": "[[TODO: 1–2 sentences, key parameters]]", "href": "" },
-        { "title": "Tube bending", "body": "[[TODO: 1–2 sentences]]", "href": "" },
-        { "title": "Welding", "body": "[[TODO: 1–2 sentences — manual + robotic]]", "href": "" },
-        { "title": "Powder coating", "body": "[[TODO: 1–2 sentences]]", "href": "" }
-      ]
-    },
-    {
-      "id": "wood",
-      "title": "Wood",
-      "body": "[[TODO: paragraph — panel processing, tops and panels in large volumes, case goods capacity]]",
-      "image": { "src": "[[TODO: /images/capabilities-wood.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
-      "operations": [
-        { "title": "Panel processing", "body": "[[TODO: 1–2 sentences — cutting, edgebanding, CNC]]", "href": "" },
-        { "title": "[[TODO: operation]]", "body": "[[TODO: 1–2 sentences]]", "href": "" }
-      ]
-    },
-    {
-      "id": "complete-programmes",
-      "title": "Complete programmes",
-      "body": "[[TODO: paragraph — combined metal + wood products from one factory: one supplier, one QC chain, one shipment]]",
-      "image": { "src": "[[TODO: /images/capabilities-complete.webp]]", "alt": "[[TODO: alt]]", "aspect": "3/2" },
-      "operations": []
-    }
-  ],
-  "specTable": {
-    "heading": "Production parameters",
-    "note": "Values are pulled from company.json (productionTerms) so they never diverge between pages.",
-    "rows": [
-      { "label": "Minimum order quantity", "companyKey": "minimumOrderQuantity" },
-      { "label": "Typical batch size", "companyKey": "typicalBatchSize" },
-      { "label": "Prototype lead time", "companyKey": "leadTimePrototype" },
-      { "label": "Series lead time", "companyKey": "leadTimeSeries" },
-      { "label": "Tolerances", "companyKey": "tolerances" }
+  "_structureNote": "Each process entry can later grow into a dedicated sub-page (href field, empty until the sub-page exists) without restructuring. Section IDs #metal, #wood, #complete-programmes are linked from the home page — keep them exactly.",
+  "metal": {
+    "id": "metal",
+    "title": "Metal",
+    "processes": [
+      {
+        "title": "Cutting",
+        "body": "Tube {tubeRange} and profiles {profileRange}, up to {maxWall} wall thickness, in {metalMaterials}. Cutting tolerance to {cutTolerance} on automated tube cutting, at {throughput}.",
+        "todos": [],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-cutting.webp — REQUIRED SUBJECT: process shot, the LT5 cutting tube]]",
+          "alt": "Tube laser cutting",
+          "aspect": "3/2"
+        }
+      },
+      {
+        "title": "Bending",
+        "body": "Five-axis CNC bending of tube up to {bendTube} and profiles up to {bendProfile}, for complex multi-plane geometries. Hydraulic and semi-automated bending for larger sections — horizontal, vertical and variable radius. Three-roll bending for coils, arcs and rolled profiles.",
+        "todos": [],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-bending.webp — REQUIRED SUBJECT: process shot, tube in the CNC bender]]",
+          "alt": "Five-axis CNC tube bending",
+          "aspect": "3/2"
+        }
+      },
+      {
+        "title": "Punching and forming",
+        "body": "Die cutting, hole punching and embossing with quick-change tooling. {pressForce} presses for forming operations. Dies are built in-house to the part.",
+        "todos": [],
+        "href": "",
+        "image": null
+      },
+      {
+        "title": "Welding",
+        "body": "Robotic welding on two Fanuc robots for repeatable seam geometry in series, plus manual welding for assemblies and prototypes.",
+        "todos": [
+          "[[TODO: welding processes available — MIG / MAG / TIG — and whether welders hold EN ISO 9606-1 qualification]]"
+        ],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-welding.webp — REQUIRED SUBJECT: process shot, sparks at a welding cell]]",
+          "alt": "Robotic welding cell",
+          "aspect": "3/2"
+        }
+      },
+      {
+        "title": "Surface preparation and coating",
+        "body": "Shot blasting for surface preparation and coating adhesion. Automated powder coating on a two-station line with pretreatment, drying, two powder chambers and two gas curing ovens — a second coat goes on without removing the part from the conveyor. Robotic sanding for surface finishing.",
+        "todos": [
+          "[[TODO: maximum part dimensions through the powder coating line]]",
+          "[[TODO: RAL range / colour availability / whether client-specified powder brands can be used]]"
+        ],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-coating.webp — REQUIRED SUBJECT: parts on the powder coating conveyor]]",
+          "alt": "Powder coating line",
+          "aspect": "3/2"
+        }
+      }
     ]
+  },
+  "wood": {
+    "id": "wood",
+    "title": "Wood and panels",
+    "_comment": "This section must read as an equal chain, not an add-on — same specificity, same card treatment as metal. Unknown limits are TODO, never invented.",
+    "processes": [
+      {
+        "title": "Panel cutting and nesting",
+        "body": "CNC nesting and panel sawing with software-generated cutting plans, processing multiple panels per cycle. MDF, chipboard, plywood and solid timber.",
+        "todos": ["[[TODO: maximum panel dimensions]]"],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-nesting.webp — REQUIRED SUBJECT: panels on the CNC nesting centre]]",
+          "alt": "CNC panel nesting",
+          "aspect": "3/2"
+        }
+      },
+      {
+        "title": "Machining",
+        "body": "CNC drilling, boring, milling and sawing on two-station machining centres. Spindle moulding, planing and thicknessing for solid timber components.",
+        "todos": [],
+        "href": "",
+        "image": null
+      },
+      {
+        "title": "Edgebanding",
+        "body": "Edgebanding at feed speeds {edgeSpeed} with pre-milling, glue application, edge trimming and polishing in one pass.",
+        "todos": ["[[TODO: edge material types supported — ABS, PVC, veneer, solid lipping]]"],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-edging.webp — REQUIRED SUBJECT: panel passing through the edgebander]]",
+          "alt": "Edgebanding line",
+          "aspect": "3/2"
+        }
+      },
+      {
+        "title": "Sanding and finishing",
+        "body": "Belt and brush sanding, including oscillating brush units for profiled surfaces. Automated spray painting for MDF and panels with oscillating guns and low- and high-pressure regulation.",
+        "todos": [
+          "[[TODO: finish types available — matt/satin/gloss, lacquer systems, whether client-specified paint systems can be used]]",
+          "[[TODO: maximum part dimensions through the spray line]]"
+        ],
+        "href": "",
+        "image": {
+          "src": "[[TODO: /images/cap-spray.webp — REQUIRED SUBJECT: the SUPERFICI spray line running panels]]",
+          "alt": "Automated spray painting line",
+          "aspect": "3/2"
+        }
+      }
+    ]
+  },
+  "complete": {
+    "id": "complete-programmes",
+    "title": "Complete programmes",
+    "opening": "Most suppliers give you either the metal or the wood. A chair with a steel frame and a wooden seat then needs two suppliers, two quality standards, two lead times and an assembly step somewhere in between — usually yours.",
+    "offer": "Both chains run in the same facility, under one production plan and one quality chain. The frame is cut, bent, welded and powder coated; the seat or top is cut, machined, edged, sanded and painted; the parts meet for assembly and packing; one finished product leaves on one pallet, labelled under your brand.",
+    "removesHeading": "What that removes for you",
+    "removes": [
+      "One supplier to qualify, audit and manage",
+      "One lead time instead of the longer of two",
+      "No inbound coordination between a metal and a wood supplier",
+      "Colour and finish matched across materials in-house, not across two companies",
+      "One shipment, one set of documents, one point of accountability"
+    ],
+    "close": "Short runs and full series on the same equipment. A model can launch as a market test and scale to full volume without changing supplier or re-tooling.",
+    "image": {
+      "src": "[[TODO: /images/cap-complete.webp — REQUIRED SUBJECT: a metal frame and a wooden top together in production, or a packed finished product on a pallet]]",
+      "alt": "Metal frame and wooden seat in assembly",
+      "aspect": "3/2"
+    }
+  },
+  "specTable": {
+    "heading": "Process parameters",
+    "_comment": "No 'Minimum order quantity' row — omitted entirely by policy, a blank row invites the question. Values with {tokens} resolve from company.json.",
+    "rows": [
+      { "label": "Materials — metal", "value": "{metalMaterials}" },
+      { "label": "Materials — panels", "value": "MDF, chipboard, plywood, solid timber" },
+      { "label": "Tube diameter range", "value": "{tubeRange}" },
+      { "label": "Max wall thickness", "value": "{maxWall}" },
+      { "label": "Cutting tolerance", "value": "{cutTolerance}" },
+      { "label": "General tolerances", "value": "{tolerances}" },
+      { "label": "Prototype lead time", "value": "{leadTimePrototype}" },
+      { "label": "Series lead time", "value": "{leadTimeSeries}" },
+      { "label": "Tooling lead time", "value": "{leadTimeTooling}" },
+      { "label": "Packing", "value": "{packing}" },
+      { "label": "Incoterms", "value": "{incoterms}" },
+      { "label": "Assembly", "value": "{assembly}" }
+    ]
+  },
+  "closingCta": {
+    "heading": "Send a drawing.",
+    "body": "We come back with a manufacturability assessment and an indicative price.",
+    "ctaLabel": "Request a quote",
+    "secondaryLabel": "See the machines behind these limits",
+    "secondaryHref": "/equipment"
   }
 }

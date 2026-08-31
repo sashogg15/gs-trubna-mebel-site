@@ -468,12 +468,17 @@
   },
 
   "productionTerms": {
-    "_comment": "Commercial/production parameters shown in the /capabilities specifications table.",
-    "minimumOrderQuantity": "[[TODO: MOQ, with unit]]",
-    "typicalBatchSize": "[[TODO: typical batch size range]]",
-    "leadTimeSeries": "[[TODO: typical series production lead time, weeks]]",
+    "_comment": "Commercial/production parameters shown in the /capabilities parameters table.",
+    "_moqPolicy": "minimumOrderQuantity is NEVER published anywhere on the site — a published number is both a floor and a ceiling. Volume is discussed one-to-one via the RFQ form. The field stays here for internal reference only.",
+    "minimumOrderQuantity": "[[TODO: internal MOQ reference — never rendered]]",
+    "typicalBatchSize": "[[TODO: typical batch size range — internal, not rendered]]",
     "leadTimePrototype": "[[TODO: typical prototype lead time, weeks]]",
-    "tolerances": "[[TODO: standard tolerances / standard referenced]]"
+    "leadTimeSeries": "[[TODO: typical series production lead time, weeks]]",
+    "leadTimeTooling": "[[TODO: typical tooling lead time, weeks]]",
+    "tolerances": "[[TODO: standard tolerances held, or standard referenced]]",
+    "packing": "[[TODO: packing options — bulk, retail-ready, flat-pack, client-specified]]",
+    "incoterms": "[[TODO: which Incoterms are offered]]",
+    "assembly": "[[TODO: assembled, partly assembled, flat-pack — what is offered]]"
   },
 
   "sustainability": {

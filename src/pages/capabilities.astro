@@ -5,61 +5,163 @@ import PageIntro from '../components/PageIntro.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import SpecTable from '../components/SpecTable.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { loadPage, loadShared } from '../lib/content';
+import { loadPage } from '../lib/content';
+import { interpolate, nbspUnits } from '../lib/format';
 import company from '../data/company.json';
 
 const t = loadPage('capabilities');
-const shared = loadShared();
+
+// ---------------------------------------------------------------------------
+// Process limits come from company.json — machine parameters and commercial
+// terms — and are interpolated into the copy at build time. A limit is
+// defined once in the data layer and can never diverge between pages.
+const param = (id: string, name: string): string => {
+  const machine = (company.machines.items as any[]).find((m) => m.id === id);
+  const p = machine?.parameters.find((p: any) => p.name === name);
+  return p?.value ?? `[[TODO: missing parameter ${id} / ${name}]]`;
+};
 
 const terms = company.productionTerms as Record<string, string>;
+
+const vars: Record<string, string> = {
+  tubeRange: param('blm-lt5', 'Round tube diameter'),
+  profileRange: param('blm-lt5', 'Profiles'),
+  maxWall: param('blm-lt5', 'Max wall thickness'),
+  metalMaterials: param('blm-lt5', 'Materials'),
+  cutTolerance: param('adige-cutting', 'Cutting tolerance'),
+  throughput: param('adige-cutting', 'Throughput'),
+  bendTube: param('crippa-ca532', 'Max tube diameter'),
+  bendProfile: param('crippa-ca532', 'Max profile'),
+  pressForce: param('presses-63t', 'Pressing force'),
+  edgeSpeed: param('fravol-edgebander', 'Feed speed'),
+  tolerances: terms.tolerances,
+  leadTimePrototype: terms.leadTimePrototype,
+  leadTimeSeries: terms.leadTimeSeries,
+  leadTimeTooling: terms.leadTimeTooling,
+  packing: terms.packing,
+  incoterms: terms.incoterms,
+  assembly: terms.assembly,
+};
+
+const text = (s: string) => nbspUnits(interpolate(s, vars));
+
+const chains = [t.metal, t.wood];
 const specRows = t.specTable.rows.map((row: any) => ({
   label: row.label,
-  value: terms[row.companyKey] ?? '',
+  value: text(row.value),
 }));
+
+// ---------------------------------------------------------------------------
+// Build-time warning: every open [[TODO]] on this page, as one checklist.
+const pageTodos = new Set<string>();
+const collect = (s: string) => {
+  for (const m of s.match(/\[\[TODO:[^\]]*\]\]/g) ?? []) pageTodos.add(m);
+};
+for (const chain of chains)
+  for (const proc of chain.processes) {
+    collect(text(proc.body));
+    proc.todos.forEach(collect);
+    if (proc.image) collect(proc.image.src);
+  }
+collect(t.complete.image.src);
+specRows.forEach((r) => collect(r.value));
+if (pageTodos.size > 0) {
+  console.warn(
+    `\n[capabilities] ${pageTodos.size} open item(s) — production checklist:\n` +
+      [...pageTodos].map((todo) => `  - ${todo}`).join('\n') +
+      '\n'
+  );
+}
+// ---------------------------------------------------------------------------
+
+const meta = {
+  title: t.meta.title,
+  description: text(t.meta.description),
+  path: '/capabilities',
+};
 ---
 
-<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/capabilities' }}>
+<Base meta={meta}>
   <Section>
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
   </Section>
 
+  <!-- Metal and Wood get identical structure and treatment — the two chains
+       are equals, and the layout must say so. -->
   {
-    t.sections.map((section: any, i: number) => (
-      <Section id={section.id} tone={i % 2 === 0 ? 'mist' : 'paper'}>
-        <div class="grid items-start gap-10 lg:grid-cols-2">
-          <div>
-            <h2 class="font-heading text-h2 font-bold">{section.title}</h2>
-            <p class="mt-6 text-body text-steel">{section.body}</p>
-            {section.operations.length > 0 && (
-              <ul class="mt-8 divide-y divide-line border-b border-t border-line">
-                {section.operations.map((op: any) => (
-                  <li class="py-4">
-                    {/* Each operation can later become a link to its own sub-page (op.href) without restructuring. */}
-                    <h3 class="font-heading text-body font-bold uppercase">
-                      {op.href ? (
-                        <a href={op.href} class="hover:text-signal">
-                          {op.title} →
-                        </a>
-                      ) : (
-                        op.title
-                      )}
-                    </h3>
-                    <p class="mt-1 text-small text-steel">{op.body}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <ImagePlaceholder
-            src={section.image.src}
-            alt={section.image.alt}
-            aspect={section.image.aspect}
-            label={`${section.title} — photo`}
-          />
+    chains.map((chain: any) => (
+      <Section id={chain.id} tone="mist">
+        <div class="border-t-4 border-ink pt-6">
+          <h2 class="font-heading text-h1 font-bold uppercase">{chain.title}</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {chain.processes.map((proc: any) => (
+            <article class="flex flex-col border border-line bg-paper">
+              {proc.image && (
+                <ImagePlaceholder
+                  src={proc.image.src}
+                  alt={proc.image.alt}
+                  aspect={proc.image.aspect}
+                  label={`Process photo — ${proc.title}`}
+                />
+              )}
+              <div class="flex flex-1 flex-col px-6 py-6">
+                {/* proc.href becomes a link when the dedicated sub-page exists. */}
+                <h3 class="font-heading text-h3 font-bold">
+                  {proc.href ? (
+                    <a href={proc.href} class="hover:text-signal">
+                      {proc.title} →
+                    </a>
+                  ) : (
+                    proc.title
+                  )}
+                </h3>
+                <p class="mt-3 text-body text-steel">{text(proc.body)}</p>
+                {proc.todos.length > 0 && (
+                  <ul class="mt-4 space-y-1">
+                    {proc.todos.map((todo: string) => (
+                      <li class="text-small text-steel">{todo}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
     ))
   }
+
+  <!-- Complete programmes — the argument, given the most editorial weight. -->
+  <Section id={t.complete.id} tone="graphite">
+    <div class="max-w-3xl">
+      <p class="text-label uppercase text-signal">{t.complete.title}</p>
+      <p class="mt-6 font-heading text-h2 font-bold leading-snug">{t.complete.opening}</p>
+      <p class="mt-8 text-body text-fog">{t.complete.offer}</p>
+    </div>
+    <div class="mt-12 grid items-start gap-10 lg:grid-cols-2">
+      <div>
+        <h3 class="text-label uppercase text-fog">{t.complete.removesHeading}</h3>
+        <ul class="mt-4 divide-y divide-steel/40 border-b border-t border-steel/40">
+          {
+            t.complete.removes.map((item: string) => (
+              <li class="flex items-start gap-3 py-3.5 text-body">
+                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-signal" aria-hidden="true" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-8 text-body text-fog">{t.complete.close}</p>
+      </div>
+      <ImagePlaceholder
+        src={t.complete.image.src}
+        alt={t.complete.image.alt}
+        aspect={t.complete.image.aspect}
+        label="Photo — metal frame + wooden top together, or packed finished product"
+      />
+    </div>
+  </Section>
 
   <Section>
     <h2 class="font-heading text-h2 font-bold">{t.specTable.heading}</h2>
@@ -68,7 +170,13 @@ const specRows = t.specTable.rows.map((row: any) => ({
     </div>
   </Section>
 
-  <Section tone="graphite">
-    <CtaBand heading={shared.cta.closingTitle} body={shared.cta.closingBody} ctaLabel={shared.cta.primary} />
+  <Section tone="mist">
+    <CtaBand
+      heading={t.closingCta.heading}
+      body={t.closingCta.body}
+      ctaLabel={t.closingCta.ctaLabel}
+      secondaryLabel={t.closingCta.secondaryLabel}
+      secondaryHref={t.closingCta.secondaryHref}
+    />
   </Section>
 </Base>

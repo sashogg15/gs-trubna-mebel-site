@@ -123,12 +123,35 @@ Copy is written. Remaining:
 - (200,000 and 35–45 t confirmations → section 1 above)
 
 ## 3. Capabilities — `src/content/en/capabilities.json`
-- [ ] Meta title + description
-- [ ] Page intro (2–3 sentences)
-- [ ] Metal section: paragraph + photo (3:2) + 1–2 sentences per operation
-      (tube laser cutting, tube bending, welding, powder coating)
-- [ ] Wood section: paragraph + photo + operations (panel processing, …)
-- [ ] Complete programmes section: paragraph + photo
+Copy is written; limits interpolate from company.json. The build prints the
+full open list on every `npm run build`. Remaining, grouped:
+
+**Process limits to supply (ask production):**
+- [ ] Welding processes available (MIG / MAG / TIG) + whether welders hold
+      EN ISO 9606-1 qualification
+- [ ] Max part dimensions through the powder coating line
+- [ ] RAL range / colour availability / client-specified powder brands — yes/no
+- [ ] Maximum panel dimensions (nesting/sawing)
+- [ ] Edge material types supported (ABS, PVC, veneer, solid lipping)
+- [ ] Finish types on the spray line (matt/satin/gloss, lacquer systems,
+      client-specified paint systems — yes/no)
+- [ ] Max part dimensions through the spray line
+
+**Commercial terms (company.json → productionTerms):**
+- [ ] General tolerances held, or standard referenced
+- [ ] Prototype / series / tooling lead times (weeks)
+- [ ] Packing options (bulk, retail-ready, flat-pack, client-specified)
+- [ ] Incoterms offered
+- [ ] Assembly offered (assembled / partly assembled / flat-pack)
+- Note: MOQ is deliberately NEVER published — internal field only.
+
+**Photography (3:2, process shots only):**
+- [ ] Metal: LT5 cutting · tube in the CNC bender · sparks at a welding
+      cell · parts on the powder conveyor
+- [ ] Wood: panels on the nesting centre · panel through the edgebander ·
+      SUPERFICI spray line running
+- [ ] Complete programmes: metal frame + wooden top together, or a packed
+      finished product on a pallet
 
 ## 4. Equipment — `src/content/en/equipment.json`
 - [x] Meta title + description — written from confirmed machine data
