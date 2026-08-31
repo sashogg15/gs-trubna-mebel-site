@@ -11,23 +11,23 @@ interface Props {
 const { cert } = Astro.props;
 ---
 
-<article class="border border-line px-6 py-5">
+<article class="border border-steel-100 px-6 py-5">
   <h3 class="font-heading text-h3 font-bold">{cert.name}</h3>
   <dl class="mt-4 space-y-2 text-small">
     <div class="flex justify-between gap-4">
-      <dt class="text-steel">Issuing body</dt>
+      <dt class="text-steel-600">Issuing body</dt>
       <dd class="text-right font-medium">{cert.issuingBody}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel">Certificate no.</dt>
+      <dt class="text-steel-600">Certificate no.</dt>
       <dd class="text-right font-medium">{cert.certificateNumber}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel">Valid until</dt>
+      <dt class="text-steel-600">Valid until</dt>
       <dd class="text-right font-medium">{cert.validUntil}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel">Scope</dt>
+      <dt class="text-steel-600">Scope</dt>
       <dd class="text-right font-medium">{cert.scope}</dd>
     </div>
   </dl>

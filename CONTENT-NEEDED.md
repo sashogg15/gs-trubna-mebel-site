@@ -30,6 +30,13 @@ unconfirmed figures, blocked pages).
    powder coating facility + welding robot was approved. Is the listed line
    the existing one (new one separate) or the upgraded one? The equipment
    entry must not go live unclarified.
+5. **Original vector logo.** Obtain the original vector logo (.ai, .eps,
+   .svg or .pdf) from the designer, the trademark registration documents,
+   or existing print materials. The current file is a raster reconstruction
+   with visible alignment differences from the registered mark and must not
+   be used on production materials. Swapping it in is a 1:1 file
+   replacement in `public/images/logo/` (same filenames) plus regenerating
+   the favicon set — no code change.
 
 ---
 
@@ -116,6 +123,9 @@ unconfirmed figures, blocked pages).
 - [ ] Second production site address (about/legal mention two sites)
 - [ ] Data retention period for enquiries and submitted files (/legal)
 - [ ] Email address for data access/deletion requests (/legal)
+- [ ] **Original vector logo** (→ launch blocker 5): source the registered
+      mark's vector artwork from the designer, the trademark registration
+      documents, or existing print materials
 
 ---
 

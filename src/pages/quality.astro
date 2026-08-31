@@ -17,7 +17,7 @@ const certs = company.certifications.items;
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
   </Section>
 
-  <Section tone="mist">
+  <Section tone="white">
     <h2 class="font-heading text-h2 font-bold">{t.certifications.heading}</h2>
     <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {certs.map((cert) => <CertCard cert={cert} />)}
@@ -27,12 +27,12 @@ const certs = company.certifications.items;
   <Section>
     <div class="max-w-3xl">
       <h2 class="font-heading text-h2 font-bold">{t.processControl.heading}</h2>
-      <p class="mt-6 text-body text-steel">{t.processControl.body}</p>
-      <ul class="mt-8 divide-y divide-line border-b border-t border-line">
+      <p class="mt-6 text-body text-steel-600">{t.processControl.body}</p>
+      <ul class="mt-8 divide-y divide-steel-100 border-b border-t border-steel-100">
         {
           t.processControl.points.map((point: string) => (
             <li class="flex items-start gap-3 py-4 text-body">
-              <span class="mt-2 h-2 w-2 shrink-0 bg-signal" aria-hidden="true" />
+              <span class="mt-2 h-2 w-2 shrink-0 bg-ember" aria-hidden="true" />
               {point}
             </li>
           ))
@@ -41,25 +41,25 @@ const certs = company.certifications.items;
     </div>
   </Section>
 
-  <Section tone="mist">
+  <Section tone="white">
     <div class="max-w-3xl">
       <h2 class="font-heading text-h2 font-bold">{t.testing.heading}</h2>
-      <p class="mt-6 text-body text-steel">{t.testing.body}</p>
+      <p class="mt-6 text-body text-steel-600">{t.testing.body}</p>
     </div>
     <div class="mt-8 overflow-x-auto">
-      <table class="w-full max-w-3xl border border-line text-left">
+      <table class="w-full max-w-3xl border border-steel-100 text-left">
         <thead>
-          <tr class="border-b border-line bg-paper">
-            <th class="px-5 py-3 text-label uppercase text-steel">Standard</th>
-            <th class="px-5 py-3 text-label uppercase text-steel">Scope</th>
+          <tr class="border-b border-steel-100 bg-white">
+            <th class="px-5 py-3 text-label uppercase text-steel-600">Standard</th>
+            <th class="px-5 py-3 text-label uppercase text-steel-600">Scope</th>
           </tr>
         </thead>
         <tbody>
           {
             t.testing.standards.map((s: any) => (
-              <tr class="border-b border-line bg-paper last:border-b-0">
+              <tr class="border-b border-steel-100 bg-white last:border-b-0">
                 <td class="px-5 py-3 text-body font-medium">{s.code}</td>
-                <td class="px-5 py-3 text-body text-steel">{s.scope}</td>
+                <td class="px-5 py-3 text-body text-steel-600">{s.scope}</td>
               </tr>
             ))
           }

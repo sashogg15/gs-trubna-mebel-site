@@ -22,9 +22,9 @@ const L = rfq.form.labels;
 const E = rfq.form.errors;
 
 const fieldClass =
-  'w-full border border-line bg-paper px-4 py-3 text-body rounded-field focus:border-signal focus:outline-none aria-[invalid=true]:border-signal';
+  'w-full border border-steel-100 bg-white px-4 py-3 text-body rounded-field focus:border-ember focus:outline-none aria-[invalid=true]:border-ember';
 const labelClass = 'mb-1.5 block text-small font-medium';
-const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
+const errorClass = 'mt-1.5 hidden text-small font-medium text-ember';
 ---
 
 <form
@@ -39,7 +39,7 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
   data-err-filesize={E.fileSize}
   class="grid gap-6 sm:grid-cols-2"
 >
-  <p class="text-small text-steel sm:col-span-2">{rfq.form.requiredNote}</p>
+  <p class="text-small text-steel-600 sm:col-span-2">{rfq.form.requiredNote}</p>
 
   <div>
     <label for="company" class={labelClass}>{L.company} *</label>
@@ -107,9 +107,9 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
       multiple
       accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.jpg,.jpeg,.png,.zip"
       data-remove-label={L.filesRemove}
-      class="block w-full text-small text-steel file:mr-4 file:cursor-pointer file:border file:border-line file:bg-mist file:px-4 file:py-2.5 file:text-small file:font-medium"
+      class="block w-full text-small text-steel-600 file:mr-4 file:cursor-pointer file:border file:border-steel-100 file:bg-paper file:px-4 file:py-2.5 file:text-small file:font-medium"
     />
-    <p class="mt-1.5 text-small text-steel">{L.filesNote}</p>
+    <p class="mt-1.5 text-small text-steel-600">{L.filesNote}</p>
     <p class={errorClass} data-error-for="drawings"></p>
     <ul id="file-list" class="mt-2 space-y-1"></ul>
   </div>
@@ -125,7 +125,7 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
     <button
       type="submit"
       id="rfq-submit"
-      class="w-full bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      class="w-full bg-ember px-8 py-4 text-body font-bold uppercase tracking-wide text-white hover:bg-ember-bright disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       data-label={L.submit}
       data-label-sending={L.submitting}
     >
@@ -177,13 +177,13 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
     Array.from(store.files).forEach((file, i) => {
       const li = document.createElement('li');
       li.className =
-        'flex items-center justify-between gap-3 border border-line bg-mist px-3 py-2 text-small';
+        'flex items-center justify-between gap-3 border border-steel-100 bg-paper px-3 py-2 text-small';
       const span = document.createElement('span');
       span.className = 'truncate';
       span.textContent = `${file.name} · ${fmtSize(file.size)}`;
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'shrink-0 font-bold uppercase tracking-wide text-signal hover:text-signal-dark';
+      btn.className = 'shrink-0 font-bold uppercase tracking-wide text-ember hover:text-ember-bright';
       btn.textContent = fileInput.dataset.removeLabel || 'Remove';
       btn.addEventListener('click', () => {
         const next = new DataTransfer();

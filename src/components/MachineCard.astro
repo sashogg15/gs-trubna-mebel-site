@@ -21,11 +21,11 @@ const countLabel =
   machine.count === 1 || machine.count === '1' ? labels.unit : labels.units;
 ---
 
-<article class="flex flex-col border border-line bg-paper">
-  <div class="border-b border-line px-6 py-5">
-    <p class="text-label uppercase text-steel">{stageLabel}</p>
+<article class="flex flex-col border border-steel-100 bg-white">
+  <div class="border-b border-steel-100 px-6 py-5">
+    <p class="text-label uppercase text-steel-600">{stageLabel}</p>
     <h3 class="mt-1 font-heading text-h3 font-bold leading-tight">{machine.name}</h3>
-    <p class="mt-1 text-small text-steel">
+    <p class="mt-1 text-small text-steel-600">
       {machine.manufacturer}{machine.model && ` · ${machine.model}`} · {machine.count}
       {countLabel}
     </p>
@@ -34,10 +34,10 @@ const countLabel =
     <p class="text-small">{nbspUnits(description)}</p>
     {
       machine.parameters.length > 0 && (
-        <dl class="mt-4 border-t border-line">
+        <dl class="mt-4 border-t border-steel-100">
           {machine.parameters.map((p) => (
-            <div class="flex justify-between gap-4 border-b border-line py-2 text-small last:border-b-0">
-              <dt class="shrink-0 text-steel">{p.name}</dt>
+            <div class="flex justify-between gap-4 border-b border-steel-100 py-2 text-small last:border-b-0">
+              <dt class="shrink-0 text-steel-600">{p.name}</dt>
               <dd class="text-right font-medium tabular-nums">{nbspUnits(p.value)}</dd>
             </div>
           ))}

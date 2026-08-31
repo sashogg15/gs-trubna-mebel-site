@@ -2,30 +2,54 @@
  * DESIGN TOKENS — the single place to adjust the visual direction.
  *
  * Everything visual flows from this file into tailwind.config.mjs.
- * Change a value here and it changes everywhere.
+ *
+ * Palette principle: we are a contract manufacturer — factory photography
+ * is the hero, and the products in it belong to our clients. Neutral base
+ * (slightly cool, to sit against the grey-blue of steel in the photos),
+ * ONE accent used sparingly. The accent carries navigation and action,
+ * never mood.
  *
  * Plain .mjs (not .ts) so the Tailwind config can import it at build time.
  */
 
 export const colors = {
-  // Near-black. Headings and body text on light backgrounds.
-  ink: '#16181D',
-  // Secondary text, captions, table meta.
-  steel: '#4A5058',
-  // Hairline rules, table borders, card outlines.
-  line: '#D9DCE0',
-  // Page background.
-  paper: '#FFFFFF',
-  // Alternate section background.
-  mist: '#F3F4F6',
-  // Dark sections: proof band, footer.
-  graphite: '#1E2126',
-  // Text on graphite.
-  fog: '#B7BCC3',
-  // The single accent. RFQ button, links, key figures. Use sparingly.
-  signal: '#E8600A',
-  // Accent hover/active.
-  signalDark: '#C74F05',
+  // ---- Neutrals — roughly 90% of every page --------------------------------
+  // Logo, headings, primary body text.
+  ink: '#16181C',
+  // Dark sections, footer background.
+  graphite: '#2C3138',
+  // Secondary text, captions, labels.
+  steel600: '#5A6270',
+  // Borders, disabled states, dividers on dark.
+  steel300: '#A8AEB8',
+  // Dividers, table row separators, card borders.
+  steel100: '#E6E8EB',
+  // Default page background.
+  paper: '#F7F8F9',
+  // Cards, elevated surfaces.
+  white: '#FFFFFF',
+
+  // ---- Accent — roughly 10%, and sparingly ---------------------------------
+  // TWO-TONE ACCENT RULE — hard accessibility requirement, do not undo:
+  //   · ember (#D4500A) passes WCAG AA for normal-size text. Use it for
+  //     ANY text below 24 px (or below 19 px bold): inline links, labels,
+  //     small numbers, icons, error messages, and for button fills
+  //     (white-on-ember-bright measures ~3.1:1 and fails AA, so button
+  //     fills use ember, not ember-bright).
+  //   · ember-bright (#F26A0C) is ONLY for large text and non-text UI:
+  //     the big key figures, large stats, large graphic elements.
+  // Never put ember-bright on text-sized elements.
+  ember: '#D4500A',
+  emberBright: '#F26A0C',
+
+  // ---- Section tint pair — structural, not decorative -----------------------
+  // Barely-cool vs barely-warm backgrounds that signal, below conscious
+  // notice, the move between the two production chains. Used ONLY on:
+  // /capabilities #metal + #wood, /equipment metal + wood groupings, and
+  // the home page Metal + Wood capability blocks. Never anywhere else,
+  // and never add further tints — two is the whole system.
+  tintMetal: '#F4F6F8',
+  tintWood: '#F8F6F2',
 };
 
 export const fonts = {

@@ -1,0 +1,42 @@
+---
+/**
+ * Logo system. Two lockups:
+ *   - `full`     — GS monogram + TRUBNA MEBEL wordmark. Header on desktop,
+ *                  footer, print. Very wide: never in narrow containers —
+ *                  below ~120 px wide it becomes unreadable, so `full`
+ *                  automatically renders the monogram below the `md`
+ *                  breakpoint.
+ *   - `monogram` — the GS mark alone. Mobile header, favicon, any square
+ *                  or constrained context.
+ *
+ * `tone`: 'dark' = ink mark for light backgrounds, 'light' = white mark
+ * for dark backgrounds.
+ *
+ * The assets in /images/logo/ are PLACEHOLDERS — the registered mark (®)
+ * exists as vector artwork and must replace them 1:1 before launch (same
+ * filenames, no code change). See CONTENT-NEEDED.md.
+ */
+import company from '../data/company.json';
+
+interface Props {
+  variant?: 'full' | 'monogram';
+  tone?: 'dark' | 'light';
+  /** Height utility class(es), e.g. "h-7 md:h-8". */
+  class?: string;
+}
+const { variant = 'full', tone = 'dark', class: className = 'h-8' } = Astro.props;
+const alt = company.identity.brandName;
+const monogram = `/images/logo/monogram-${tone}.svg`;
+const full = `/images/logo/full-${tone}.svg`;
+---
+
+{
+  variant === 'monogram' ? (
+    <img src={monogram} alt={alt} class:list={['w-auto', className]} width="32" height="32" />
+  ) : (
+    <>
+      <img src={monogram} alt={alt} class:list={['w-auto md:hidden', className]} width="32" height="32" />
+      <img src={full} alt={alt} class:list={['hidden w-auto md:block', className]} width="232" height="32" />
+    </>
+  )
+}

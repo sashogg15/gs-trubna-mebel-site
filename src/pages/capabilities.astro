@@ -90,13 +90,13 @@ const meta = {
        are equals, and the layout must say so. -->
   {
     chains.map((chain: any) => (
-      <Section id={chain.id} tone="mist">
+      <Section id={chain.id} tone={chain.id === 'metal' ? 'tint-metal' : 'tint-wood'}>
         <div class="border-t-4 border-ink pt-6">
           <h2 class="font-heading text-h1 font-bold uppercase">{chain.title}</h2>
         </div>
         <div class="mt-10 grid gap-6 md:grid-cols-2">
           {chain.processes.map((proc: any) => (
-            <article class="flex flex-col border border-line bg-paper">
+            <article class="flex flex-col border border-steel-100 bg-white">
               {proc.image && (
                 <ImagePlaceholder
                   src={proc.image.src}
@@ -109,18 +109,18 @@ const meta = {
                 {/* proc.href becomes a link when the dedicated sub-page exists. */}
                 <h3 class="font-heading text-h3 font-bold">
                   {proc.href ? (
-                    <a href={proc.href} class="hover:text-signal">
+                    <a href={proc.href} class="hover:text-ember">
                       {proc.title} →
                     </a>
                   ) : (
                     proc.title
                   )}
                 </h3>
-                <p class="mt-3 text-body text-steel">{text(proc.body)}</p>
+                <p class="mt-3 text-body text-steel-600">{text(proc.body)}</p>
                 {proc.todos.length > 0 && (
                   <ul class="mt-4 space-y-1">
                     {proc.todos.map((todo: string) => (
-                      <li class="text-small text-steel">{todo}</li>
+                      <li class="text-small text-steel-600">{todo}</li>
                     ))}
                   </ul>
                 )}
@@ -135,24 +135,24 @@ const meta = {
   <!-- Complete programmes — the argument, given the most editorial weight. -->
   <Section id={t.complete.id} tone="graphite">
     <div class="max-w-3xl">
-      <p class="text-label uppercase text-signal">{t.complete.title}</p>
+      <p class="text-label uppercase text-ember">{t.complete.title}</p>
       <p class="mt-6 font-heading text-h2 font-bold leading-snug">{t.complete.opening}</p>
-      <p class="mt-8 text-body text-fog">{t.complete.offer}</p>
+      <p class="mt-8 text-body text-steel-300">{t.complete.offer}</p>
     </div>
     <div class="mt-12 grid items-start gap-10 lg:grid-cols-2">
       <div>
-        <h3 class="text-label uppercase text-fog">{t.complete.removesHeading}</h3>
-        <ul class="mt-4 divide-y divide-steel/40 border-b border-t border-steel/40">
+        <h3 class="text-label uppercase text-steel-300">{t.complete.removesHeading}</h3>
+        <ul class="mt-4 divide-y divide-steel-600/40 border-b border-t border-steel-600/40">
           {
             t.complete.removes.map((item: string) => (
               <li class="flex items-start gap-3 py-3.5 text-body">
-                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-signal" aria-hidden="true" />
+                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-ember" aria-hidden="true" />
                 {item}
               </li>
             ))
           }
         </ul>
-        <p class="mt-8 text-body text-fog">{t.complete.close}</p>
+        <p class="mt-8 text-body text-steel-300">{t.complete.close}</p>
       </div>
       <ImagePlaceholder
         src={t.complete.image.src}
@@ -170,7 +170,7 @@ const meta = {
     </div>
   </Section>
 
-  <Section tone="mist">
+  <Section tone="white">
     <CtaBand
       heading={t.closingCta.heading}
       body={t.closingCta.body}

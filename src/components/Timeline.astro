@@ -5,13 +5,13 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ol class="border-l-2 border-line">
+<ol class="border-l-2 border-steel-100">
   {
     items.map((item) => (
       <li class="relative pb-10 pl-8 last:pb-0">
-        <span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-signal" aria-hidden="true" />
-        <p class="font-heading text-h3 font-bold text-signal">{item.year}</p>
-        <p class="mt-1 text-body text-steel">{item.event}</p>
+        <span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-ember" aria-hidden="true" />
+        <p class="font-heading text-h3 font-bold text-ember">{item.year}</p>
+        <p class="mt-1 text-body text-steel-600">{item.event}</p>
       </li>
     ))
   }

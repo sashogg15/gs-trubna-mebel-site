@@ -1,16 +1,25 @@
 ---
-/** Standard page section: vertical rhythm + max-width container. */
+/**
+ * Standard page section: vertical rhythm + max-width container.
+ *
+ * Tones: 'paper' (default page grey), 'white' (elevated alternate),
+ * 'graphite' (dark bands), and the two structural chain tints —
+ * 'tint-metal' / 'tint-wood' — used ONLY on the metal/wood sections of
+ * /capabilities, /equipment and the home capability blocks. Never add
+ * further tints; two is the whole system.
+ */
 interface Props {
-  /** 'paper' | 'mist' | 'graphite' */
-  tone?: 'paper' | 'mist' | 'graphite';
+  tone?: 'paper' | 'white' | 'graphite' | 'tint-metal' | 'tint-wood';
   id?: string;
   class?: string;
 }
 const { tone = 'paper', id, class: className = '' } = Astro.props;
 const tones = {
   paper: 'bg-paper text-ink',
-  mist: 'bg-mist text-ink',
-  graphite: 'bg-graphite text-paper',
+  white: 'bg-white text-ink',
+  graphite: 'bg-graphite text-white',
+  'tint-metal': 'bg-tint-metal text-ink',
+  'tint-wood': 'bg-tint-wood text-ink',
 };
 ---
 

@@ -8,11 +8,16 @@ interface Props {
   linkLabel: string;
   /** Factory/machine/process photo only — never product or lifestyle shots. */
   image?: { src: string; alt: string; aspect: string };
+  /**
+   * Structural chain tint — 'bg-tint-metal' | 'bg-tint-wood'. Used only
+   * for the Metal and Wood blocks on the home page; never elsewhere.
+   */
+  tint?: string;
 }
-const { title, body, href, linkLabel, image } = Astro.props;
+const { title, body, href, linkLabel, image, tint } = Astro.props;
 ---
 
-<div class="flex flex-col border-t-2 border-ink pt-6">
+<div class:list={['flex flex-col border-t-2 border-ink pt-6', tint && `${tint} px-5 pb-6`]}>
   {
     image && (
       <ImagePlaceholder
@@ -25,8 +30,8 @@ const { title, body, href, linkLabel, image } = Astro.props;
     )
   }
   <h3 class="font-heading text-h3 font-bold uppercase">{title}</h3>
-  <p class="mt-4 flex-1 text-body text-steel">{body}</p>
-  <a href={href} class="mt-6 inline-block text-small font-bold uppercase tracking-wide text-signal hover:text-signal-dark">
+  <p class="mt-4 flex-1 text-body text-steel-600">{body}</p>
+  <a href={href} class="mt-6 inline-block text-small font-bold uppercase tracking-wide text-ember hover:text-ember-bright">
     {linkLabel} →
   </a>
 </div>

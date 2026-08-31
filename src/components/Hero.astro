@@ -13,7 +13,7 @@ interface Props {
 const { headline, subline, supportLine, ctaLabel, ctaHref, image } = Astro.props;
 ---
 
-<section class="relative bg-graphite text-paper">
+<section class="relative bg-graphite text-white">
   <div class="absolute inset-0">
     <ImagePlaceholder
       src={image.src}
@@ -26,11 +26,11 @@ const { headline, subline, supportLine, ctaLabel, ctaHref, image } = Astro.props
   </div>
   <div class="relative mx-auto max-w-site px-4 py-28 md:px-6 md:py-40">
     <h1 class="max-w-4xl font-heading text-h1 font-bold md:text-display">{headline}</h1>
-    <p class="mt-6 max-w-2xl text-body text-paper">{subline}</p>
-    {supportLine && <p class="mt-4 max-w-2xl text-small text-fog">{supportLine}</p>}
+    <p class="mt-6 max-w-2xl text-body text-white">{subline}</p>
+    {supportLine && <p class="mt-4 max-w-2xl text-small text-steel-300">{supportLine}</p>}
     <a
       href={ctaHref}
-      class="mt-10 inline-block bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"
+      class="mt-10 inline-block bg-ember px-8 py-4 text-body font-bold uppercase tracking-wide text-white hover:bg-ember-bright"
     >
       {ctaLabel}
     </a>

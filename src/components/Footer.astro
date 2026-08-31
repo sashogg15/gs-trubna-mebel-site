@@ -1,5 +1,6 @@
 ---
 import { loadShared } from '../lib/content';
+import Logo from './Logo.astro';
 import company from '../data/company.json';
 
 const shared = loadShared();
@@ -7,17 +8,20 @@ const year = new Date().getFullYear();
 const addr = company.contacts.address;
 ---
 
-<footer class="bg-graphite text-fog">
+<footer class="bg-graphite text-steel-300">
   <div class="mx-auto grid max-w-site gap-10 px-4 py-14 md:grid-cols-3 md:px-6">
     <div>
-      <p class="font-heading text-h3 font-bold uppercase text-paper">
-        {company.identity.brandName}
-      </p>
-      <p class="mt-3 max-w-xs text-small">{shared.footer.tagline}</p>
+      <Logo variant="full" tone="light" class="h-7" />
+      {/* Descriptor line: typographic, visually separate from the logo —
+          it must never read as part of the registered mark. (Spec calls
+          for steel-600, which measures ~2.2:1 on graphite and is
+          illegible; steel-300 is used instead — see contrast report.) */}
+      <p class="mt-4 text-label uppercase text-steel-300">{shared.footer.descriptor}</p>
+      <p class="mt-4 max-w-xs text-small">{shared.footer.tagline}</p>
     </div>
 
     <div class="text-small">
-      <p class="mb-3 text-label uppercase text-paper">Contact</p>
+      <p class="mb-3 text-label uppercase text-white">Contact</p>
       <p>{addr.street}</p>
       <p>{addr.postalCode} {addr.city}, {addr.country}</p>
       <p class="mt-2">{company.contacts.email}</p>
@@ -25,18 +29,18 @@ const addr = company.contacts.address;
     </div>
 
     <div class="text-small">
-      <p class="mb-3 text-label uppercase text-paper">More</p>
+      <p class="mb-3 text-label uppercase text-white">More</p>
       <ul class="space-y-2">
         {/* /downloads is deliberately NOT linked while it is empty — a footer
             link to an empty page is worse than no link. Re-enable this line
             when the first real document is published there:
-            <li><a href="/downloads" class="hover:text-paper">{shared.footer.downloads}</a></li> */}
-        <li><a href="/legal" class="hover:text-paper">{shared.footer.legal}</a></li>
+            <li><a href="/downloads" class="hover:text-white">{shared.footer.downloads}</a></li> */}
+        <li><a href="/legal" class="hover:text-white">{shared.footer.legal}</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-steel/40">
+  <div class="border-t border-steel-600/40">
     <div class="mx-auto max-w-site px-4 py-4 text-small md:px-6">
       © {year} {shared.footer.copyrightName}. {company.identity.registrationCity}.
     </div>

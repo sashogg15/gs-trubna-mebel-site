@@ -8,13 +8,13 @@ const { caption, rows } = Astro.props;
 ---
 
 <div class="overflow-x-auto">
-  <table class="w-full border border-line text-left">
+  <table class="w-full border border-steel-100 text-left">
     {caption && <caption class="sr-only">{caption}</caption>}
     <tbody>
       {
         rows.map((row) => (
-          <tr class="border-b border-line last:border-b-0">
-            <th scope="row" class="w-1/3 bg-mist px-5 py-4 text-small font-medium uppercase tracking-wide text-steel">
+          <tr class="border-b border-steel-100 last:border-b-0">
+            <th scope="row" class="w-1/3 bg-paper px-5 py-4 text-small font-medium uppercase tracking-wide text-steel-600">
               {row.label}
             </th>
             <td class="px-5 py-4 text-body font-medium">{row.value}</td>

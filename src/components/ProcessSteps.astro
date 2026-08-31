@@ -17,19 +17,19 @@ const { steps } = Astro.props;
       <li
         class:list={[
           'pt-6',
-          step.emphasis ? 'border-t-4 border-signal' : 'border-t-2 border-line',
+          step.emphasis ? 'border-t-4 border-ember' : 'border-t-2 border-steel-100',
         ]}
       >
         <span
           class:list={[
             'font-heading text-h2 font-bold',
-            step.emphasis ? 'text-signal' : 'text-steel',
+            step.emphasis ? 'text-ember-bright' : 'text-steel-600',
           ]}
         >
           {String(i + 1).padStart(2, '0')}
         </span>
         <h3 class="mt-2 font-heading text-body font-bold uppercase">{step.title}</h3>
-        <p class="mt-2 text-small text-steel">{step.body}</p>
+        <p class="mt-2 text-small text-steel-600">{step.body}</p>
       </li>
     ))
   }

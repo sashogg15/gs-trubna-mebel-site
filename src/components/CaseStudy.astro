@@ -30,7 +30,7 @@ const facts = [
 ];
 ---
 
-<article class="grid gap-8 border-t border-line pt-10 md:grid-cols-2">
+<article class="grid gap-8 border-t border-steel-100 pt-10 md:grid-cols-2">
   <ImagePlaceholder
     src={item.image.src}
     alt={item.image.alt}
@@ -40,14 +40,14 @@ const facts = [
   <div>
     <h3 class="font-heading text-h3 font-bold">
       {displayName}
-      {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel">(name under NDA)</span>}
+      {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel-600">(name under NDA)</span>}
     </h3>
-    <p class="mt-4 text-body text-steel">{item.body}</p>
+    <p class="mt-4 text-body text-steel-600">{item.body}</p>
     <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-small">
       {
         facts.map((f) => (
           <div>
-            <dt class="text-label uppercase text-steel">{f.label}</dt>
+            <dt class="text-label uppercase text-steel-600">{f.label}</dt>
             <dd class="mt-0.5 font-medium">{f.value}</dd>
           </div>
         ))

@@ -20,12 +20,12 @@ const {
 <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
   <div class="max-w-2xl">
     <h2 class="font-heading text-h2 font-bold">{heading}</h2>
-    {body && <p class="mt-4 text-body text-steel">{body}</p>}
+    {body && <p class="mt-4 text-body text-steel-600">{body}</p>}
   </div>
   <div class="flex shrink-0 flex-col items-start gap-4 sm:flex-row sm:items-center">
     <a
       href={ctaHref}
-      class="bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"
+      class="bg-ember px-8 py-4 text-body font-bold uppercase tracking-wide text-white hover:bg-ember-bright"
     >
       {ctaLabel}
     </a>
@@ -33,7 +33,7 @@ const {
       secondaryLabel && secondaryHref && (
         <a
           href={secondaryHref}
-          class="text-small font-bold uppercase tracking-wide text-signal hover:text-signal-dark"
+          class="text-small font-bold uppercase tracking-wide text-ember hover:text-ember-bright"
         >
           {secondaryLabel} →
         </a>

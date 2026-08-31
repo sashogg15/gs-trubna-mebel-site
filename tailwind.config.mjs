@@ -8,15 +8,24 @@ export default {
       transparent: 'transparent',
       current: 'currentColor',
       ink: colors.ink,
-      steel: colors.steel,
-      line: colors.line,
-      paper: colors.paper,
-      mist: colors.mist,
       graphite: colors.graphite,
-      fog: colors.fog,
-      signal: {
-        DEFAULT: colors.signal,
-        dark: colors.signalDark,
+      steel: {
+        600: colors.steel600,
+        300: colors.steel300,
+        100: colors.steel100,
+      },
+      paper: colors.paper,
+      white: colors.white,
+      // Two-tone accent — see the rule in src/design/tokens.mjs before
+      // using: ember for text-sized elements and button fills,
+      // ember-bright ONLY for large text and non-text UI.
+      ember: {
+        DEFAULT: colors.ember,
+        bright: colors.emberBright,
+      },
+      tint: {
+        metal: colors.tintMetal,
+        wood: colors.tintWood,
       },
     },
     fontFamily: {

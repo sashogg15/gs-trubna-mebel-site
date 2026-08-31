@@ -17,7 +17,7 @@ const sites = company.sites.items;
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
   </Section>
 
-  <Section tone="mist">
+  <Section tone="white">
     <h2 class="font-heading text-h2 font-bold">{t.timeline.heading}</h2>
     <div class="mt-10 max-w-2xl">
       <Timeline items={t.timeline.items} />
@@ -29,31 +29,31 @@ const sites = company.sites.items;
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       {
         sites.map((site) => (
-          <div class="border border-line px-6 py-6">
+          <div class="border border-steel-100 px-6 py-6">
             <h3 class="font-heading text-h3 font-bold">{site.name}</h3>
-            <p class="mt-1 text-small text-steel">{site.location}</p>
-            <p class="mt-4 font-heading text-h1 font-bold text-signal">
+            <p class="mt-1 text-small text-steel-600">{site.location}</p>
+            <p class="mt-4 font-heading text-h1 font-bold text-ember-bright">
               {site.areaM2}
               <span class="text-h3"> m²</span>
             </p>
-            <p class="mt-3 text-body text-steel">{site.function}</p>
+            <p class="mt-3 text-body text-steel-600">{site.function}</p>
           </div>
         ))
       }
     </div>
   </Section>
 
-  <Section tone="mist">
+  <Section tone="white">
     <div class="max-w-3xl">
       <h2 class="font-heading text-h2 font-bold">{t.people.heading}</h2>
-      <p class="mt-6 text-body text-steel">{t.people.body}</p>
+      <p class="mt-6 text-body text-steel-600">{t.people.body}</p>
     </div>
   </Section>
 
   <Section>
     <div class="max-w-3xl">
       <h2 class="font-heading text-h2 font-bold">{t.position.heading}</h2>
-      <p class="mt-6 text-body text-steel">{t.position.body}</p>
+      <p class="mt-6 text-body text-steel-600">{t.position.body}</p>
     </div>
   </Section>
 
