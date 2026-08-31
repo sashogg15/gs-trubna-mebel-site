@@ -15,17 +15,27 @@
   },
 
   "contacts": {
-    "_comment": "Public contact details. Used in footer, /legal, /request-a-quote and JSON-LD.",
-    "email": "[[TODO: sales/enquiry email address]]",
-    "phone": "[[TODO: phone number in international format, e.g. +359 ...]]",
+    "_comment": "Public contact details. Used in footer, /legal, /request-a-quote and JSON-LD. Addresses come from the old site — [[TODO: confirm both addresses are current]] before launch.",
+    "_emailBlocker": "LAUNCH BLOCKER: the old site published office@gs-bg.eu — a DIFFERENT domain from gstrubnamebel.eu. Cross-domain replies read as disorganised and hurt deliverability. Decide before launch: a mailbox on gstrubnamebel.eu for enquiries, or a documented reason to keep gs-bg.eu. Do NOT publish a gs-bg.eu address until decided.",
+    "email": "[[TODO: enquiries email address — see _emailBlocker, domain decision pending]]",
+    "phone": "[[TODO: phone number for enquiries, international format]]",
     "address": {
-      "street": "[[TODO: street address of headquarters]]",
+      "_comment": "Office address (from the old site — confirm current).",
+      "street": "ul. Angel Stoyanov 1",
       "city": "Dobrich",
-      "postalCode": "[[TODO: postal code]]",
+      "postalCode": "9300",
       "country": "Bulgaria",
       "countryCode": "BG"
     },
-    "rfqRecipientEmail": "[[TODO: email address that receives RFQ form submissions — also set it in public/contact.php]]"
+    "productionAddress": {
+      "_comment": "Production site address (from the old site — confirm current).",
+      "street": "bul. 25 Septemvri 51",
+      "city": "Dobrich",
+      "postalCode": "9300",
+      "country": "Bulgaria",
+      "countryCode": "BG"
+    },
+    "rfqRecipientEmail": "[[TODO: mailbox that receives RFQ submissions — must be set in public/contact.php too; sender mailbox website@gstrubnamebel.eu must exist on the hosting (see DEPLOY.md)]]"
   },
 
   "keyFigures": {

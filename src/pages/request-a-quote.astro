@@ -1,18 +1,74 @@
 ---
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
-import PageIntro from '../components/PageIntro.astro';
 import RfqForm from '../components/RfqForm.astro';
-import { loadPage } from '../lib/content';
+import { loadPage, isTodo } from '../lib/content';
+import company from '../data/company.json';
 
 const t = loadPage('request-a-quote');
+
+// "Who reads it" renders as a distinct element once the TODO is filled.
+// Until then: visible in dev so it isn't forgotten, omitted in production —
+// a vague placeholder here would undermine the promise the page makes.
+const whoReadsReady = !isTodo(t.whoReads.text);
+const showWhoReads = whoReadsReady || import.meta.env.DEV;
+
+const office = company.contacts.address;
+const production = company.contacts.productionAddress;
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/request-a-quote' }}>
   <Section>
-    <PageIntro heading={t.intro.heading} body={t.intro.body} />
-    <div class="mt-12 max-w-3xl">
-      <RfqForm />
+    <div class="max-w-3xl">
+      <h1 class="font-heading text-h1 font-bold">{t.intro.heading}</h1>
+      <p class="mt-6 text-body text-steel">{t.intro.body}</p>
+    </div>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <RfqForm />
+      </div>
+
+      <aside class="space-y-8">
+        {
+          showWhoReads && (
+            <div class="border-l-4 border-signal bg-mist px-5 py-4">
+              <p class="text-body font-medium">{t.whoReads.text}</p>
+            </div>
+          )
+        }
+
+        <div class="border border-line px-5 py-5">
+          <h2 class="font-heading text-body font-bold uppercase">{t.confidentiality.heading}</h2>
+          <p class="mt-3 text-small text-steel">{t.confidentiality.body}</p>
+        </div>
+
+        <div class="border-t-2 border-ink pt-5">
+          <h2 class="font-heading text-body font-bold uppercase">{t.altContact.heading}</h2>
+          <dl class="mt-4 space-y-3 text-small">
+            <div>
+              <dt class="text-label uppercase text-steel">{t.altContact.emailLabel}</dt>
+              <dd class="mt-0.5 font-medium">{company.contacts.email}</dd>
+            </div>
+            <div>
+              <dt class="text-label uppercase text-steel">{t.altContact.phoneLabel}</dt>
+              <dd class="mt-0.5 font-medium">{company.contacts.phone}</dd>
+            </div>
+            <div>
+              <dt class="text-label uppercase text-steel">{t.altContact.officeLabel}</dt>
+              <dd class="mt-0.5 font-medium">
+                {office.street}, {office.postalCode} {office.city}, {office.country}
+              </dd>
+            </div>
+            <div>
+              <dt class="text-label uppercase text-steel">{t.altContact.productionLabel}</dt>
+              <dd class="mt-0.5 font-medium">
+                {production.street}, {production.postalCode} {production.city}, {production.country}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
     </div>
   </Section>
 </Base>

@@ -1,9 +1,15 @@
 {
   "meta": {
-    "title": "Thank you — GS Trubna Mebel",
-    "description": "Your enquiry has been received."
+    "title": "Enquiry received — GS Trubna Mebel",
+    "description": "Your enquiry has been received and will be assessed by an engineer."
   },
   "heading": "Enquiry received",
-  "body": "[[TODO: 1–2 sentences — who will answer and within what time, e.g. 'An engineer from our team will come back to you within X working days.']]",
+  "body": "Here is what happens next:",
+  "steps": [
+    "An engineer reviews your drawing or files against our process window.",
+    "You receive a manufacturability assessment — where the design drives cost, what it means for tooling — and an indicative price.",
+    "[[TODO: response time — e.g. 'You hear back within N working days.' Same figure as the who-reads element on the RFQ page.]]"
+  ],
+  "note": "If you attached files, they are treated as confidential and are not shared outside the company.",
   "backLabel": "Back to home"
 }

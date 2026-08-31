@@ -1,9 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
-import { loadPage } from '../lib/content';
+import { loadPage, isTodo } from '../lib/content';
 
 const t = loadPage('thank-you');
+
+// The response-time step renders once filled; in production an unfilled
+// TODO is omitted rather than shipping a vague placeholder.
+const steps = (t.steps as string[]).filter((s) => !isTodo(s) || import.meta.env.DEV);
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/thank-you' }}>
@@ -11,6 +15,17 @@ const t = loadPage('thank-you');
     <div class="max-w-2xl">
       <h1 class="font-heading text-h1 font-bold">{t.heading}</h1>
       <p class="mt-6 text-body text-steel">{t.body}</p>
+      <ol class="mt-6 space-y-4">
+        {
+          steps.map((step, i) => (
+            <li class="flex items-start gap-4">
+              <span class="font-heading text-h3 font-bold text-signal">{String(i + 1).padStart(2, '0')}</span>
+              <p class="pt-1 text-body">{step}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-8 text-small text-steel">{t.note}</p>
       <a
         href="/"
         class="mt-10 inline-block border border-ink px-6 py-3 text-small font-bold uppercase tracking-wide hover:border-signal hover:text-signal"

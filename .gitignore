@@ -16,3 +16,6 @@ dist/
 
 # Logs
 npm-debug.log*
+
+# RFQ rejection logs (written by contact.php during local testing)
+rfq-logs/

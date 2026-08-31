@@ -1,112 +1,263 @@
 ---
 /**
- * Structured RFQ form. Static HTML posting to /contact.php (plain PHP on
- * the shared host). Spam protection: honeypot field ("website") plus a
- * time check — contact.php rejects submissions faster than a human could
- * type. The timestamp field is filled by a tiny inline script; without JS
- * the field stays empty and contact.php still accepts the submission.
+ * RFQ form — static HTML posting to /contact.php (plain PHP on the host).
+ *
+ * Required: company, country, contact name, email, what-you-need, message.
+ * Optional: phone, annual volume (free text — no ranges, no minimum
+ * implied), timeline, files. Nothing else: every extra field costs
+ * completions and changes nothing in the reply.
+ *
+ * Client-side validation is inline per field, the form is never cleared
+ * on error, selected files are listed with name/size/remove, and the
+ * submit button shows a sending state (a 10 MB upload takes time).
+ * Server-side validation in contact.php remains authoritative.
+ *
+ * Spam protection: honeypot ("website") + time check (form_ts, JS-set;
+ * empty means no JS and is allowed through).
  */
 import { loadPage } from '../lib/content';
 
 const rfq = loadPage('request-a-quote');
 const L = rfq.form.labels;
+const E = rfq.form.errors;
 
 const fieldClass =
-  'w-full border border-line bg-paper px-4 py-3 text-body rounded-field focus:border-signal focus:outline-none';
+  'w-full border border-line bg-paper px-4 py-3 text-body rounded-field focus:border-signal focus:outline-none aria-[invalid=true]:border-signal';
 const labelClass = 'mb-1.5 block text-small font-medium';
+const errorClass = 'mt-1.5 hidden text-small font-medium text-signal';
 ---
 
 <form
+  id="rfq-form"
   method="post"
   action="/contact.php"
   enctype="multipart/form-data"
-  class="grid gap-6 md:grid-cols-2"
+  novalidate
+  data-err-required={E.required}
+  data-err-email={E.email}
+  data-err-filetype={E.fileType}
+  data-err-filesize={E.fileSize}
+  class="grid gap-6 sm:grid-cols-2"
 >
+  <p class="text-small text-steel sm:col-span-2">{rfq.form.requiredNote}</p>
+
   <div>
     <label for="company" class={labelClass}>{L.company} *</label>
     <input type="text" id="company" name="company" required autocomplete="organization" class={fieldClass} />
+    <p class={errorClass} data-error-for="company">{E.required}</p>
   </div>
+
   <div>
     <label for="country" class={labelClass}>{L.country} *</label>
-    <input type="text" id="country" name="country" required autocomplete="country-name" class={fieldClass} />
+    <select id="country" name="country" required class={fieldClass}>
+      <option value="">{L.countryPlaceholder}</option>
+      {rfq.countries.map((c: string) => <option value={c}>{c}</option>)}
+    </select>
+    <p class={errorClass} data-error-for="country">{E.required}</p>
   </div>
+
   <div>
     <label for="contact_name" class={labelClass}>{L.contactName} *</label>
     <input type="text" id="contact_name" name="contact_name" required autocomplete="name" class={fieldClass} />
+    <p class={errorClass} data-error-for="contact_name">{E.required}</p>
   </div>
+
   <div>
     <label for="email" class={labelClass}>{L.email} *</label>
     <input type="email" id="email" name="email" required autocomplete="email" class={fieldClass} />
+    <p class={errorClass} data-error-for="email">{E.email}</p>
   </div>
+
+  <div class="sm:col-span-2">
+    <label for="what_you_need" class={labelClass}>{L.whatYouNeed} *</label>
+    <select id="what_you_need" name="what_you_need" required class={fieldClass}>
+      <option value="">—</option>
+      {rfq.form.labels.whatYouNeedOptions.map((o: any) => <option value={o.value}>{o.label}</option>)}
+    </select>
+    <p class={errorClass} data-error-for="what_you_need">{E.required}</p>
+  </div>
+
   <div>
     <label for="phone" class={labelClass}>{L.phone}</label>
     <input type="tel" id="phone" name="phone" autocomplete="tel" class={fieldClass} />
   </div>
-  <div>
-    <label for="product_type" class={labelClass}>{L.productType} *</label>
-    <input type="text" id="product_type" name="product_type" required placeholder={L.productTypePlaceholder} class={fieldClass} />
-  </div>
-
-  <fieldset class="md:col-span-2">
-    <legend class={labelClass}>{L.material} *</legend>
-    <div class="flex flex-wrap gap-6">
-      <label class="flex items-center gap-2 text-body">
-        <input type="radio" name="material" value="metal" required class="accent-signal" /> {L.materialOptions.metal}
-      </label>
-      <label class="flex items-center gap-2 text-body">
-        <input type="radio" name="material" value="wood" class="accent-signal" /> {L.materialOptions.wood}
-      </label>
-      <label class="flex items-center gap-2 text-body">
-        <input type="radio" name="material" value="both" class="accent-signal" /> {L.materialOptions.both}
-      </label>
-    </div>
-  </fieldset>
 
   <div>
-    <label for="annual_volume" class={labelClass}>{L.annualVolume} *</label>
-    <input type="text" id="annual_volume" name="annual_volume" required placeholder={L.annualVolumePlaceholder} class={fieldClass} />
+    <label for="annual_volume" class={labelClass}>{L.annualVolume}</label>
+    <input type="text" id="annual_volume" name="annual_volume" placeholder={L.annualVolumePlaceholder} class={fieldClass} />
   </div>
-  <div>
+
+  <div class="sm:col-span-2">
     <label for="timeline" class={labelClass}>{L.timeline}</label>
     <input type="text" id="timeline" name="timeline" placeholder={L.timelinePlaceholder} class={fieldClass} />
   </div>
 
-  <div class="md:col-span-2">
-    <label for="drawings" class={labelClass}>{L.drawings}</label>
+  <div class="sm:col-span-2">
+    <label for="message" class={labelClass}>{L.message} *</label>
+    <textarea id="message" name="message" rows="5" required class={fieldClass}></textarea>
+    <p class={errorClass} data-error-for="message">{E.required}</p>
+  </div>
+
+  <div class="sm:col-span-2">
+    <label for="drawings" class={labelClass}>{L.files}</label>
     <input
       type="file"
       id="drawings"
       name="drawings[]"
       multiple
-      accept=".pdf,.dwg,.dxf,.step,.stp,.zip"
-      class="block w-full text-small text-steel file:mr-4 file:border file:border-line file:bg-mist file:px-4 file:py-2.5 file:text-small file:font-medium"
+      accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.jpg,.jpeg,.png,.zip"
+      data-remove-label={L.filesRemove}
+      class="block w-full text-small text-steel file:mr-4 file:cursor-pointer file:border file:border-line file:bg-mist file:px-4 file:py-2.5 file:text-small file:font-medium"
     />
+    <p class="mt-1.5 text-small text-steel">{L.filesNote}</p>
+    <p class={errorClass} data-error-for="drawings"></p>
+    <ul id="file-list" class="mt-2 space-y-1"></ul>
   </div>
 
-  <div class="md:col-span-2">
-    <label for="message" class={labelClass}>{L.message} *</label>
-    <textarea id="message" name="message" rows="6" required class={fieldClass}></textarea>
-  </div>
-
-  <!-- Honeypot: hidden from humans, bots fill it in. contact.php rejects any submission where it is non-empty. -->
+  <!-- Honeypot: hidden from humans; contact.php rejects when non-empty. -->
   <div class="hidden" aria-hidden="true">
     <label for="website">Website</label>
     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
   </div>
   <input type="hidden" name="form_ts" id="form_ts" value="" />
 
-  <div class="md:col-span-2">
+  <div class="sm:col-span-2">
     <button
       type="submit"
-      class="bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"
+      id="rfq-submit"
+      class="w-full bg-signal px-8 py-4 text-body font-bold uppercase tracking-wide text-paper hover:bg-signal-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      data-label={L.submit}
+      data-label-sending={L.submitting}
     >
       {L.submit}
     </button>
-    <p class="mt-4 text-small text-steel">{rfq.form.reassurance}</p>
   </div>
 </form>
 
 <script>
-  const ts = document.getElementById('form_ts') as HTMLInputElement | null;
+  const form = document.getElementById('rfq-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('rfq-submit') as HTMLButtonElement;
+  const fileInput = document.getElementById('drawings') as HTMLInputElement;
+  const fileList = document.getElementById('file-list') as HTMLUListElement;
+  const ts = document.getElementById('form_ts') as HTMLInputElement;
   if (ts) ts.value = String(Math.floor(Date.now() / 1000));
+
+  const MAX_TOTAL = 10 * 1024 * 1024;
+  const ALLOWED = ['pdf', 'dwg', 'dxf', 'step', 'stp', 'igs', 'iges', 'jpg', 'jpeg', 'png', 'zip'];
+  const REQUIRED = ['company', 'country', 'contact_name', 'email', 'what_you_need', 'message'];
+
+  const err = (id: string) =>
+    form.querySelector<HTMLParagraphElement>(`[data-error-for="${id}"]`);
+
+  function setError(id: string, message: string | null) {
+    const el = err(id);
+    const field = document.getElementById(id) as HTMLElement | null;
+    if (!el) return;
+    if (message) {
+      el.textContent = message;
+      el.classList.remove('hidden');
+      field?.setAttribute('aria-invalid', 'true');
+    } else {
+      el.classList.add('hidden');
+      field?.removeAttribute('aria-invalid');
+    }
+  }
+
+  // --- File handling: keep our own store so single files can be removed. ---
+  let store = new DataTransfer();
+
+  function fmtSize(bytes: number): string {
+    return bytes >= 1024 * 1024
+      ? (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+      : Math.max(1, Math.round(bytes / 1024)) + ' KB';
+  }
+
+  function renderFiles() {
+    fileList.innerHTML = '';
+    Array.from(store.files).forEach((file, i) => {
+      const li = document.createElement('li');
+      li.className =
+        'flex items-center justify-between gap-3 border border-line bg-mist px-3 py-2 text-small';
+      const span = document.createElement('span');
+      span.className = 'truncate';
+      span.textContent = `${file.name} · ${fmtSize(file.size)}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'shrink-0 font-bold uppercase tracking-wide text-signal hover:text-signal-dark';
+      btn.textContent = fileInput.dataset.removeLabel || 'Remove';
+      btn.addEventListener('click', () => {
+        const next = new DataTransfer();
+        Array.from(store.files).forEach((f, j) => {
+          if (j !== i) next.items.add(f);
+        });
+        store = next;
+        fileInput.files = store.files;
+        renderFiles();
+        validateFiles();
+      });
+      li.append(span, btn);
+      fileList.appendChild(li);
+    });
+  }
+
+  function validateFiles(): boolean {
+    const files = Array.from(store.files);
+    const badType = files.find(
+      (f) => !ALLOWED.includes((f.name.split('.').pop() || '').toLowerCase())
+    );
+    if (badType) {
+      setError('drawings', `${form.dataset.errFiletype} (${badType.name})`);
+      return false;
+    }
+    const total = files.reduce((sum, f) => sum + f.size, 0);
+    if (total > MAX_TOTAL) {
+      setError('drawings', form.dataset.errFilesize || '');
+      return false;
+    }
+    setError('drawings', null);
+    return true;
+  }
+
+  fileInput.addEventListener('change', () => {
+    // Merge newly picked files into the store (input replaces its own list).
+    Array.from(fileInput.files || []).forEach((f) => store.items.add(f));
+    fileInput.files = store.files;
+    renderFiles();
+    validateFiles();
+  });
+
+  // --- Field validation: inline, per field, on submit and on blur. ---------
+  function validateField(id: string): boolean {
+    const field = document.getElementById(id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    const value = field.value.trim();
+    if (!value) {
+      setError(id, form.dataset.errRequired || '');
+      return false;
+    }
+    if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setError(id, form.dataset.errEmail || '');
+      return false;
+    }
+    setError(id, null);
+    return true;
+  }
+
+  REQUIRED.forEach((id) => {
+    document.getElementById(id)?.addEventListener('blur', () => validateField(id));
+  });
+
+  form.addEventListener('submit', (e) => {
+    const results = REQUIRED.map((id) => validateField(id));
+    const filesOk = validateFiles();
+    if (results.includes(false) || !filesOk) {
+      e.preventDefault();
+      const firstInvalid = REQUIRED.find((id, i) => !results[i]);
+      document.getElementById(firstInvalid || 'drawings')?.focus();
+      return;
+    }
+    // Valid: lock the button and show the sending state. The form is never
+    // cleared — if the server bounces, everything typed is still here.
+    submitBtn.disabled = true;
+    submitBtn.textContent = submitBtn.dataset.labelSending || submitBtn.textContent;
+  });
 </script>

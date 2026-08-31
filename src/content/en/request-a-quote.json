@@ -1,31 +1,69 @@
 {
+  "_comment": "Copy for /request-a-quote — the only page that generates revenue. This is not a contact form: it promises an engineering assessment of a drawing. Every element exists to reduce the hesitation of revealing an unlaunched product to an unknown supplier. Never 'fill in the form below', never 'we will be in touch shortly'. British English.",
   "meta": {
-    "title": "[[TODO: RFQ meta title]]",
-    "description": "[[TODO: RFQ meta description]]"
+    "title": "Request a quote — send a drawing, get an assessment | GS Trubna Mebel",
+    "description": "Send a drawing, a 3D file or a photo of a sample. You get back a manufacturability assessment — where the design drives cost, what it means for tooling — and an indicative price."
   },
   "intro": {
-    "heading": "Request a quote",
-    "body": "[[TODO: 2–3 sentences — who reads the enquiry (a real engineer), what happens next, typical response time]]"
+    "heading": "Send a drawing. Get an engineering answer.",
+    "body": "Send a drawing, a 3D file or a photo of a sample. You get back a manufacturability assessment — where the design drives cost, what it means for tooling — and an indicative price."
+  },
+  "whoReads": {
+    "_comment": "Distinct element beside the form. Until the TODO is filled it renders ONLY in development builds and is omitted in production — a vague placeholder here would undermine the promise.",
+    "text": "[[TODO: role or name of who reads enquiries, and typical response time — e.g. 'Enquiries are read by [role]. You hear back within [N] working days.']]"
+  },
+  "confidentiality": {
+    "heading": "Your design stays yours",
+    "body": "Drawings and files you send are treated as confidential and are not shared outside the company. We manufacture under our clients' brands and their names stay off our website unless they decide otherwise."
   },
   "form": {
+    "requiredNote": "Required fields are marked *",
     "labels": {
-      "company": "Company",
+      "company": "Company name",
       "country": "Country",
-      "contactName": "Contact person",
+      "countryPlaceholder": "Select country",
+      "contactName": "Contact name",
       "email": "Email",
-      "phone": "Phone (optional)",
-      "productType": "Product type",
-      "productTypePlaceholder": "e.g. chair frame, table base, complete chair",
-      "material": "Material",
-      "materialOptions": { "metal": "Metal", "wood": "Wood", "both": "Metal + wood" },
-      "annualVolume": "Estimated annual volume",
-      "annualVolumePlaceholder": "e.g. 5,000–20,000 units",
-      "timeline": "Target timeline",
-      "timelinePlaceholder": "e.g. prototypes Q1, series from Q3",
-      "drawings": "Drawings (PDF, DWG, DXF, STEP — max 10 MB total)",
+      "whatYouNeed": "What you need",
+      "whatYouNeedOptions": [
+        { "value": "metal", "label": "Metal parts or frames" },
+        { "value": "wood", "label": "Wood or panel parts" },
+        { "value": "complete", "label": "Complete product (metal + wood)" },
+        { "value": "unsure", "label": "Not sure yet" }
+      ],
       "message": "Message",
-      "submit": "Send enquiry"
+      "phone": "Phone (optional)",
+      "annualVolume": "Estimated annual volume (optional)",
+      "annualVolumePlaceholder": "In your own words — e.g. starting small, scaling if it sells",
+      "timeline": "Target timeline (optional)",
+      "timelinePlaceholder": "e.g. samples this year, series from spring",
+      "files": "Drawings, 3D files or photos (optional)",
+      "filesNote": "PDF, DWG, DXF, STEP, STP, IGS, IGES, JPG, PNG or ZIP — max 10 MB total",
+      "filesButton": "Choose files",
+      "filesRemove": "Remove",
+      "submit": "Send enquiry",
+      "submitting": "Sending…"
     },
-    "reassurance": "[[TODO: one line under the form — e.g. 'Your enquiry goes directly to our engineering team. NDA on request.']]"
+    "errors": {
+      "required": "This field is required.",
+      "email": "Enter a valid email address.",
+      "fileType": "This file type is not accepted.",
+      "fileSize": "Files exceed 10 MB in total."
+    }
+  },
+  "countries": [
+    "Denmark", "Italy", "Germany", "Sweden", "Netherlands",
+    "Austria", "Belgium", "Bulgaria", "Croatia", "Czech Republic",
+    "Estonia", "Finland", "France", "Greece", "Hungary", "Ireland",
+    "Latvia", "Lithuania", "Luxembourg", "Norway", "Poland", "Portugal",
+    "Romania", "Slovakia", "Slovenia", "Spain", "Switzerland",
+    "United Kingdom", "United States", "Other"
+  ],
+  "altContact": {
+    "heading": "Prefer not to use a form?",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "officeLabel": "Office",
+    "productionLabel": "Production"
   }
 }

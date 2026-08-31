@@ -40,18 +40,35 @@ Notes:
 
 ## 3. One-time server configuration
 
-1. **Mail for the RFQ form.** Open `contact.php` before the first upload and set:
-   - `$RECIPIENT` — the mailbox that receives enquiries
-   - `$FROM` — an address **on this domain** (e.g. `website@gstrubnamebel.eu`).
-     Create it in cPanel → Email Accounts (or as a forwarder). SuperHosting
-     rejects PHP mail() with a foreign sender address.
-2. **Test the form** after the first deploy: submit a real test enquiry with an
-   attachment and confirm it arrives (check spam folder on first delivery).
-3. **PHP version**: any PHP ≥ 7.4 works. Set in cPanel → Select PHP Version.
-4. **Old URL redirects**: paste the WordPress URL list into the marked section
+1. **PHP version**: any PHP ≥ 7.4 works. Set in cPanel → Select PHP Version.
+2. **Old URL redirects**: paste the WordPress URL list into the marked section
    of `.htaccess` (see the `BEGIN OLD URL REDIRECTS` block) **in the source
    file `public/.htaccess`**, then rebuild — never edit only the server copy,
    or the next deploy will overwrite it.
+
+## 3a. RFQ form — pre-launch checklist (the form does not work without these)
+
+- [ ] **Create the sender mailbox `website@gstrubnamebel.eu`** in cPanel →
+      Email Accounts. SuperHosting rejects PHP `mail()` whose sender is not
+      on the hosting account's domain — without this mailbox, no enquiry
+      mail is ever delivered. `$FROM` in `contact.php` must match it.
+- [ ] **Set `$RECIPIENT` in `contact.php`** to the mailbox that receives
+      enquiries (same value as `contacts.rfqRecipientEmail` in
+      `src/data/company.json`). Note the open domain decision in
+      CONTENT-NEEDED.md (`gs-bg.eu` vs `gstrubnamebel.eu`) — resolve it first.
+- [ ] **Test a real submission with an attachment** (a PDF and a STEP file)
+      from the live site and confirm it arrives with the attachment intact.
+      Check the spam folder on first delivery.
+- [ ] **Verify rejection logging works**: submit once with the hidden
+      "website" field filled (use browser dev tools), then confirm a line
+      was written to `rfq-logs/rejections.log`. The handler writes to
+      `public_html/../rfq-logs/` (outside the web root) when possible, else
+      to `public_html/rfq-logs/` protected by its own `.htaccess`.
+- [ ] **Verify the log is NOT publicly readable**: request
+      `https://gstrubnamebel.eu/rfq-logs/rejections.log` — it must return
+      403/404, never the file contents.
+- [ ] **Verify rate limiting**: a 6th submission from the same IP within an
+      hour must not deliver mail (it lands in the rejection log instead).
 
 ## 4. Before going live — checklist
 

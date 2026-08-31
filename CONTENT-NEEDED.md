@@ -189,9 +189,23 @@ full open list on every `npm run build`. Remaining, grouped:
 - (site data → section 1, company.json)
 
 ## 9. Request a quote — `src/content/en/request-a-quote.json`
-- [ ] Meta title + description
-- [ ] Page intro (who reads it, response time)
-- [ ] Reassurance line under the form (e.g. NDA on request)
+Copy, form and PHP handler are done. Remaining:
+
+- [ ] **🚫 LAUNCH BLOCKER — enquiries email domain.** The old site published
+      `office@gs-bg.eu`, a **different domain** from `gstrubnamebel.eu`.
+      A buyer who submits a form on one domain and gets a reply from another
+      reads it as disorganised, and cross-domain replies hurt deliverability.
+      Decide before launch: either create an enquiries mailbox on
+      `gstrubnamebel.eu`, or document the reason to keep `gs-bg.eu`.
+      **No `gs-bg.eu` address may be published until this is decided.**
+      (Also drives `$RECIPIENT` in contact.php and the sender mailbox —
+      see DEPLOY.md §3a.)
+- [ ] Who reads enquiries + typical response time — fills the highlighted
+      element beside the form AND step 3 on the thank-you page. Until
+      filled, both are omitted from production builds automatically.
+- [ ] Phone number for enquiries
+- [ ] Confirm both addresses are current: office ul. Angel Stoyanov 1,
+      Dobrich 9300 · production bul. 25 Septemvri 51 (both from the old site)
 
 ## 10. Downloads — `src/content/en/downloads.json`
 - [ ] Meta title + description + intro sentence
