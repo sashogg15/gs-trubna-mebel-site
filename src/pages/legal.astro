@@ -1,47 +1,62 @@
 ---
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
-import PageIntro from '../components/PageIntro.astro';
 import { loadPage } from '../lib/content';
 import company from '../data/company.json';
 
 const t = loadPage('legal');
-const addr = company.contacts.address;
+const L = t.identification.labels;
+const office = company.contacts.address;
+const production = company.contacts.productionAddress;
+
+const rows = [
+  { label: L.legalName, value: company.identity.legalName },
+  { label: L.eik, value: company.identity.eik },
+  { label: L.vat, value: company.identity.vatNumber },
+  { label: L.registeredOffice, value: company.identity.registeredOffice },
+  { label: L.managingDirectors, value: company.identity.managingDirectors },
+  { label: L.office, value: `${office.street}, ${office.postalCode} ${office.city}, ${office.country}` },
+  { label: L.production, value: `${production.street}, ${production.postalCode} ${production.city}, ${production.country}` },
+  { label: L.email, value: company.contacts.email },
+  { label: L.phone, value: company.contacts.phone },
+];
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/legal' }}>
   <Section>
-    <PageIntro heading={t.companyDetails.heading} />
+    <h1 class="font-heading text-h1 font-bold">{t.identification.heading}</h1>
     <dl class="mt-10 max-w-2xl divide-y divide-line border-b border-t border-line">
-      <div class="flex justify-between gap-4 py-4">
-        <dt class="text-body text-steel">Legal name</dt>
-        <dd class="text-right text-body font-medium">{company.identity.legalName}</dd>
-      </div>
-      <div class="flex justify-between gap-4 py-4">
-        <dt class="text-body text-steel">VAT / EIK</dt>
-        <dd class="text-right text-body font-medium">{company.identity.vatNumber}</dd>
-      </div>
-      <div class="flex justify-between gap-4 py-4">
-        <dt class="text-body text-steel">Address</dt>
-        <dd class="text-right text-body font-medium">
-          {addr.street}, {addr.postalCode} {addr.city}, {addr.country}
-        </dd>
-      </div>
-      <div class="flex justify-between gap-4 py-4">
-        <dt class="text-body text-steel">Email</dt>
-        <dd class="text-right text-body font-medium">{company.contacts.email}</dd>
-      </div>
-      <div class="flex justify-between gap-4 py-4">
-        <dt class="text-body text-steel">Phone</dt>
-        <dd class="text-right text-body font-medium">{company.contacts.phone}</dd>
-      </div>
+      {
+        rows.map((row) => (
+          <div class="flex flex-col gap-1 py-4 sm:flex-row sm:justify-between sm:gap-4">
+            <dt class="shrink-0 text-body text-steel">{row.label}</dt>
+            <dd class="text-body font-medium sm:text-right">{row.value}</dd>
+          </div>
+        ))
+      }
     </dl>
+    <p class="mt-4 max-w-2xl text-small text-steel">{t.identification.secondSiteNote}</p>
+    <p class="mt-1 max-w-2xl text-small text-steel">{t.identification.addressConfirmNote}</p>
   </Section>
 
   <Section tone="mist">
-    <div class="max-w-3xl">
-      <h2 class="font-heading text-h2 font-bold">{t.privacy.heading}</h2>
-      <p class="mt-6 whitespace-pre-line text-body text-steel">{t.privacy.body}</p>
+    <h2 class="font-heading text-h2 font-bold">{t.privacy.heading}</h2>
+    <div class="mt-10 max-w-3xl space-y-8">
+      {
+        t.privacy.sections.map((section: any) => (
+          <div>
+            <h3 class="font-heading text-body font-bold uppercase">{section.title}</h3>
+            <p class="mt-2 text-body text-steel">{section.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="font-heading text-h2 font-bold">{t.terms.heading}</h2>
+    <div class="mt-8 max-w-3xl space-y-4">
+      {t.terms.paragraphs.map((p: string) => <p class="text-body text-steel">{p}</p>)}
     </div>
   </Section>
 </Base>

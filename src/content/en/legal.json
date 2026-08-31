@@ -1,14 +1,59 @@
 {
+  "_comment": "Copy for /legal. Company identification values come from company.json (identity, contacts) — placeholders live there, not here. The privacy notice covers ONLY what the site actually does: one enquiry form, no cookies, no analytics. If analytics are ever added, the cookies section must be updated in the same commit.",
   "meta": {
-    "title": "[[TODO: legal meta title, e.g. 'Legal & Privacy — GS Trubna Mebel']]",
-    "description": "[[TODO: legal meta description]]"
+    "title": "Legal & privacy — GS Trubna Mebel",
+    "description": "Company identification, privacy notice for the enquiry form, and terms of use."
   },
-  "companyDetails": {
-    "heading": "Company details",
-    "_comment": "Legal name, VAT/EIK, address come from company.json (identity, contacts)."
+  "identification": {
+    "heading": "Company identification",
+    "labels": {
+      "legalName": "Registered legal name",
+      "eik": "UIC / EIK",
+      "vat": "VAT number",
+      "registeredOffice": "Registered office",
+      "managingDirectors": "Managing director(s)",
+      "office": "Office",
+      "production": "Production",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "secondSiteNote": "[[TODO: second production site address — /about mentions two sites; list both here once confirmed]]",
+    "addressConfirmNote": "[[TODO: confirm office and production addresses are current — both taken from the old site]]"
   },
   "privacy": {
     "heading": "Privacy",
-    "body": "[[TODO: privacy notice — what personal data the RFQ form collects, legal basis, retention, controller contact, GDPR rights. Have this reviewed before launch.]]"
+    "sections": [
+      {
+        "title": "What the enquiry form collects",
+        "body": "The request-a-quote form collects your company name, country, contact name, email address, and optionally a phone number, volume and timeline information, a message, and any files you attach."
+      },
+      {
+        "title": "Why",
+        "body": "To assess your enquiry and respond to it. The data is not used for anything else — no marketing lists, no profiling, no resale."
+      },
+      {
+        "title": "Confidentiality of submitted files",
+        "body": "Drawings and files you send are treated as confidential and are not shared outside the company."
+      },
+      {
+        "title": "Retention",
+        "body": "[[TODO: how long enquiry data and submitted files are retained, and on what basis]]"
+      },
+      {
+        "title": "Access and deletion",
+        "body": "To request access to, correction of, or deletion of data you have submitted, write to [[TODO: email address for data requests]]."
+      },
+      {
+        "title": "Cookies",
+        "body": "This site sets no tracking or advertising cookies and uses no analytics services. Fonts are served from this domain; no third-party requests are made when you view the site."
+      }
+    ]
+  },
+  "terms": {
+    "heading": "Terms of use",
+    "paragraphs": [
+      "The content of this site is informational and does not constitute a binding offer. Specifications, figures and capabilities described here are subject to confirmation in a written quotation.",
+      "Product names and drawings submitted through the enquiry form remain the property of their owners. Nothing on this site grants rights to any trademark or design shown or referenced."
+    ]
   }
 }

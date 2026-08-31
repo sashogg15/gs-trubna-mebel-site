@@ -2,7 +2,7 @@
   "_comment": "Copy for /equipment. Machine DATA (names, specs, years, counts) lives in company.json; this file holds only the English text. Descriptions are keyed by machine id — max two sentences, one for highlighted machines. Register: what the machine does and within what limits. No marketing adjectives, present tense, no first person.",
   "meta": {
     "title": "Equipment — tube laser, robotic welding, CNC panel processing | GS Trubna Mebel",
-    "description": "The GS Trubna Mebel machine park: BLM Group LT5 tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres and an automated powder coating line — two complete production chains in one factory."
+    "description": "The machine park: BLM Group tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres — two complete chains in one factory."
   },
   "intro": {
     "heading": "Equipment",

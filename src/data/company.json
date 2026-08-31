@@ -2,13 +2,16 @@
   "_readme": "SINGLE SOURCE OF TRUTH for every company fact used anywhere on the site. A number is defined once here and never diverges between pages. Every '[[TODO: ...]]' value must be replaced with a verified figure from internal sources before launch — an empty marker is correct, an invented number is a failure. '_comment' keys describe what to supply and in what unit; they are ignored by the templates. Values marked 'from brief' came from the project brief and should still be confirmed.",
 
   "identity": {
-    "_comment": "Legal and brand identity. Used in the footer, /legal, /about and the JSON-LD Organization schema.",
+    "_comment": "Legal and brand identity. Used in the footer, /legal, /about and the JSON-LD Organization schema. NOTE: the registered legal name is NOT the same as the trading name used in site copy — never guess it from the domain or trading name; take it exactly as recorded in the commercial register.",
     "brandName": "GS Trubna Mebel",
-    "legalName": "[[TODO: full registered legal name, e.g. 'GS Trubna Mebel OOD']]",
+    "legalName": "[[TODO: full registered legal name, exactly as in the commercial register]]",
     "domain": "gstrubnamebel.eu",
     "foundedYear": 1990,
     "foundedYearComment": "from brief — family business since 1990",
-    "vatNumber": "[[TODO: VAT / EIK number]]",
+    "eik": "[[TODO: UIC / EIK number]]",
+    "vatNumber": "[[TODO: VAT number — BG...]]",
+    "registeredOffice": "[[TODO: registered office address as in the commercial register — may differ from the office address]]",
+    "managingDirectors": "[[TODO: managing director(s) as recorded in the register]]",
     "registrationCity": "Dobrich, Bulgaria",
     "positioning": "Complete metal + wood programmes from a single European factory.",
     "positioningComment": "The core positioning sentence. Every page serves it. Edit only deliberately."

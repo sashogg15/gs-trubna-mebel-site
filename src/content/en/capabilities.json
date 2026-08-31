@@ -2,7 +2,7 @@
   "_comment": "Copy for /capabilities — written in processes and limits, not machines. Every numeric limit is a {token} resolved at build time from company.json (machine parameters / productionTerms), never a literal, so a corrected figure updates everywhere. Machines are referenced only as evidence, linked to /equipment. NO minimum order quantity, maximum, or volume threshold anywhere on this page — volume is discussed via the RFQ form. British English.",
   "meta": {
     "title": "Capabilities — process limits in metal and wood | GS Trubna Mebel",
-    "description": "The process window: tube {tubeRange} cut to {cutTolerance}, five-axis bending to {bendTube}, robotic welding, powder coating, CNC panel processing and edgebanding at {edgeSpeed} — and complete metal + wood programmes from one factory."
+    "description": "The process window: tube {tubeRange} cut to {cutTolerance}, five-axis bending, powder coating, CNC panel processing — metal + wood from one factory."
   },
   "intro": {
     "heading": "Capabilities",

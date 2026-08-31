@@ -1,30 +1,31 @@
 {
+  "_comment": "Copy for /downloads. The page ships with an honest empty state — no broken links, no 'coming soon' splash. When the first real file exists: add an entry to a group's files[] (title, description, fileType, fileSize, language, file path under /downloads/), upload the file to public/downloads/, AND re-enable the footer link in Footer.astro (marked with a comment there).",
   "meta": {
-    "title": "[[TODO: downloads meta title]]",
-    "description": "[[TODO: downloads meta description]]"
+    "title": "Downloads — GS Trubna Mebel",
+    "description": "Capability brochure, certificates and datasheets for download."
   },
   "intro": {
     "heading": "Downloads",
-    "body": "[[TODO: one sentence — what these documents are for]]"
+    "body": "Documents a sourcing team needs on file: capability brochure, certificates, datasheets."
+  },
+  "emptyState": {
+    "heading": "Documents will be published here",
+    "body": "The capability brochure, certificates and datasheets are being prepared. Until then, ask for any of them through the enquiry form and they are sent directly.",
+    "ctaLabel": "Request a quote",
+    "ctaHref": "/request-a-quote"
   },
   "groups": [
     {
       "heading": "Capability brochure",
-      "files": [
-        { "title": "[[TODO: brochure title]]", "file": "[[TODO: /downloads/brochure.pdf]]", "size": "[[TODO: file size, e.g. 4.2 MB]]", "language": "EN" }
-      ]
-    },
-    {
-      "heading": "Datasheets",
-      "files": [
-        { "title": "[[TODO: datasheet title]]", "file": "[[TODO: /downloads/xxx.pdf]]", "size": "[[TODO]]", "language": "EN" }
-      ]
+      "files": []
     },
     {
       "heading": "Certificates",
-      "files": [
-        { "title": "[[TODO: certificate PDF title]]", "file": "[[TODO: /downloads/cert-xxx.pdf]]", "size": "[[TODO]]", "language": "EN" }
-      ]
+      "files": []
+    },
+    {
+      "heading": "Datasheets",
+      "files": []
     }
   ]
 }

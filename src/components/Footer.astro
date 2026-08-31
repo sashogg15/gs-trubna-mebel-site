@@ -27,7 +27,10 @@ const addr = company.contacts.address;
     <div class="text-small">
       <p class="mb-3 text-label uppercase text-paper">More</p>
       <ul class="space-y-2">
-        <li><a href="/downloads" class="hover:text-paper">{shared.footer.downloads}</a></li>
+        {/* /downloads is deliberately NOT linked while it is empty — a footer
+            link to an empty page is worse than no link. Re-enable this line
+            when the first real document is published there:
+            <li><a href="/downloads" class="hover:text-paper">{shared.footer.downloads}</a></li> */}
         <li><a href="/legal" class="hover:text-paper">{shared.footer.legal}</a></li>
       </ul>
     </div>

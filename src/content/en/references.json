@@ -27,7 +27,7 @@
         "leadTime": "[[TODO: lead time achieved]]",
         "market": "[[TODO: market served, e.g. 'US contract market']]",
         "body": "[[TODO: 2–4 sentences — the engineering story: problem, what we did, result]]",
-        "image": { "src": "[[TODO: /images/cases/case-1.webp]]", "alt": "[[TODO: alt]]", "aspect": "4/3" }
+        "image": { "src": "[[TODO: /images/cases/case-1.webp — REQUIRED SUBJECT: the product in production or packed for dispatch; never a styled/lifestyle shot]]", "alt": "[[TODO: alt]]", "aspect": "4/3" }
       },
       {
         "client": "[[TODO: named client]]",
@@ -38,7 +38,7 @@
         "leadTime": "[[TODO: lead time]]",
         "market": "[[TODO: market served]]",
         "body": "[[TODO: 2–4 sentences]]",
-        "image": { "src": "[[TODO: /images/cases/case-2.webp]]", "alt": "[[TODO: alt]]", "aspect": "4/3" }
+        "image": { "src": "[[TODO: /images/cases/case-2.webp — REQUIRED SUBJECT: the product in production or packed for dispatch; never a styled/lifestyle shot]]", "alt": "[[TODO: alt]]", "aspect": "4/3" }
       }
     ]
   }

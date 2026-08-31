@@ -5,30 +5,57 @@ import PageIntro from '../components/PageIntro.astro';
 import { loadPage } from '../lib/content';
 
 const t = loadPage('downloads');
+
+// Groups with actual files; the page shows an honest empty state until
+// the first document exists. Entry shape: title, description, fileType,
+// fileSize, language, file.
+const groups = (t.groups as any[]).filter((g) => g.files.length > 0);
+const isEmpty = groups.length === 0;
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/downloads' }}>
   <Section>
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
-  </Section>
 
-  {
-    t.groups.map((group: any) => (
-      <Section tone="mist" class="!py-12">
-        <h2 class="font-heading text-h3 font-bold uppercase">{group.heading}</h2>
-        <ul class="mt-6 divide-y divide-line border-b border-t border-line">
-          {group.files.map((file: any) => (
-            <li>
-              <a href={file.file} class="flex flex-col gap-1 bg-paper px-5 py-4 hover:text-signal sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-                <span class="text-body font-medium">{file.title}</span>
-                <span class="text-small text-steel sm:shrink-0">
-                  PDF · {file.size} · {file.language}
-                </span>
-              </a>
-            </li>
+    {
+      isEmpty ? (
+        <div class="mt-12 max-w-2xl border border-line bg-mist px-8 py-10">
+          <h2 class="font-heading text-h3 font-bold">{t.emptyState.heading}</h2>
+          <p class="mt-3 text-body text-steel">{t.emptyState.body}</p>
+          <a
+            href={t.emptyState.ctaHref}
+            class="mt-6 inline-block bg-signal px-6 py-3 text-small font-bold uppercase tracking-wide text-paper hover:bg-signal-dark"
+          >
+            {t.emptyState.ctaLabel}
+          </a>
+        </div>
+      ) : (
+        <div class="mt-12 space-y-12">
+          {groups.map((group) => (
+            <div>
+              <h2 class="font-heading text-h3 font-bold uppercase">{group.heading}</h2>
+              <ul class="mt-6 divide-y divide-line border-b border-t border-line">
+                {group.files.map((file: any) => (
+                  <li>
+                    <a
+                      href={file.file}
+                      class="flex flex-col gap-1 bg-paper px-5 py-4 hover:text-signal sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                    >
+                      <span>
+                        <span class="block text-body font-medium">{file.title}</span>
+                        {file.description && <span class="block text-small text-steel">{file.description}</span>}
+                      </span>
+                      <span class="text-small text-steel sm:shrink-0">
+                        {file.fileType} · {file.fileSize} · {file.language}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
-      </Section>
-    ))
-  }
+        </div>
+      )
+    }
+  </Section>
 </Base>
