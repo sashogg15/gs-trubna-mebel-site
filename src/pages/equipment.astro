@@ -2,15 +2,15 @@
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
 import PageIntro from '../components/PageIntro.astro';
-import MachineFeature from '../components/MachineFeature.astro';
-import MachineCard from '../components/MachineCard.astro';
+import SpecTable from '../components/SpecTable.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { loadPage } from '../lib/content';
+import { nbspUnits } from '../lib/format';
 import company from '../data/company.json';
 
 const t = loadPage('equipment');
 const machines = company.machines.items as any[];
-const stageLabels = t.stageLabels as Record<string, string>;
 
 // ---------------------------------------------------------------------------
 // Build-time warning: every machine still carrying needsConfirmation or a
@@ -38,12 +38,49 @@ if (flagged.length > 0) {
 // {count} in the intro is computed from the data so it never diverges.
 const introBody = t.intro.body.replace('{count}', String(machines.length));
 
-// Items in company.json are kept in PROCESS ORDER within each chain;
-// the page renders them as a flow, not alphabetically.
-const chains = [
-  { key: 'metal', ...t.chains.metal, machines: machines.filter((m) => m.chain === 'metal') },
-  { key: 'wood', ...t.chains.wood, machines: machines.filter((m) => m.chain === 'wood') },
+// One spec table per production area (§7/§8): the table row is derived
+// entirely from company.json. "Working range and features" joins every
+// parameter except the tolerance, which gets its own column.
+const isTolerance = (name: string) => /tolerance/i.test(name);
+const toRow = (m: any): string[] => [
+  m.name,
+  m.manufacturer,
+  m.model,
+  String(m.count),
+  nbspUnits(
+    m.parameters
+      .filter((p: any) => !isTolerance(p.name))
+      .map((p: any) => `${p.name}: ${p.value}`)
+      .join('; ')
+  ),
+  nbspUnits(m.parameters.find((p: any) => isTolerance(p.name))?.value ?? ''),
 ];
+
+const C = t.table.columns;
+const tableColumns = [C.machine, C.make, C.model, C.count, C.workingRange, C.tolerance];
+
+// Machines stay in company.json process order within each area.
+const chains = (['metal', 'wood'] as const).map((key) => ({
+  key,
+  heading: t.chains[key].heading,
+  sequence: t.chains[key].sequence,
+  ground: key === 'metal' ? ('tint-metal' as const) : ('tint-wood' as const),
+  areas: t.chains[key].areas
+    .map((area: any) => ({
+      label: area.label,
+      machines: machines.filter(
+        (m) => m.chain === key && area.categories.includes(m.category)
+      ),
+    }))
+    .filter((area: any) => area.machines.length > 0),
+  portraits: machines.filter((m) => m.chain === key && m.highlight),
+}));
+
+// Robotics counts derive from company.json — never hardcoded (§2.3).
+const roboticsStats = t.robotics.stats.map((s: any) => ({
+  label: s.label,
+  value: String(machines.find((m) => m.id === s.machineId)?.count ?? '—'),
+}));
 ---
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/equipment' }}>
@@ -54,40 +91,52 @@ const chains = [
   {
     chains.map((chain) => (
       <>
-        <Section id={chain.key} tone={chain.key === 'metal' ? 'tint-metal' : 'tint-wood'}>
+        <Section id={chain.key} tone={chain.ground}>
           <div class="border-t-4 border-ink pt-6">
             <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{chain.heading}</h2>
             <p class="mt-3 text-body text-steel-600">
               {chain.sequence.map((step: string, i: number) => (
                 <>
-                  {i > 0 && <span class="mx-2 text-steel-600" aria-hidden="true">→</span>}
+                  {i > 0 && (
+                    <span class="mx-2 text-steel-600" aria-hidden="true">
+                      →
+                    </span>
+                  )}
                   <span class="whitespace-nowrap">{step}</span>
                 </>
               ))}
             </p>
           </div>
 
-          <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {chain.machines.map((machine) =>
-              machine.highlight ? (
-                <div class="md:col-span-2 lg:col-span-3">
-                  <MachineFeature
-                    machine={machine}
-                    description={t.descriptions[machine.id] ?? ''}
-                    stageLabel={stageLabels[machine.category] ?? machine.category}
-                    labels={t.labels}
-                  />
-                </div>
-              ) : (
-                <MachineCard
-                  machine={machine}
-                  description={t.descriptions[machine.id] ?? ''}
-                  stageLabel={stageLabels[machine.category] ?? machine.category}
-                  labels={t.labels}
+          {chain.areas.map((area: any) => (
+            <div class="mt-12">
+              <h3 class="font-heading text-heading-2 font-semibold">{area.label}</h3>
+              <div class="mt-6">
+                <SpecTable
+                  caption={`${chain.heading} — ${area.label}`}
+                  columns={tableColumns}
+                  data={area.machines.map(toRow)}
+                  numericCols={[3]}
+                  ground={chain.ground}
+                  scrollHint={t.table.scrollHint}
                 />
-              )
-            )}
-          </div>
+              </div>
+            </div>
+          ))}
+
+          {chain.portraits.length > 0 && (
+            <div class="mt-12">
+              <h3 class="font-heading text-heading-2 font-semibold">{t.portraits.heading}</h3>
+              <div class="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
+                {chain.portraits.map((m: any) => (
+                  <ImagePlaceholder
+                    aspect="4/3"
+                    label={`${t.portraits.photoLabel} — ${m.manufacturer} ${m.model || m.name}, machine label legible, landscape`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </Section>
 
         {chain.key === 'metal' && (
@@ -98,7 +147,7 @@ const chains = [
                 <p class="mt-4 max-w-prose text-body text-steel-300">{t.robotics.body}</p>
               </div>
               <div class="flex gap-12">
-                {t.robotics.stats.map((stat: any) => (
+                {roboticsStats.map((stat) => (
                   <div>
                     <p class="font-heading text-figure font-bold tabular-nums leading-none text-white">{stat.value}</p>
                     <p class="mt-2 text-body-sm text-steel-300">{stat.label}</p>
@@ -112,7 +161,7 @@ const chains = [
     ))
   }
 
-  <Section tone="white">
+  <Section>
     <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
   </Section>
 </Base>

@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy for /equipment. Machine DATA (names, specs, years, counts) lives in company.json; this file holds only the English text. Descriptions are keyed by machine id — max two sentences, one for highlighted machines. Register: what the machine does and within what limits. No marketing adjectives, present tense, no first person.",
+  "_comment": "Copy for /equipment. Machine DATA lives in company.json; this file holds the English text. The page renders ONE SPEC TABLE PER PRODUCTION AREA (design authority §7/§8) — 'areas' below group company.json machine categories into those tables, in process order. 'descriptions' are currently unused on the page (kept for the future per-operation process pages). Robotics stats derive their numbers from company.json machine counts at build time — never hardcode them here.",
   "meta": {
     "title": "Equipment — tube laser, robotic welding, CNC panel processing | GS Trubna Mebel",
     "description": "The machine park: BLM Group tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres — two complete chains in one factory."
@@ -12,11 +12,94 @@
   "chains": {
     "metal": {
       "heading": "Metal",
-      "sequence": ["Cutting", "Bending", "Punching", "Welding", "Blasting", "Powder coating"]
+      "sequence": [
+        "Cutting",
+        "Bending",
+        "Punching",
+        "Welding",
+        "Blasting",
+        "Powder coating"
+      ],
+      "areas": [
+        {
+          "label": "Cutting",
+          "categories": [
+            "cutting"
+          ]
+        },
+        {
+          "label": "Bending",
+          "categories": [
+            "bending"
+          ]
+        },
+        {
+          "label": "Punching and forming",
+          "categories": [
+            "punching",
+            "forming"
+          ]
+        },
+        {
+          "label": "Welding",
+          "categories": [
+            "welding"
+          ]
+        },
+        {
+          "label": "Surface preparation and coating",
+          "categories": [
+            "sanding",
+            "surface-prep",
+            "coating"
+          ]
+        }
+      ]
     },
     "wood": {
       "heading": "Wood",
-      "sequence": ["Cutting", "Nesting", "Machining", "Edging", "Sanding", "Painting"]
+      "sequence": [
+        "Cutting",
+        "Nesting",
+        "Machining",
+        "Edging",
+        "Sanding",
+        "Painting"
+      ],
+      "areas": [
+        {
+          "label": "Cutting and nesting",
+          "categories": [
+            "cutting",
+            "nesting"
+          ]
+        },
+        {
+          "label": "Machining and planing",
+          "categories": [
+            "machining",
+            "planing"
+          ]
+        },
+        {
+          "label": "Edgebanding",
+          "categories": [
+            "edging"
+          ]
+        },
+        {
+          "label": "Sanding",
+          "categories": [
+            "sanding"
+          ]
+        },
+        {
+          "label": "Painting",
+          "categories": [
+            "painting"
+          ]
+        }
+      ]
     }
   },
   "stageLabels": {
@@ -63,8 +146,14 @@
     "heading": "Robotics",
     "body": "Two Fanuc welding robots and one Kuka sanding robot run in the metal chain. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
     "stats": [
-      { "value": "2", "label": "Fanuc welding robots" },
-      { "value": "1", "label": "Kuka sanding robot" }
+      {
+        "machineId": "fanuc-welding",
+        "label": "Fanuc welding robots"
+      },
+      {
+        "machineId": "kuka-sanding",
+        "label": "Kuka sanding robot"
+      }
     ]
   },
   "labels": {
@@ -78,5 +167,20 @@
     "heading": "Send a drawing. Get an assessment.",
     "body": "Enquiries are read by engineers who work with these machines daily. You get an answer on manufacturability, tolerances and realistic batch sizes — not a brochure.",
     "ctaLabel": "Request a quote"
+  },
+  "table": {
+    "columns": {
+      "machine": "Machine",
+      "make": "Make",
+      "model": "Model",
+      "count": "Count",
+      "workingRange": "Working range and features",
+      "tolerance": "Tolerance"
+    },
+    "scrollHint": "Scroll sideways for the full table."
+  },
+  "portraits": {
+    "heading": "On the floor",
+    "photoLabel": "Machine portrait"
   }
 }

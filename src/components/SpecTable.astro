@@ -1,26 +1,110 @@
 ---
-/** Simple two-column specifications table. */
+/**
+ * The spec table — the most important component on the site (§8).
+ *
+ * Two modes:
+ *  - `rows`   — label/value pairs (two columns), used for parameter lists.
+ *  - `columns` + `data` — full table, one per production area on /equipment.
+ *
+ * Conventions (§8/§27): header row in `label` type, graphite, hairline
+ * below, no decorative fill (the sticky header paints the section ground
+ * only so rows do not show through); rows separated by hairlines only —
+ * no zebra; numeric columns right-aligned with tabular figures; empty
+ * cells render an em dash, never blank; five or more columns scroll
+ * horizontally below 1024 px with a text hint.
+ *
+ * `ground` picks the hairline colour (§4: steel-100 on paper, steel-300
+ * on tints) and the sticky header's backing.
+ */
 interface Props {
   caption?: string;
-  rows: { label: string; value: string }[];
+  rows?: { label: string; value: string }[];
+  columns?: string[];
+  data?: string[][];
+  /** Indexes of numeric columns (right-aligned, tabular figures). */
+  numericCols?: number[];
+  ground?: 'paper' | 'tint-metal' | 'tint-wood';
+  /** Text hint shown below 1024 px when the table scrolls sideways. */
+  scrollHint?: string;
 }
-const { caption, rows } = Astro.props;
+const {
+  caption,
+  rows,
+  columns,
+  data = [],
+  numericCols = [],
+  ground = 'paper',
+  scrollHint,
+} = Astro.props;
+
+const hairline = ground === 'paper' ? 'border-steel-100' : 'border-steel-300';
+const divide = ground === 'paper' ? 'divide-steel-100' : 'divide-steel-300';
+const stickyBg = {
+  paper: 'bg-paper',
+  'tint-metal': 'bg-tint-metal',
+  'tint-wood': 'bg-tint-wood',
+}[ground];
+const wide = (columns?.length ?? 0) >= 5;
+const cell = (v: string) => (v && v.trim() !== '' ? v : '—');
 ---
 
-<div class="overflow-x-auto">
-  <table class="w-full border border-steel-100 text-left">
-    {caption && <caption class="sr-only">{caption}</caption>}
-    <tbody>
-      {
-        rows.map((row) => (
-          <tr class="border-b border-steel-100 last:border-b-0">
-            <th scope="row" class="w-1/3 bg-paper px-5 py-4 text-body-sm font-medium uppercase tracking-wide text-steel-600">
-              {row.label}
-            </th>
-            <td class="px-5 py-4 text-body font-medium">{row.value}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
-</div>
+{
+  rows ? (
+    <div class="overflow-x-auto">
+      <table class:list={['w-full border-b border-t text-left', hairline]}>
+        {caption && <caption class="sr-only">{caption}</caption>}
+        <tbody class:list={['divide-y', divide]}>
+          {rows.map((row) => (
+            <tr>
+              <th scope="row" class="w-1/3 py-3 pr-6 text-left align-top text-label font-medium text-graphite">
+                {row.label}
+              </th>
+              <td class="py-3 text-body font-medium tabular-nums">{cell(row.value)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <div>
+      <div class={wide ? 'overflow-x-auto' : ''}>
+        <table class:list={['w-full border-b text-left', hairline, wide && 'min-w-max lg:min-w-full']}>
+          {caption && <caption class="sr-only">{caption}</caption>}
+          <thead>
+            <tr class:list={['border-b', hairline]}>
+              {columns!.map((col, i) => (
+                <th
+                  scope="col"
+                  class:list={[
+                    'sticky top-16 py-3 pr-6 text-label font-medium text-graphite',
+                    stickyBg,
+                    numericCols.includes(i) ? 'text-right' : 'text-left',
+                  ]}
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody class:list={['divide-y', divide]}>
+            {data.map((row) => (
+              <tr>
+                {row.map((value, i) => (
+                  <td
+                    class:list={[
+                      'max-w-prose py-3 pr-6 align-top text-body-sm',
+                      numericCols.includes(i) ? 'text-right font-medium tabular-nums' : '',
+                    ]}
+                  >
+                    {cell(value)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {wide && scrollHint && <p class="mt-2 text-body-sm text-steel-600 lg:hidden">{scrollHint}</p>}
+    </div>
+  )
+}
