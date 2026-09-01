@@ -98,9 +98,7 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
               {chain.sequence.map((step: string, i: number) => (
                 <>
                   {i > 0 && (
-                    <span class="mx-2 text-steel-600" aria-hidden="true">
-                      →
-                    </span>
+                    <span class="mx-3 inline-block h-3 w-px bg-steel-300 align-middle" aria-hidden="true" />
                   )}
                   <span class="whitespace-nowrap">{step}</span>
                 </>
