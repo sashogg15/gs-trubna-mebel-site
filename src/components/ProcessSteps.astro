@@ -17,13 +17,13 @@ const { steps } = Astro.props;
       <li
         class:list={[
           'pt-6',
-          step.emphasis ? 'border-t-4 border-ember' : 'border-t-2 border-steel-100',
+          step.emphasis ? 'border-t-4 border-ink' : 'border-t-2 border-steel-100',
         ]}
       >
         <span
           class:list={[
             'font-heading text-h2 font-bold',
-            step.emphasis ? 'text-ember-bright' : 'text-steel-600',
+            step.emphasis ? 'text-ink' : 'text-steel-600',
           ]}
         >
           {String(i + 1).padStart(2, '0')}

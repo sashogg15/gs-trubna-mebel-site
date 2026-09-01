@@ -82,7 +82,7 @@ const showClientNames =
         {
           t.repeatability.lines.map((line: string) => (
             <li class="flex items-start gap-3 text-body text-steel-300">
-              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-ember" aria-hidden="true" />
+              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-steel-300" aria-hidden="true" />
               {nbspUnits(line)}
             </li>
           ))
@@ -90,7 +90,7 @@ const showClientNames =
       </ul>
       <a
         href={t.repeatability.linkHref}
-        class="mt-8 inline-block text-small font-bold uppercase tracking-wide text-ember hover:text-white"
+        class="mt-8 inline-block text-small font-bold uppercase tracking-wide text-white underline underline-offset-4 hover:text-steel-300"
       >
         {t.repeatability.linkLabel} →
       </a>
@@ -129,9 +129,18 @@ const showClientNames =
       </div>
       <div class="grid grid-cols-3 items-end gap-6">
         {
-          proofStats.map((stat: any) => (
+          proofStats.map((stat: any, i: number) => (
             <div>
-              <p class="font-heading text-h1 font-bold leading-none text-ember-bright">{stat.value}</p>
+              {/* One accent per viewport: first stat only; ember at figure
+                  size passes 3.09:1 large-text on graphite. */}
+              <p
+                class:list={[
+                  'font-heading text-h1 font-bold leading-none',
+                  i === 0 ? 'text-ember' : 'text-white',
+                ]}
+              >
+                {stat.value}
+              </p>
               <p class="mt-2 text-small text-steel-300">{stat.label}</p>
             </div>
           ))

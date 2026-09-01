@@ -16,11 +16,12 @@ export default {
       },
       paper: colors.paper,
       white: colors.white,
-      // Two-tone accent — see the rule in src/design/tokens.mjs before
-      // using: ember for text-sized elements and button fills,
-      // ember-bright ONLY for large text and non-text UI.
+      // Three-tone accent — see the rule in src/design/tokens.mjs:
+      // ember = large text ≥24px, ember-deep = accent text <24px and
+      // inline links, ember-bright = fills only (with ink text), never text.
       ember: {
         DEFAULT: colors.ember,
+        deep: colors.emberDeep,
         bright: colors.emberBright,
       },
       tint: {

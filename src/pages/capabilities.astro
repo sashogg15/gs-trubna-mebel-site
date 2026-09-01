@@ -109,7 +109,7 @@ const meta = {
                 {/* proc.href becomes a link when the dedicated sub-page exists. */}
                 <h3 class="font-heading text-h3 font-bold">
                   {proc.href ? (
-                    <a href={proc.href} class="hover:text-ember">
+                    <a href={proc.href} class="hover:text-ember-deep">
                       {proc.title} →
                     </a>
                   ) : (
@@ -135,7 +135,7 @@ const meta = {
   <!-- Complete programmes — the argument, given the most editorial weight. -->
   <Section id={t.complete.id} tone="graphite">
     <div class="max-w-3xl">
-      <p class="text-label uppercase text-ember">{t.complete.title}</p>
+      <p class="text-label uppercase text-steel-600">{t.complete.title}</p>
       <p class="mt-6 font-heading text-h2 font-bold leading-snug">{t.complete.opening}</p>
       <p class="mt-8 text-body text-steel-300">{t.complete.offer}</p>
     </div>
@@ -146,7 +146,7 @@ const meta = {
           {
             t.complete.removes.map((item: string) => (
               <li class="flex items-start gap-3 py-3.5 text-body">
-                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-ember" aria-hidden="true" />
+                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-steel-300" aria-hidden="true" />
                 {item}
               </li>
             ))

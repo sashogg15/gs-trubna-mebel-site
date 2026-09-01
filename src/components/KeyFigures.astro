@@ -8,9 +8,16 @@ const figures = company.keyFigures.items;
 <section class="border-b border-t border-steel-100 bg-white">
   <div class="mx-auto grid max-w-site grid-cols-2 gap-x-6 gap-y-10 px-4 py-14 md:grid-cols-3 md:px-6 lg:grid-cols-6">
     {
-      figures.map((f) => (
+      figures.map((f, i) => (
         <div>
-          <p class="font-heading text-h1 font-bold leading-none text-ember-bright md:text-figure">
+          {/* Accent budget: one accent element per viewport — the first
+              figure carries it, the rest stay ink. */}
+          <p
+            class:list={[
+              'font-heading text-h1 font-bold leading-none md:text-figure',
+              i === 0 ? 'text-ember' : 'text-ink',
+            ]}
+          >
             <span class="break-words text-[clamp(1.5rem,4vw,3.5rem)] leading-tight">{f.value}</span>
             {f.unit && <span class="text-h3 font-bold">{f.unit}</span>}
           </p>

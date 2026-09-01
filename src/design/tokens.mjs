@@ -16,7 +16,13 @@ export const colors = {
   // ---- Neutrals — roughly 90% of every page --------------------------------
   // Logo, headings, primary body text.
   ink: '#16181C',
-  // Dark sections, footer background.
+  // Secondary text and table borders on tinted grounds — AND, as a
+  // documented PROJECT EXTENSION of the design authority (ruling of
+  // PROMPT_08): a section ground for the dark bands (robotics, proof band,
+  // footer). The bands give the page rhythm and read as industrial, which
+  // is correct for this audience. Every text/border colour used on a
+  // graphite ground must pass its contrast limit (white 13.1:1, steel-300
+  // 5.87:1; ember only for large figures at 3.09:1).
   graphite: '#2C3138',
   // Secondary text, captions, labels.
   steel600: '#5A6270',
@@ -30,16 +36,19 @@ export const colors = {
   white: '#FFFFFF',
 
   // ---- Accent — roughly 10%, and sparingly ---------------------------------
-  // TWO-TONE ACCENT RULE — hard accessibility requirement, do not undo:
-  //   · ember (#D4500A) passes WCAG AA for normal-size text. Use it for
-  //     ANY text below 24 px (or below 19 px bold): inline links, labels,
-  //     small numbers, icons, error messages, and for button fills
-  //     (white-on-ember-bright measures ~3.1:1 and fails AA, so button
-  //     fills use ember, not ember-bright).
-  //   · ember-bright (#F26A0C) is ONLY for large text and non-text UI:
-  //     the big key figures, large stats, large graphic elements.
-  // Never put ember-bright on text-sized elements.
+  // THREE-TONE ACCENT RULE — hard accessibility requirement, do not undo:
+  //   · ember (#D4500A, 3.99:1 on paper) — large accent text and figures,
+  //     24 px and above ONLY.
+  //   · ember-deep (#C24805, 4.68:1 on paper) — ALL accent text below
+  //     24 px: inline links, form errors, small accent numbers.
+  //   · ember-bright (#F26A0C) — FILLS ONLY, never as text. Button pairing
+  //     is INK on ember-bright (5.79:1); white on ember-bright fails at
+  //     3.07:1.
+  // Accent budget: at most ONE accent element visible per viewport.
+  // Never accent on section headings, section backgrounds, or borders
+  // (interaction-state outlines/invalid-field borders excepted per §11).
   ember: '#D4500A',
+  emberDeep: '#C24805',
   emberBright: '#F26A0C',
 
   // ---- Section tint pair — structural, not decorative -----------------------
