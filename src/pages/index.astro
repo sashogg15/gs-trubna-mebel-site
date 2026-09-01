@@ -49,6 +49,7 @@ const showClientNames =
     headline={t.hero.headline}
     subline={t.hero.subline}
     supportLine={t.hero.supportLine}
+    locationLine={t.hero.locationLine}
     ctaLabel={t.hero.ctaLabel}
     ctaHref="/request-a-quote"
     image={t.hero.backgroundImage}
@@ -67,6 +68,15 @@ const showClientNames =
           <CapabilityBlock {...item} tint={['bg-tint-metal', 'bg-tint-wood', undefined][i]} />
         ))
       }
+    </div>
+  </Section>
+
+  <!-- 3a. What we do not do — OEM only; tells a brand we are not a
+       future competitor. Deliberately placed early, not a footnote. -->
+  <Section>
+    <div class="max-w-prose border-t-4 border-ink pt-6">
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.oemOnly.heading}</h2>
+      <p class="mt-6 text-body-lg">{t.oemOnly.body}</p>
     </div>
   </Section>
 

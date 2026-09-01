@@ -13,7 +13,8 @@
       "src": "[[TODO: /images/hero-hall.webp — REQUIRED SHOT: wide shot of a production hall, machines and people at work, mid-ground subject, landscape, wide crop. Never a furnished interior or styled product shot.]]",
       "alt": "Production hall at GS Trubna Mebel, Dobrich",
       "aspect": "16/9"
-    }
+    },
+    "locationLine": "Two production sites in Dobrich, Bulgaria — inside the EU."
   },
   "capabilityBlocks": {
     "heading": "What we manufacture",
@@ -52,6 +53,11 @@
         }
       }
     ]
+  },
+  "oemOnly": {
+    "_comment": "What we do NOT do — separates GSTM from sourcing agents and tells a brand we are not a future competitor. Real placement, not a footnote.",
+    "heading": "What we do not do",
+    "body": "Contract manufacturing only. No own brand, no retail, no showroom. What leaves the factory carries your name — a brand that works with us is never competing with us."
   },
   "howWeWork": {
     "heading": "How we work",
