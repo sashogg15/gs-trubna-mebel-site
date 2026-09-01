@@ -110,7 +110,7 @@ const meta = {
                 <h3 class="font-heading text-heading-2 font-semibold">
                   {proc.href ? (
                     <a href={proc.href} class="hover:text-ember-deep">
-                      {proc.title} →
+                      {proc.title}
                     </a>
                   ) : (
                     proc.title
@@ -135,9 +135,9 @@ const meta = {
   <!-- Complete programmes — the argument, given the most editorial weight. -->
   <Section id={t.complete.id} tone="graphite">
     <div class="max-w-prose">
-      <p class="text-label uppercase text-steel-600">{t.complete.title}</p>
-      <p class="mt-6 font-heading text-display-2-m font-bold md:text-display-2 leading-snug">{t.complete.opening}</p>
-      <p class="mt-8 text-body text-steel-300">{t.complete.offer}</p>
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.complete.title}</h2>
+      <p class="mt-6 text-body-lg">{t.complete.opening}</p>
+      <p class="mt-6 text-body text-steel-300">{t.complete.offer}</p>
     </div>
     <div class="mt-12 grid items-start gap-12 md:grid-cols-2">
       <div>

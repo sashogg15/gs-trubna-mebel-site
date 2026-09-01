@@ -26,10 +26,22 @@
       "email": "Email",
       "whatYouNeed": "What you need",
       "whatYouNeedOptions": [
-        { "value": "metal", "label": "Metal parts or frames" },
-        { "value": "wood", "label": "Wood or panel parts" },
-        { "value": "complete", "label": "Complete product (metal + wood)" },
-        { "value": "unsure", "label": "Not sure yet" }
+        {
+          "value": "metal",
+          "label": "Metal parts or frames"
+        },
+        {
+          "value": "wood",
+          "label": "Wood or panel parts"
+        },
+        {
+          "value": "complete",
+          "label": "Complete product (metal + wood)"
+        },
+        {
+          "value": "unsure",
+          "label": "Not sure yet"
+        }
       ],
       "message": "Message",
       "phone": "Phone (optional)",
@@ -52,15 +64,39 @@
     }
   },
   "countries": [
-    "Denmark", "Italy", "Germany", "Sweden", "Netherlands",
-    "Austria", "Belgium", "Bulgaria", "Croatia", "Czech Republic",
-    "Estonia", "Finland", "France", "Greece", "Hungary", "Ireland",
-    "Latvia", "Lithuania", "Luxembourg", "Norway", "Poland", "Portugal",
-    "Romania", "Slovakia", "Slovenia", "Spain", "Switzerland",
-    "United Kingdom", "United States", "Other"
+    "Denmark",
+    "Italy",
+    "Germany",
+    "Sweden",
+    "Netherlands",
+    "Austria",
+    "Belgium",
+    "Bulgaria",
+    "Croatia",
+    "Czech Republic",
+    "Estonia",
+    "Finland",
+    "France",
+    "Greece",
+    "Hungary",
+    "Ireland",
+    "Latvia",
+    "Lithuania",
+    "Luxembourg",
+    "Norway",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Switzerland",
+    "United Kingdom",
+    "United States",
+    "Other"
   ],
   "altContact": {
-    "heading": "Prefer not to use a form?",
+    "heading": "Other ways to reach us",
     "emailLabel": "Email",
     "phoneLabel": "Phone",
     "officeLabel": "Office",

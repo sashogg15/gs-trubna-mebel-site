@@ -180,7 +180,7 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
         'flex items-center justify-between gap-3 border border-steel-100 bg-paper px-3 py-2 text-body-sm';
       const span = document.createElement('span');
       span.className = 'truncate';
-      span.textContent = `${file.name} · ${fmtSize(file.size)}`;
+      span.textContent = `${file.name} (${fmtSize(file.size)})`;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'shrink-0 font-bold uppercase tracking-wide text-ember-deep hover:text-ink';

@@ -6,7 +6,7 @@
   },
   "intro": {
     "heading": "Capabilities",
-    "body": "One question decides whether we fit: does your part sit inside our process window? This page lays that window out — processes and limits, metal and wood. The machines behind the limits are on the equipment page."
+    "body": "One question decides whether we fit: whether your part sits inside our process window. This page lays that window out — processes and limits, metal and wood. The machines behind the limits are on the equipment page."
   },
   "_structureNote": "Each process entry can later grow into a dedicated sub-page (href field, empty until the sub-page exists) without restructuring. Section IDs #metal, #wood, #complete-programmes are linked from the home page — keep them exactly.",
   "metal": {

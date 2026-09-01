@@ -46,7 +46,7 @@ const isEmpty = groups.length === 0;
                         {file.description && <span class="block text-body-sm text-steel-600">{file.description}</span>}
                       </span>
                       <span class="text-body-sm text-steel-600 md:shrink-0">
-                        {file.fileType} · {file.fileSize} · {file.language}
+                        {[file.fileType, file.fileSize, file.language].join(", ")}
                       </span>
                     </a>
                   </li>

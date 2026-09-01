@@ -31,7 +31,7 @@ const { title, body, href, linkLabel, image, tint } = Astro.props;
   }
   <h3 class="font-heading text-heading-2 font-semibold">{title}</h3>
   <p class="mt-4 flex-1 text-body text-steel-600">{body}</p>
-  <a href={href} class="mt-6 inline-block text-body-sm font-bold uppercase tracking-wide text-ember-deep hover:text-ink">
-    {linkLabel} →
+  <a href={href} class="mt-6 inline-block text-body-sm font-bold uppercase tracking-wide text-ember-deep underline underline-offset-4 hover:text-ink">
+    {linkLabel}
   </a>
 </div>
