@@ -2,10 +2,17 @@
 /**
  * RFQ form — static HTML posting to /contact.php (plain PHP on the host).
  *
- * Required: company, country, contact name, email, what-you-need, message.
- * Optional: phone, annual volume (free text — no ranges, no minimum
- * implied), timeline, files. Nothing else: every extra field costs
- * completions and changes nothing in the reply.
+ * Required (five): company, country, contact name, email, what-you-need.
+ * Message is required ONLY when no file is attached — a buyer sending a
+ * drawing often has nothing to write (PROMPT_08 ruling #32). Optional:
+ * role, phone, annual volume (free text — no ranges, no minimum implied),
+ * timeline, files. No target-price field, ever — we return the indicative
+ * price, not the other way around.
+ *
+ * JUSTIFIED CLIENT-SIDE JS (§2.6): inline per-field validation, the
+ * file list with per-file remove, the sending state on submit, and the
+ * anti-spam timestamp have no CSS equivalent. The form itself posts and
+ * validates server-side without JS.
  *
  * Client-side validation is inline per field, the form is never cleared
  * on error, selected files are listed with name/size/remove, and the
@@ -22,7 +29,7 @@ const L = rfq.form.labels;
 const E = rfq.form.errors;
 
 const fieldClass =
-  'w-full border border-steel-100 bg-white px-4 py-3 text-body rounded-field focus:border-ember-deep focus:outline-none aria-[invalid=true]:border-ember-deep';
+  'w-full border border-steel-100 bg-white px-4 py-3 text-body rounded-field aria-[invalid=true]:border-ember-deep';
 const labelClass = 'mb-1.5 block text-body-sm font-medium';
 const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
 ---
@@ -68,7 +75,12 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
     <p class={errorClass} data-error-for="email">{E.email}</p>
   </div>
 
-  <div class="md:col-span-2">
+  <div>
+    <label for="role" class={labelClass}>{L.role}</label>
+    <input type="text" id="role" name="role" placeholder={L.rolePlaceholder} autocomplete="organization-title" class={fieldClass} />
+  </div>
+
+  <div>
     <label for="what_you_need" class={labelClass}>{L.whatYouNeed} *</label>
     <select id="what_you_need" name="what_you_need" required class={fieldClass}>
       <option value="">—</option>
@@ -94,7 +106,8 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
 
   <div class="md:col-span-2">
     <label for="message" class={labelClass}>{L.message} *</label>
-    <textarea id="message" name="message" rows="5" required class={fieldClass}></textarea>
+    <textarea id="message" name="message" rows="5" class={fieldClass}></textarea>
+    <p class="mt-1.5 text-body-sm text-steel-600">{L.messageConditionalNote}</p>
     <p class={errorClass} data-error-for="message">{E.required}</p>
   </div>
 
@@ -107,7 +120,7 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
       multiple
       accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.jpg,.jpeg,.png,.zip"
       data-remove-label={L.filesRemove}
-      class="block w-full text-body-sm text-steel-600 file:mr-4 file:cursor-pointer file:border file:border-steel-100 file:bg-paper file:px-4 file:py-2.5 file:text-body-sm file:font-medium"
+      class="block w-full text-body-sm text-steel-600 file:mr-4 file:cursor-pointer file:rounded-field file:border file:border-steel-100 file:bg-paper file:px-4 file:py-2.5 file:text-body-sm file:font-medium"
     />
     <p class="mt-1.5 text-body-sm text-steel-600">{L.filesNote}</p>
     <p class={errorClass} data-error-for="drawings"></p>
@@ -125,7 +138,7 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
     <button
       type="submit"
       id="rfq-submit"
-      class="w-full bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
+      class="w-full rounded-field bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
       data-label={L.submit}
       data-label-sending={L.submitting}
     >
@@ -144,7 +157,7 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
 
   const MAX_TOTAL = 10 * 1024 * 1024;
   const ALLOWED = ['pdf', 'dwg', 'dxf', 'step', 'stp', 'igs', 'iges', 'jpg', 'jpeg', 'png', 'zip'];
-  const REQUIRED = ['company', 'country', 'contact_name', 'email', 'what_you_need', 'message'];
+  const REQUIRED = ['company', 'country', 'contact_name', 'email', 'what_you_need'];
 
   const err = (id: string) =>
     form.querySelector<HTMLParagraphElement>(`[data-error-for="${id}"]`);
@@ -184,7 +197,7 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'shrink-0 font-bold uppercase tracking-wide text-ember-deep hover:text-ink';
-      btn.textContent = fileInput.dataset.removeLabel || 'Remove';
+      btn.textContent = fileInput.dataset.removeLabel ?? '';
       btn.addEventListener('click', () => {
         const next = new DataTransfer();
         Array.from(store.files).forEach((f, j) => {
@@ -248,11 +261,13 @@ const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
 
   form.addEventListener('submit', (e) => {
     const results = REQUIRED.map((id) => validateField(id));
+    // Message is required only when no file is attached.
+    const messageOk = store.files.length > 0 ? (setError('message', null), true) : validateField('message');
     const filesOk = validateFiles();
-    if (results.includes(false) || !filesOk) {
+    if (results.includes(false) || !messageOk || !filesOk) {
       e.preventDefault();
-      const firstInvalid = REQUIRED.find((id, i) => !results[i]);
-      document.getElementById(firstInvalid || 'drawings')?.focus();
+      const firstInvalid = REQUIRED.find((id, i) => !results[i]) ?? (!messageOk ? 'message' : 'drawings');
+      document.getElementById(firstInvalid)?.focus();
       return;
     }
     // Valid: lock the button and show the sending state. The form is never

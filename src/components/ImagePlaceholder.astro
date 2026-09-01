@@ -6,7 +6,9 @@
  * When `src` no longer contains a [[TODO]] marker, it renders a real <img>
  * with width/height and lazy loading; until then it renders a labelled block.
  */
-import { isTodo } from '../lib/content';
+import { isTodo, loadShared } from '../lib/content';
+
+const shared = loadShared();
 
 interface Props {
   src?: string;
@@ -20,7 +22,7 @@ interface Props {
   class?: string;
 }
 
-const { src = '', alt = '', aspect = '3/2', label = 'Photo placeholder', eager = false, class: className = '' } = Astro.props;
+const { src = '', alt = '', aspect = '3/2', label = shared.misc.photoPlaceholder, eager = false, class: className = '' } = Astro.props;
 const isPlaceholder = !src || isTodo(src);
 
 // width/height derived from the aspect ratio at a nominal 1600px width,

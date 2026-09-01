@@ -24,8 +24,24 @@
     "heading": "Product testing standards",
     "body": "[[TODO: paragraph — which standards products are tested to (e.g. EN 1728, EN 16139, BIFMA), in-house vs external lab]]",
     "standards": [
-      { "code": "[[TODO: standard code, e.g. EN 1728]]", "scope": "[[TODO: what it covers]]" },
-      { "code": "[[TODO: standard code]]", "scope": "[[TODO: what it covers]]" }
-    ]
+      {
+        "code": "[[TODO: standard code, e.g. EN 1728]]",
+        "scope": "[[TODO: what it covers]]"
+      },
+      {
+        "code": "[[TODO: standard code]]",
+        "scope": "[[TODO: what it covers]]"
+      }
+    ],
+    "tableHeaders": {
+      "standard": "Standard",
+      "scope": "Scope"
+    }
+  },
+  "certLabels": {
+    "issuingBody": "Issuing body",
+    "certificateNumber": "Certificate no.",
+    "validUntil": "Valid until",
+    "scope": "Scope"
   }
 }

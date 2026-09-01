@@ -43,6 +43,11 @@ export default {
         site: layout.maxWidth,
         prose: layout.proseMeasure,
       },
+      // §4: shadows only on genuinely overlaying elements (mobile nav,
+      // language menu).
+      boxShadow: {
+        overlay: '0 8px 24px rgba(22, 24, 28, 0.12)',
+      },
     },
   },
   plugins: [],

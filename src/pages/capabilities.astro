@@ -96,7 +96,7 @@ const meta = {
         </div>
         <div class="mt-6 grid gap-6 md:grid-cols-2">
           {chain.processes.map((proc: any) => (
-            <article class="flex flex-col border border-steel-100 bg-white">
+            <article class="flex flex-col border border-steel-300">
               {proc.image && (
                 <ImagePlaceholder
                   src={proc.image.src}
@@ -170,7 +170,7 @@ const meta = {
     </div>
   </Section>
 
-  <Section tone="white">
+  <Section>
     <CtaBand
       heading={t.closingCta.heading}
       body={t.closingCta.body}

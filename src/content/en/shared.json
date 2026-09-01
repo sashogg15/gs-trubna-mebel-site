@@ -15,7 +15,9 @@
     "downloads": "Downloads",
     "legal": "Legal",
     "tagline": "Complete metal + wood programmes from a single European factory.",
-    "copyrightName": "GS Trubna Mebel"
+    "copyrightName": "GS Trubna Mebel",
+    "contactHeading": "Contact",
+    "moreHeading": "More"
   },
   "cta": {
     "primary": "Request a quote",
@@ -25,6 +27,11 @@
   },
   "misc": {
     "imagePlaceholderNote": "Photo placeholder",
-    "todoNote": "Content pending"
+    "todoNote": "Content pending",
+    "photoPlaceholder": "Photo placeholder"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "menuLabel": "Menu"
   }
 }

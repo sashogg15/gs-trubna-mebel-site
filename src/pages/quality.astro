@@ -17,10 +17,10 @@ const certs = company.certifications.items;
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
   </Section>
 
-  <Section tone="white">
+  <Section>
     <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.certifications.heading}</h2>
     <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {certs.map((cert) => <CertCard cert={cert} />)}
+      {certs.map((cert) => <CertCard cert={cert} labels={t.certLabels} />)}
     </div>
   </Section>
 
@@ -41,7 +41,7 @@ const certs = company.certifications.items;
     </div>
   </Section>
 
-  <Section tone="white">
+  <Section>
     <div class="max-w-prose">
       <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.testing.heading}</h2>
       <p class="mt-6 text-body text-steel-600">{t.testing.body}</p>
@@ -49,15 +49,15 @@ const certs = company.certifications.items;
     <div class="mt-8 overflow-x-auto">
       <table class="w-full max-w-prose border border-steel-100 text-left">
         <thead>
-          <tr class="border-b border-steel-100 bg-white">
-            <th class="px-5 py-3 text-label uppercase text-steel-600">Standard</th>
-            <th class="px-5 py-3 text-label uppercase text-steel-600">Scope</th>
+          <tr class="border-b border-steel-100">
+            <th class="px-5 py-3 text-label uppercase text-steel-600">{t.testing.tableHeaders.standard}</th>
+            <th class="px-5 py-3 text-label uppercase text-steel-600">{t.testing.tableHeaders.scope}</th>
           </tr>
         </thead>
         <tbody>
           {
             t.testing.standards.map((s: any) => (
-              <tr class="border-b border-steel-100 bg-white last:border-b-0">
+              <tr class="border-b border-steel-100 last:border-b-0">
                 <td class="px-5 py-3 text-body font-medium tabular-nums">{s.code}</td>
                 <td class="px-5 py-3 text-body text-steel-600">{s.scope}</td>
               </tr>

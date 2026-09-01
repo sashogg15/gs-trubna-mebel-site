@@ -16,7 +16,7 @@ const shared = loadShared();
     <PageIntro heading={t.intro.heading} body={t.intro.body} />
   </Section>
 
-  <Section tone="white">
+  <Section>
     <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.logoWall.heading}</h2>
     <div class="mt-6">
       <LogoWall logos={t.logoWall.logos} />
@@ -26,7 +26,7 @@ const shared = loadShared();
   <Section>
     <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.caseStudies.heading}</h2>
     <div class="mt-6 space-y-16">
-      {t.caseStudies.items.map((item: any) => <CaseStudy item={item} />)}
+      {t.caseStudies.items.map((item: any) => <CaseStudy item={item} ndaNote={t.caseStudies.ndaNote} />)}
     </div>
   </Section>
 

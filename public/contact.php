@@ -145,40 +145,6 @@ if ($formTs > 0 && ($now - $formTs) < $MIN_SECONDS) {
     fail('submitted in under ' . $MIN_SECONDS . 's');
 }
 
-// --- Validation --------------------------------------------------------------
-
-$company      = clean('company', 200);
-$country      = clean('country', 100);
-$contactName  = clean('contact_name', 200);
-$email        = clean('email', 200);
-$phone        = clean('phone', 50);
-$whatYouNeed  = clean('what_you_need', 20);
-$annualVolume = clean('annual_volume', 300);
-$timeline     = clean('timeline', 300);
-$message      = trim(mb_substr((string)($_POST['message'] ?? ''), 0, 5000));
-
-$NEED_LABELS = [
-    'metal'    => 'Metal parts or frames',
-    'wood'     => 'Wood or panel parts',
-    'complete' => 'Complete product (metal + wood)',
-    'unsure'   => 'Not sure yet',
-];
-
-$errors = [];
-if ($company === '')                                 $errors[] = 'company missing';
-if ($country === '')                                 $errors[] = 'country missing';
-if ($contactName === '')                             $errors[] = 'contact name missing';
-if (!filter_var($email, FILTER_VALIDATE_EMAIL))      $errors[] = 'email invalid';
-if (!isset($NEED_LABELS[$whatYouNeed]))              $errors[] = 'what_you_need invalid';
-if ($message === '')                                 $errors[] = 'message missing';
-
-if ($errors) {
-    // Real users are stopped earlier by client-side validation; reaching
-    // this point means a malformed submission — logged either way so a
-    // genuine enquiry can be recovered from the log.
-    fail('validation: ' . implode(', ', $errors));
-}
-
 // --- Uploaded drawings ---------------------------------------------------------
 
 $attachments = []; // each: ['name' => ..., 'content' => ...]
@@ -206,6 +172,41 @@ if (!empty($_FILES['drawings']) && is_array($_FILES['drawings']['name'])) {
     }
 }
 
+// --- Validation --------------------------------------------------------------
+
+$company      = clean('company', 200);
+$country      = clean('country', 100);
+$contactName  = clean('contact_name', 200);
+$email        = clean('email', 200);
+$phone        = clean('phone', 50);
+$role         = clean('role', 100);
+$whatYouNeed  = clean('what_you_need', 20);
+$annualVolume = clean('annual_volume', 300);
+$timeline     = clean('timeline', 300);
+$message      = trim(mb_substr((string)($_POST['message'] ?? ''), 0, 5000));
+
+$NEED_LABELS = [
+    'metal'    => 'Metal parts or frames',
+    'wood'     => 'Wood or panel parts',
+    'complete' => 'Complete product (metal + wood)',
+    'unsure'   => 'Not sure yet',
+];
+
+$errors = [];
+if ($company === '')                                 $errors[] = 'company missing';
+if ($country === '')                                 $errors[] = 'country missing';
+if ($contactName === '')                             $errors[] = 'contact name missing';
+if (!filter_var($email, FILTER_VALIDATE_EMAIL))      $errors[] = 'email invalid';
+if (!isset($NEED_LABELS[$whatYouNeed]))              $errors[] = 'what_you_need invalid';
+if ($message === '' && !$attachments)                $errors[] = 'message missing (and no file attached)';
+
+if ($errors) {
+    // Real users are stopped earlier by client-side validation; reaching
+    // this point means a malformed submission — logged either way so a
+    // genuine enquiry can be recovered from the log.
+    fail('validation: ' . implode(', ', $errors));
+}
+
 // --- Build and send the mail ---------------------------------------------------
 
 $bodyLines = [
@@ -216,6 +217,7 @@ $bodyLines = [
     'Contact:        ' . $contactName,
     'Email:          ' . $email,
     'Phone:          ' . ($phone !== '' ? $phone : '—'),
+    'Role:           ' . ($role !== '' ? $role : '—'),
     'What they need: ' . $NEED_LABELS[$whatYouNeed],
     'Annual volume:  ' . ($annualVolume !== '' ? $annualVolume : '—'),
     'Timeline:       ' . ($timeline !== '' ? $timeline : '—'),

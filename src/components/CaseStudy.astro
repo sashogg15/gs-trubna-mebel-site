@@ -7,6 +7,8 @@
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Props {
+  /** e.g. "(name under NDA)" — from references.json, never hardcoded. */
+  ndaNote: string;
   item: {
     client: string;
     anonymised: boolean;
@@ -19,7 +21,7 @@ interface Props {
     image: { src: string; alt: string; aspect: string };
   };
 }
-const { item } = Astro.props;
+const { item, ndaNote } = Astro.props;
 const displayName = item.anonymised || !item.client ? item.sector : item.client;
 const facts = [
   { label: 'Sector', value: item.sector },
@@ -40,7 +42,7 @@ const facts = [
   <div>
     <h3 class="font-heading text-heading-2 font-semibold">
       {displayName}
-      {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel-600">(name under NDA)</span>}
+      {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel-600">{ndaNote}</span>}
     </h3>
     <p class="mt-4 text-body text-steel-600">{item.body}</p>
     <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-body-sm">

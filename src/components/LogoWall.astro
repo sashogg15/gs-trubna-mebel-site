@@ -11,7 +11,7 @@ const { logos } = Astro.props;
 <ul class="grid grid-cols-2 gap-px border border-steel-100 bg-steel-100 md:grid-cols-5">
   {
     logos.map((logo) => (
-      <li class="flex min-h-28 items-center justify-center bg-white p-6">
+      <li class="flex min-h-28 items-center justify-center bg-paper p-6">
         {isTodo(logo.image) || !logo.image ? (
           <span class="text-center text-body-sm uppercase tracking-wide text-steel-600">{logo.name}</span>
         ) : (

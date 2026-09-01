@@ -131,8 +131,9 @@
         "label": "of output exported"
       },
       {
-        "value": "2+1",
-        "label": "welding robots + sanding robot"
+        "value": "{robots}",
+        "label": "welding robots + sanding robot",
+        "_note": "{robots} derived at build from company.json machine counts"
       },
       {
         "value": "{years}",

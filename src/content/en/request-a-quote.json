@@ -24,6 +24,8 @@
       "countryPlaceholder": "Select country",
       "contactName": "Contact name",
       "email": "Email",
+      "role": "Role (optional)",
+      "rolePlaceholder": "e.g. purchasing, engineering, product development",
       "whatYouNeed": "What you need",
       "whatYouNeedOptions": [
         {
@@ -54,14 +56,16 @@
       "filesButton": "Choose files",
       "filesRemove": "Remove",
       "submit": "Send enquiry",
-      "submitting": "Sending…"
+      "submitting": "Sending…",
+      "messageConditionalNote": "Required only if no file is attached — a drawing can speak for itself."
     },
     "errors": {
       "required": "This field is required.",
       "email": "Enter a valid email address.",
       "fileType": "This file type is not accepted.",
       "fileSize": "Files exceed 10 MB in total."
-    }
+    },
+    "_comment": "PROJECT EXCEPTIONS to the design authority's RFQ field list (PROMPT_08 ruling #32): no target-unit-price-band field (highest-friction field; it anchors the buyer downward — the mechanism runs the other way, we return the indicative price); 'role' added as optional (purchasing vs engineering changes how the reply is written); five required fields, with message required only when no file is attached."
   },
   "countries": [
     "Denmark",

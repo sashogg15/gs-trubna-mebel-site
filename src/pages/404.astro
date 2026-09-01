@@ -1,24 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
+import { loadPage } from '../lib/content';
 
-const meta = {
-  title: 'Page not found — GS Trubna Mebel',
-  description: 'The page you are looking for does not exist.',
-  path: '/404',
-};
+const t = loadPage('404');
 ---
 
-<Base meta={meta}>
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/404' }}>
   <Section>
     <div class="max-w-prose">
-      <p class="font-heading text-figure-xl-m font-bold tabular-nums text-ember md:text-figure-xl">404</p>
-      <h1 class="mt-4 font-heading text-figure font-bold tabular-nums">Page not found</h1>
+      <p class="font-heading text-figure-xl-m font-bold tabular-nums text-ember md:text-figure-xl">{t.figure}</p>
+      <h1 class="mt-4 font-heading text-display-1-m font-bold md:text-display-1">{t.heading}</h1>
       <a
         href="/"
-        class="mt-6 inline-block border border-ink px-6 py-3 text-body-sm font-bold uppercase tracking-wide hover:border-ember-deep hover:text-ember-deep"
+        class="mt-8 inline-block rounded-field border border-ink px-6 py-3 text-body-sm font-bold uppercase tracking-wide hover:border-ember-deep hover:text-ember-deep"
       >
-        Back to home
+        {t.backLabel}
       </a>
     </div>
   </Section>

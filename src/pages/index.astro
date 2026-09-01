@@ -28,9 +28,13 @@ if (unconfirmed.length > 0) {
 // ---------------------------------------------------------------------------
 
 const years = new Date().getFullYear() - company.identity.foundedYear;
+// Robot counts derive from company.json machine counts — never literals.
+const machineCount = (id: string) =>
+  String((company.machines.items as any[]).find((m) => m.id === id)?.count ?? '');
+const robots = `${machineCount('fanuc-welding')}+${machineCount('kuka-sanding')}`;
 const proofStats = t.proofBand.stats.map((s: any) => ({
   ...s,
-  value: s.value.replace('{years}', String(years)),
+  value: s.value.replace('{years}', String(years)).replace('{robots}', robots),
 }));
 
 // Version A/B switch for the client section: named logo wall renders only
@@ -67,7 +71,7 @@ const showClientNames =
   </Section>
 
   <!-- 4. How we work — six stages; 3 and 4 carry emphasis. -->
-  <Section tone="white">
+  <Section>
     <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.howWeWork.heading}</h2>
     <div class="mt-6">
       <ProcessSteps steps={t.howWeWork.steps} />
@@ -158,7 +162,7 @@ const showClientNames =
   </Section>
 
   <!-- 9. Closing CTA — names what the buyer receives. -->
-  <Section tone="white">
+  <Section>
     <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
   </Section>
 </Base>

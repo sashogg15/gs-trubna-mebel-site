@@ -13,15 +13,15 @@ const addr = company.contacts.address;
     <div>
       <Logo variant="full" tone="light" class="h-7" />
       {/* Descriptor line: typographic, visually separate from the logo —
-          it must never read as part of the registered mark. (Spec calls
-          for steel-600, which measures ~2.2:1 on graphite and is
-          illegible; steel-300 is used instead — see contrast report.) */}
+          it must never read as part of the registered mark. (Spec called
+          for steel-600, which measures 2.13:1 on graphite and is
+          illegible; steel-300 is used instead — recorded in the review.) */}
       <p class="mt-4 text-label uppercase text-steel-300">{shared.footer.descriptor}</p>
       <p class="mt-4 max-w-xs text-body-sm">{shared.footer.tagline}</p>
     </div>
 
     <div class="text-body-sm">
-      <p class="mb-3 text-label uppercase text-white">Contact</p>
+      <p class="mb-3 text-label font-medium uppercase text-white">{shared.footer.contactHeading}</p>
       <p>{addr.street}</p>
       <p>{addr.postalCode} {addr.city}, {addr.country}</p>
       <p class="mt-2">{company.contacts.email}</p>
@@ -29,7 +29,7 @@ const addr = company.contacts.address;
     </div>
 
     <div class="text-body-sm">
-      <p class="mb-3 text-label uppercase text-white">More</p>
+      <p class="mb-3 text-label font-medium uppercase text-white">{shared.footer.moreHeading}</p>
       <ul class="space-y-2">
         {/* /downloads is deliberately NOT linked while it is empty — a footer
             link to an empty page is worse than no link. Re-enable this line

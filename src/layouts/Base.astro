@@ -1,9 +1,14 @@
 ---
 import '@fontsource-variable/archivo';
 import '@fontsource-variable/inter';
+// Preload the two primary faces (Latin) so headings and body never flash.
+import archivoWoff2 from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { canonicalUrl, organizationSchema, type PageMeta } from '../lib/seo';
+import { loadShared } from '../lib/content';
+import { colors } from '../design/tokens.mjs';
 import company from '../data/company.json';
 
 interface Props {
@@ -15,6 +20,7 @@ const canonical = canonicalUrl(meta.path);
 const ogImage = meta.ogImage ?? '/images/og-default.jpg'; // [[TODO: provide og-default.jpg, 1200×630]]
 const lang = meta.lang ?? 'en';
 const schema = JSON.stringify(organizationSchema());
+const shared = loadShared();
 ---
 
 <!doctype html>
@@ -25,6 +31,8 @@ const schema = JSON.stringify(organizationSchema());
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <link rel="canonical" href={canonical} />
+    <link rel="preload" href={archivoWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -38,13 +46,52 @@ const schema = JSON.stringify(organizationSchema());
     <meta property="og:image" content={new URL(ogImage, 'https://gstrubnamebel.eu').href} />
 
     <script type="application/ld+json" set:html={schema} />
+
+    <style is:global define:vars={{ emberDeep: colors.emberDeep }}>
+      /* Focus is instant and always visible (§11) — never removed, never a
+         colour change alone. */
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--emberDeep);
+        outline-offset: 2px;
+      }
+      /* Permitted motion only (§11): hover colour 120ms ease, press scale
+         160ms ease-out. transform/opacity + colours only; nothing on scroll. */
+      a,
+      button,
+      summary {
+        transition:
+          color 120ms ease,
+          background-color 120ms ease;
+      }
+      @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        a:active,
+        button:active,
+        summary:active {
+          transform: scale(0.97);
+          transition:
+            transform 160ms cubic-bezier(0.23, 1, 0.32, 1),
+            color 120ms ease,
+            background-color 120ms ease;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        a,
+        button,
+        summary {
+          transition-property: color, background-color;
+        }
+      }
+    </style>
   </head>
   <body class="bg-paper font-body text-body text-ink antialiased">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ember-bright focus:px-4 focus:py-2 focus:text-ink"
     >
-      Skip to content
+      {shared.a11y.skipToContent}
     </a>
     <Header />
     <main id="main">

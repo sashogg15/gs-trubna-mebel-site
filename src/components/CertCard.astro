@@ -1,5 +1,7 @@
 ---
 interface Props {
+  /** Field labels from quality.json (certLabels) — never hardcoded. */
+  labels: Record<string, string>;
   cert: {
     name: string;
     issuingBody: string;
@@ -8,26 +10,26 @@ interface Props {
     scope: string;
   };
 }
-const { cert } = Astro.props;
+const { cert, labels } = Astro.props;
 ---
 
 <article class="border border-steel-100 px-6 py-5">
   <h3 class="font-heading text-heading-2 font-semibold">{cert.name}</h3>
   <dl class="mt-4 space-y-2 text-body-sm">
     <div class="flex justify-between gap-4">
-      <dt class="text-steel-600">Issuing body</dt>
+      <dt class="text-steel-600">{labels.issuingBody}</dt>
       <dd class="text-right font-medium">{cert.issuingBody}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel-600">Certificate no.</dt>
+      <dt class="text-steel-600">{labels.certificateNumber}</dt>
       <dd class="text-right font-medium">{cert.certificateNumber}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel-600">Valid until</dt>
+      <dt class="text-steel-600">{labels.validUntil}</dt>
       <dd class="text-right font-medium">{cert.validUntil}</dd>
     </div>
     <div class="flex justify-between gap-4">
-      <dt class="text-steel-600">Scope</dt>
+      <dt class="text-steel-600">{labels.scope}</dt>
       <dd class="text-right font-medium">{cert.scope}</dd>
     </div>
   </dl>

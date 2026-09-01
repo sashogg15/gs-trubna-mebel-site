@@ -13,6 +13,7 @@ const nav = [
   { href: '/about', label: shared.nav.about },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => current === (href === '/' ? '/' : href);
 ---
 
 <header class="sticky top-0 z-40 border-b border-steel-100 bg-white">
@@ -26,14 +27,12 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
         nav.map((item) => (
           <a
             href={item.href}
-            aria-current={current === (item.href === '/' ? '/' : item.href) ? 'page' : undefined}
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
             class:list={[
               // Active state carries no accent (budget: the RFQ button is
               // the header's one accent element).
               'whitespace-nowrap text-body-sm font-medium uppercase tracking-wide hover:text-ink',
-              current === (item.href === '/' ? '/' : item.href)
-                ? 'border-b-2 border-ink pb-0.5 text-ink'
-                : 'text-steel-600',
+              isCurrent(item.href) ? 'border-b-2 border-ink pb-0.5 text-ink' : 'text-steel-600',
             ]}
           >
             {item.label}
@@ -45,45 +44,39 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     <div class="flex items-center gap-2 md:gap-3">
       <a
         href="/request-a-quote"
-        class="whitespace-nowrap bg-ember-bright px-2.5 py-2 text-label font-bold uppercase tracking-wide text-ink hover:bg-ember md:px-5 md:py-2.5 md:text-body-sm"
+        class="whitespace-nowrap rounded-field bg-ember-bright px-2.5 py-2 text-label font-bold uppercase tracking-wide text-ink hover:bg-ember md:px-5 md:py-2.5 md:text-body-sm"
       >
         {shared.nav.rfqButton}
       </a>
 
-      <button
-        type="button"
-        class="flex h-9 w-9 shrink-0 items-center justify-center border border-steel-100 lg:hidden"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        aria-label="Menu"
-        id="menu-toggle"
-      >
-        <span class="block h-0.5 w-5 bg-ink" aria-hidden="true"></span>
-      </button>
+      <!-- Mobile nav: <details>/<summary> — no JavaScript, works everywhere (§2.6). -->
+      <details class="relative lg:hidden">
+        <summary
+          class="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-field border border-steel-100"
+          aria-label={shared.a11y.menuLabel}
+        >
+          <span class="block h-0.5 w-5 bg-ink" aria-hidden="true"></span>
+        </summary>
+        <nav
+          class="absolute right-0 top-11 z-50 w-64 border border-steel-100 bg-white shadow-overlay"
+          aria-label="Main mobile"
+        >
+          {
+            nav.map((item) => (
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class:list={[
+                  'block border-b border-steel-100 px-4 py-3 text-body font-medium uppercase tracking-wide last:border-b-0',
+                  isCurrent(item.href) ? 'text-ink' : 'text-steel-600',
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </details>
     </div>
   </div>
-
-  <nav id="mobile-nav" class="hidden border-t border-steel-100 lg:hidden" aria-label="Main mobile">
-    <div class="mx-auto max-w-site px-6 py-3 md:px-12">
-      {
-        nav.map((item) => (
-          <a
-            href={item.href}
-            class="block border-b border-steel-100 py-3 text-body font-medium uppercase tracking-wide last:border-b-0"
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </div>
-  </nav>
 </header>
-
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('mobile-nav');
-  toggle?.addEventListener('click', () => {
-    const open = nav?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-  });
-</script>
