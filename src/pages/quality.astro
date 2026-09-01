@@ -18,15 +18,15 @@ const certs = company.certifications.items;
   </Section>
 
   <Section tone="white">
-    <h2 class="font-heading text-h2 font-bold">{t.certifications.heading}</h2>
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.certifications.heading}</h2>
+    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {certs.map((cert) => <CertCard cert={cert} />)}
     </div>
   </Section>
 
   <Section>
-    <div class="max-w-3xl">
-      <h2 class="font-heading text-h2 font-bold">{t.processControl.heading}</h2>
+    <div class="max-w-prose">
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.processControl.heading}</h2>
       <p class="mt-6 text-body text-steel-600">{t.processControl.body}</p>
       <ul class="mt-8 divide-y divide-steel-100 border-b border-t border-steel-100">
         {
@@ -42,12 +42,12 @@ const certs = company.certifications.items;
   </Section>
 
   <Section tone="white">
-    <div class="max-w-3xl">
-      <h2 class="font-heading text-h2 font-bold">{t.testing.heading}</h2>
+    <div class="max-w-prose">
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.testing.heading}</h2>
       <p class="mt-6 text-body text-steel-600">{t.testing.body}</p>
     </div>
     <div class="mt-8 overflow-x-auto">
-      <table class="w-full max-w-3xl border border-steel-100 text-left">
+      <table class="w-full max-w-prose border border-steel-100 text-left">
         <thead>
           <tr class="border-b border-steel-100 bg-white">
             <th class="px-5 py-3 text-label uppercase text-steel-600">Standard</th>
@@ -58,7 +58,7 @@ const certs = company.certifications.items;
           {
             t.testing.standards.map((s: any) => (
               <tr class="border-b border-steel-100 bg-white last:border-b-0">
-                <td class="px-5 py-3 text-body font-medium">{s.code}</td>
+                <td class="px-5 py-3 text-body font-medium tabular-nums">{s.code}</td>
                 <td class="px-5 py-3 text-body text-steel-600">{s.scope}</td>
               </tr>
             ))

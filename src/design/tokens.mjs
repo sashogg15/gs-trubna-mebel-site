@@ -68,24 +68,34 @@ export const fonts = {
   body: "'Inter Variable', 'Helvetica Neue', Arial, sans-serif",
 };
 
-// Type scale, rem. ~1.25 ratio. `figure` is reserved for the key-numbers strip.
+// Type scale — the design authority's ten tokens, px in comments.
+// The *-m tokens are the mobile downshifts (used mobile-first with a
+// md: override, e.g. `text-display-1-m md:text-display-1`).
+// Faces: display/figure/heading = Archivo (700 for display+figures,
+// 600 for headings), text = Inter (400, 500 for label).
 export const typeScale = {
-  figure: ['5.5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
-  display: ['4.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-  h1: ['3rem', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
-  h2: ['2.25rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-  h3: ['1.5rem', { lineHeight: '1.3' }],
-  body: ['1.0625rem', { lineHeight: '1.65' }],
-  small: ['0.875rem', { lineHeight: '1.5' }],
-  // Uppercase labels: section eyebrows, table headers.
-  label: ['0.8125rem', { lineHeight: '1.4', letterSpacing: '0.08em' }],
+  'display-1': ['3.5rem', { lineHeight: '3.75rem', letterSpacing: '-0.02em' }], // 56/60
+  'display-1-m': ['2.25rem', { lineHeight: '2.5rem', letterSpacing: '-0.02em' }], // 36/40
+  'display-2': ['2.5rem', { lineHeight: '2.75rem', letterSpacing: '-0.015em' }], // 40/44
+  'display-2-m': ['1.75rem', { lineHeight: '2rem', letterSpacing: '-0.015em' }], // 28/32
+  'heading-1': ['1.75rem', { lineHeight: '2.125rem', letterSpacing: '-0.01em' }], // 28/34
+  'heading-2': ['1.25rem', { lineHeight: '1.625rem' }], // 20/26
+  'body-lg': ['1.125rem', { lineHeight: '1.875rem' }], // 18/30 — lead paragraph, max one per section
+  body: ['1rem', { lineHeight: '1.625rem' }], // 16/26
+  'body-sm': ['0.875rem', { lineHeight: '1.375rem' }], // 14/22
+  label: ['0.8125rem', { lineHeight: '1rem', letterSpacing: '0.01em' }], // 13/16
+  'figure-xl': ['4rem', { lineHeight: '4rem' }], // 64/64 — the one big number in a section
+  'figure-xl-m': ['2.75rem', { lineHeight: '2.875rem' }], // 44/46
+  figure: ['2rem', { lineHeight: '2.25rem' }], // 32/36 — figures inside a strip or table
 };
 
 export const layout = {
-  // Content max-width. Photography breaks out to full bleed.
-  maxWidth: '72rem',
-  // Vertical rhythm between sections (Tailwind classes used in Section wrappers).
-  sectionY: 'py-20 md:py-28',
-  // Corner radius: sharp everywhere; 2px on form fields only.
+  // Content max-width: 1200px. Prose measure capped at 68ch.
+  maxWidth: '75rem',
+  proseMeasure: '68ch',
+  // Section rhythm: 96px desktop / 64px mobile — one value site-wide.
+  sectionY: 'py-16 md:py-24',
+  // Corner radius: 0 on structural surfaces; 2px on interactive controls
+  // (buttons, inputs, selects).
   radius: { none: '0', field: '2px' },
 };

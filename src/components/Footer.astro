@@ -9,7 +9,7 @@ const addr = company.contacts.address;
 ---
 
 <footer class="bg-graphite text-steel-300">
-  <div class="mx-auto grid max-w-site gap-10 px-4 py-14 md:grid-cols-3 md:px-6">
+  <div class="mx-auto grid max-w-site gap-12 px-6 py-12 md:grid-cols-3 md:px-12">
     <div>
       <Logo variant="full" tone="light" class="h-7" />
       {/* Descriptor line: typographic, visually separate from the logo —
@@ -17,10 +17,10 @@ const addr = company.contacts.address;
           for steel-600, which measures ~2.2:1 on graphite and is
           illegible; steel-300 is used instead — see contrast report.) */}
       <p class="mt-4 text-label uppercase text-steel-300">{shared.footer.descriptor}</p>
-      <p class="mt-4 max-w-xs text-small">{shared.footer.tagline}</p>
+      <p class="mt-4 max-w-xs text-body-sm">{shared.footer.tagline}</p>
     </div>
 
-    <div class="text-small">
+    <div class="text-body-sm">
       <p class="mb-3 text-label uppercase text-white">Contact</p>
       <p>{addr.street}</p>
       <p>{addr.postalCode} {addr.city}, {addr.country}</p>
@@ -28,7 +28,7 @@ const addr = company.contacts.address;
       <p>{company.contacts.phone}</p>
     </div>
 
-    <div class="text-small">
+    <div class="text-body-sm">
       <p class="mb-3 text-label uppercase text-white">More</p>
       <ul class="space-y-2">
         {/* /downloads is deliberately NOT linked while it is empty — a footer
@@ -41,7 +41,7 @@ const addr = company.contacts.address;
   </div>
 
   <div class="border-t border-steel-600/40">
-    <div class="mx-auto max-w-site px-4 py-4 text-small md:px-6">
+    <div class="mx-auto max-w-site px-6 py-4 text-body-sm md:px-12">
       © {year} {shared.footer.copyrightName}. {company.identity.registrationCity}.
     </div>
   </div>

@@ -17,15 +17,15 @@ const shared = loadShared();
   </Section>
 
   <Section tone="white">
-    <h2 class="font-heading text-h2 font-bold">{t.logoWall.heading}</h2>
-    <div class="mt-10">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.logoWall.heading}</h2>
+    <div class="mt-6">
       <LogoWall logos={t.logoWall.logos} />
     </div>
   </Section>
 
   <Section>
-    <h2 class="font-heading text-h2 font-bold">{t.caseStudies.heading}</h2>
-    <div class="mt-10 space-y-16">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.caseStudies.heading}</h2>
+    <div class="mt-6 space-y-16">
       {t.caseStudies.items.map((item: any) => <CaseStudy item={item} />)}
     </div>
   </Section>

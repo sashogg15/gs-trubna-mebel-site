@@ -16,7 +16,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="sticky top-0 z-40 border-b border-steel-100 bg-white">
-  <div class="mx-auto flex max-w-site items-center justify-between gap-3 px-4 py-4 md:gap-6 md:px-6">
+  <div class="mx-auto flex max-w-site items-center justify-between gap-3 px-6 py-4 md:gap-6 md:px-12">
     <a href="/" class="flex shrink-0 items-center">
       <Logo variant="full" tone="dark" class="h-7 md:h-8" />
     </a>
@@ -30,7 +30,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
             class:list={[
               // Active state carries no accent (budget: the RFQ button is
               // the header's one accent element).
-              'whitespace-nowrap text-small font-medium uppercase tracking-wide hover:text-ink',
+              'whitespace-nowrap text-body-sm font-medium uppercase tracking-wide hover:text-ink',
               current === (item.href === '/' ? '/' : item.href)
                 ? 'border-b-2 border-ink pb-0.5 text-ink'
                 : 'text-steel-600',
@@ -45,7 +45,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     <div class="flex items-center gap-2 md:gap-3">
       <a
         href="/request-a-quote"
-        class="whitespace-nowrap bg-ember-bright px-2.5 py-2 text-label font-bold uppercase tracking-wide text-ink hover:bg-ember md:px-5 md:py-2.5 md:text-small"
+        class="whitespace-nowrap bg-ember-bright px-2.5 py-2 text-label font-bold uppercase tracking-wide text-ink hover:bg-ember md:px-5 md:py-2.5 md:text-body-sm"
       >
         {shared.nav.rfqButton}
       </a>
@@ -64,7 +64,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
   </div>
 
   <nav id="mobile-nav" class="hidden border-t border-steel-100 lg:hidden" aria-label="Main mobile">
-    <div class="mx-auto max-w-site px-4 py-3 md:px-6">
+    <div class="mx-auto max-w-site px-6 py-3 md:px-12">
       {
         nav.map((item) => (
           <a

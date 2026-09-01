@@ -12,23 +12,23 @@ const steps = (t.steps as string[]).filter((s) => !isTodo(s) || import.meta.env.
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/thank-you' }}>
   <Section>
-    <div class="max-w-2xl">
-      <h1 class="font-heading text-h1 font-bold">{t.heading}</h1>
+    <div class="max-w-prose">
+      <h1 class="font-heading text-display-1-m font-bold md:text-display-1">{t.heading}</h1>
       <p class="mt-6 text-body text-steel-600">{t.body}</p>
       <ol class="mt-6 space-y-4">
         {
           steps.map((step, i) => (
             <li class="flex items-start gap-4">
-              <span class="font-heading text-h3 font-bold text-ember-deep">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-heading text-heading-2 font-semibold text-ember-deep">{String(i + 1).padStart(2, '0')}</span>
               <p class="pt-1 text-body">{step}</p>
             </li>
           ))
         }
       </ol>
-      <p class="mt-8 text-small text-steel-600">{t.note}</p>
+      <p class="mt-8 text-body-sm text-steel-600">{t.note}</p>
       <a
         href="/"
-        class="mt-10 inline-block border border-ink px-6 py-3 text-small font-bold uppercase tracking-wide hover:border-ember-deep hover:text-ember-deep"
+        class="mt-6 inline-block border border-ink px-6 py-3 text-body-sm font-bold uppercase tracking-wide hover:border-ember-deep hover:text-ember-deep"
       >
         {t.backLabel}
       </a>

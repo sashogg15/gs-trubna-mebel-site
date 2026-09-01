@@ -55,8 +55,8 @@ const showClientNames =
 
   <!-- 3. What we manufacture: Metal, Wood, Complete programmes — in this order. -->
   <Section>
-    <h2 class="font-heading text-h2 font-bold">{t.capabilityBlocks.heading}</h2>
-    <div class="mt-10 grid gap-10 md:grid-cols-3">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.capabilityBlocks.heading}</h2>
+    <div class="mt-6 grid gap-12 md:grid-cols-3">
       {/* Structural chain tints on Metal and Wood only — Complete stays untinted. */}
       {
         t.capabilityBlocks.items.map((item: any, i: number) => (
@@ -68,16 +68,16 @@ const showClientNames =
 
   <!-- 4. How we work — six stages; 3 and 4 carry emphasis. -->
   <Section tone="white">
-    <h2 class="font-heading text-h2 font-bold">{t.howWeWork.heading}</h2>
-    <div class="mt-10">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.howWeWork.heading}</h2>
+    <div class="mt-6">
       <ProcessSteps steps={t.howWeWork.steps} />
     </div>
   </Section>
 
   <!-- 5. Repeatability — proof point, not a topic. -->
   <Section tone="graphite">
-    <div class="max-w-3xl">
-      <h2 class="font-heading text-h2 font-bold">{t.repeatability.heading}</h2>
+    <div class="max-w-prose">
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.repeatability.heading}</h2>
       <ul class="mt-6 space-y-2">
         {
           t.repeatability.lines.map((line: string) => (
@@ -90,7 +90,7 @@ const showClientNames =
       </ul>
       <a
         href={t.repeatability.linkHref}
-        class="mt-8 inline-block text-small font-bold uppercase tracking-wide text-white underline underline-offset-4 hover:text-steel-300"
+        class="mt-8 inline-block text-body-sm font-bold uppercase tracking-wide text-white underline underline-offset-4 hover:text-steel-300"
       >
         {t.repeatability.linkLabel} →
       </a>
@@ -99,18 +99,18 @@ const showClientNames =
 
   <!-- 6. Why a European partner — concrete arguments, location stated plainly. -->
   <Section>
-    <h2 class="font-heading text-h2 font-bold">{t.whyEurope.heading}</h2>
-    <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.whyEurope.heading}</h2>
+    <div class="mt-6 grid gap-8 md:grid-cols-4">
       {
         t.whyEurope.points.map((point: any) => (
           <div class="border-t-2 border-steel-100 pt-5">
-            <h3 class="font-heading text-body font-bold uppercase">{point.title}</h3>
-            <p class="mt-2 text-small text-steel-600">{point.body}</p>
+            <h3 class="font-heading text-heading-2 font-semibold">{point.title}</h3>
+            <p class="mt-2 text-body-sm text-steel-600">{point.body}</p>
           </div>
         ))
       }
     </div>
-    <p class="mt-10 text-small text-steel-600">{t.whyEurope.locationNote}</p>
+    <p class="mt-6 text-body-sm text-steel-600">{t.whyEurope.locationNote}</p>
   </Section>
 
   <!-- 7. Clients / proof band — Version B (no names) until permission is confirmed. -->
@@ -122,9 +122,9 @@ const showClientNames =
         </div>
       )
     }
-    <div class="grid gap-10 md:grid-cols-2">
+    <div class="grid gap-12 md:grid-cols-2">
       <div>
-        <h2 class="font-heading text-h2 font-bold">{t.proofBand.heading}</h2>
+        <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.proofBand.heading}</h2>
         <p class="mt-4 text-body text-steel-300">{t.proofBand.body}</p>
       </div>
       <div class="grid grid-cols-3 items-end gap-6">
@@ -135,13 +135,13 @@ const showClientNames =
                   size passes 3.09:1 large-text on graphite. */}
               <p
                 class:list={[
-                  'font-heading text-h1 font-bold leading-none',
+                  'font-heading text-figure font-bold tabular-nums leading-none',
                   i === 0 ? 'text-ember' : 'text-white',
                 ]}
               >
                 {stat.value}
               </p>
-              <p class="mt-2 text-small text-steel-300">{stat.label}</p>
+              <p class="mt-2 text-body-sm text-steel-300">{stat.label}</p>
             </div>
           ))
         }
@@ -151,8 +151,8 @@ const showClientNames =
 
   <!-- 8. Family ownership — brief, and only after credibility is established. -->
   <Section>
-    <div class="max-w-2xl">
-      <h2 class="font-heading text-h3 font-bold">{t.family.heading}</h2>
+    <div class="max-w-prose">
+      <h2 class="font-heading text-heading-2 font-semibold">{t.family.heading}</h2>
       <p class="mt-4 text-body text-steel-600">{t.family.body}</p>
     </div>
   </Section>

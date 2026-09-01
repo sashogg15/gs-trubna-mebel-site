@@ -12,8 +12,8 @@ const { cert } = Astro.props;
 ---
 
 <article class="border border-steel-100 px-6 py-5">
-  <h3 class="font-heading text-h3 font-bold">{cert.name}</h3>
-  <dl class="mt-4 space-y-2 text-small">
+  <h3 class="font-heading text-heading-2 font-semibold">{cert.name}</h3>
+  <dl class="mt-4 space-y-2 text-body-sm">
     <div class="flex justify-between gap-4">
       <dt class="text-steel-600">Issuing body</dt>
       <dd class="text-right font-medium">{cert.issuingBody}</dd>

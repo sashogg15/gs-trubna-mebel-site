@@ -33,16 +33,7 @@ export default {
       heading: fonts.heading.split(',').map((s) => s.trim()),
       body: fonts.body.split(',').map((s) => s.trim()),
     },
-    fontSize: {
-      figure: typeScale.figure,
-      display: typeScale.display,
-      h1: typeScale.h1,
-      h2: typeScale.h2,
-      h3: typeScale.h3,
-      body: typeScale.body,
-      small: typeScale.small,
-      label: typeScale.label,
-    },
+    fontSize: { ...typeScale },
     borderRadius: {
       none: layout.radius.none,
       field: layout.radius.field,
@@ -50,6 +41,7 @@ export default {
     extend: {
       maxWidth: {
         site: layout.maxWidth,
+        prose: layout.proseMeasure,
       },
     },
   },

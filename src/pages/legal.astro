@@ -24,28 +24,28 @@ const rows = [
 
 <Base meta={{ title: t.meta.title, description: t.meta.description, path: '/legal' }}>
   <Section>
-    <h1 class="font-heading text-h1 font-bold">{t.identification.heading}</h1>
-    <dl class="mt-10 max-w-2xl divide-y divide-steel-100 border-b border-t border-steel-100">
+    <h1 class="font-heading text-display-1-m font-bold md:text-display-1">{t.identification.heading}</h1>
+    <dl class="mt-6 max-w-prose divide-y divide-steel-100 border-b border-t border-steel-100">
       {
         rows.map((row) => (
-          <div class="flex flex-col gap-1 py-4 sm:flex-row sm:justify-between sm:gap-4">
+          <div class="flex flex-col gap-1 py-4 md:flex-row md:justify-between md:gap-4">
             <dt class="shrink-0 text-body text-steel-600">{row.label}</dt>
-            <dd class="text-body font-medium sm:text-right">{row.value}</dd>
+            <dd class="text-body font-medium md:text-right">{row.value}</dd>
           </div>
         ))
       }
     </dl>
-    <p class="mt-4 max-w-2xl text-small text-steel-600">{t.identification.secondSiteNote}</p>
-    <p class="mt-1 max-w-2xl text-small text-steel-600">{t.identification.addressConfirmNote}</p>
+    <p class="mt-4 max-w-prose text-body-sm text-steel-600">{t.identification.secondSiteNote}</p>
+    <p class="mt-1 max-w-prose text-body-sm text-steel-600">{t.identification.addressConfirmNote}</p>
   </Section>
 
   <Section tone="white">
-    <h2 class="font-heading text-h2 font-bold">{t.privacy.heading}</h2>
-    <div class="mt-10 max-w-3xl space-y-8">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.privacy.heading}</h2>
+    <div class="mt-6 max-w-prose space-y-8">
       {
         t.privacy.sections.map((section: any) => (
           <div>
-            <h3 class="font-heading text-body font-bold uppercase">{section.title}</h3>
+            <h3 class="font-heading text-heading-2 font-semibold">{section.title}</h3>
             <p class="mt-2 text-body text-steel-600">{section.body}</p>
           </div>
         ))
@@ -54,8 +54,8 @@ const rows = [
   </Section>
 
   <Section>
-    <h2 class="font-heading text-h2 font-bold">{t.terms.heading}</h2>
-    <div class="mt-8 max-w-3xl space-y-4">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.terms.heading}</h2>
+    <div class="mt-8 max-w-prose space-y-4">
       {t.terms.paragraphs.map((p: string) => <p class="text-body text-steel-600">{p}</p>)}
     </div>
   </Section>

@@ -24,13 +24,13 @@ const { headline, subline, supportLine, ctaLabel, ctaHref, image } = Astro.props
       class="h-full w-full opacity-40"
     />
   </div>
-  <div class="relative mx-auto max-w-site px-4 py-28 md:px-6 md:py-40">
-    <h1 class="max-w-4xl font-heading text-h1 font-bold md:text-display">{headline}</h1>
-    <p class="mt-6 max-w-2xl text-body text-white">{subline}</p>
-    {supportLine && <p class="mt-4 max-w-2xl text-small text-steel-300">{supportLine}</p>}
+  <div class="relative mx-auto max-w-site px-6 py-16 md:px-12 md:py-24">
+    <h1 class="max-w-4xl font-heading text-display-1-m font-bold md:text-display-1">{headline}</h1>
+    <p class="mt-6 max-w-prose text-body text-white">{subline}</p>
+    {supportLine && <p class="mt-4 max-w-prose text-body-sm text-steel-300">{supportLine}</p>}
     <a
       href={ctaHref}
-      class="mt-10 inline-block bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember"
+      class="mt-6 inline-block bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember"
     >
       {ctaLabel}
     </a>

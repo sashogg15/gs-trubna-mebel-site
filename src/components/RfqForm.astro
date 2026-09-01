@@ -23,8 +23,8 @@ const E = rfq.form.errors;
 
 const fieldClass =
   'w-full border border-steel-100 bg-white px-4 py-3 text-body rounded-field focus:border-ember-deep focus:outline-none aria-[invalid=true]:border-ember-deep';
-const labelClass = 'mb-1.5 block text-small font-medium';
-const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
+const labelClass = 'mb-1.5 block text-body-sm font-medium';
+const errorClass = 'mt-1.5 hidden text-body-sm font-medium text-ember-deep';
 ---
 
 <form
@@ -37,9 +37,9 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
   data-err-email={E.email}
   data-err-filetype={E.fileType}
   data-err-filesize={E.fileSize}
-  class="grid gap-6 sm:grid-cols-2"
+  class="grid gap-6 md:grid-cols-2"
 >
-  <p class="text-small text-steel-600 sm:col-span-2">{rfq.form.requiredNote}</p>
+  <p class="text-body-sm text-steel-600 md:col-span-2">{rfq.form.requiredNote}</p>
 
   <div>
     <label for="company" class={labelClass}>{L.company} *</label>
@@ -68,7 +68,7 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
     <p class={errorClass} data-error-for="email">{E.email}</p>
   </div>
 
-  <div class="sm:col-span-2">
+  <div class="md:col-span-2">
     <label for="what_you_need" class={labelClass}>{L.whatYouNeed} *</label>
     <select id="what_you_need" name="what_you_need" required class={fieldClass}>
       <option value="">—</option>
@@ -87,18 +87,18 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
     <input type="text" id="annual_volume" name="annual_volume" placeholder={L.annualVolumePlaceholder} class={fieldClass} />
   </div>
 
-  <div class="sm:col-span-2">
+  <div class="md:col-span-2">
     <label for="timeline" class={labelClass}>{L.timeline}</label>
     <input type="text" id="timeline" name="timeline" placeholder={L.timelinePlaceholder} class={fieldClass} />
   </div>
 
-  <div class="sm:col-span-2">
+  <div class="md:col-span-2">
     <label for="message" class={labelClass}>{L.message} *</label>
     <textarea id="message" name="message" rows="5" required class={fieldClass}></textarea>
     <p class={errorClass} data-error-for="message">{E.required}</p>
   </div>
 
-  <div class="sm:col-span-2">
+  <div class="md:col-span-2">
     <label for="drawings" class={labelClass}>{L.files}</label>
     <input
       type="file"
@@ -107,9 +107,9 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
       multiple
       accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.jpg,.jpeg,.png,.zip"
       data-remove-label={L.filesRemove}
-      class="block w-full text-small text-steel-600 file:mr-4 file:cursor-pointer file:border file:border-steel-100 file:bg-paper file:px-4 file:py-2.5 file:text-small file:font-medium"
+      class="block w-full text-body-sm text-steel-600 file:mr-4 file:cursor-pointer file:border file:border-steel-100 file:bg-paper file:px-4 file:py-2.5 file:text-body-sm file:font-medium"
     />
-    <p class="mt-1.5 text-small text-steel-600">{L.filesNote}</p>
+    <p class="mt-1.5 text-body-sm text-steel-600">{L.filesNote}</p>
     <p class={errorClass} data-error-for="drawings"></p>
     <ul id="file-list" class="mt-2 space-y-1"></ul>
   </div>
@@ -121,11 +121,11 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
   </div>
   <input type="hidden" name="form_ts" id="form_ts" value="" />
 
-  <div class="sm:col-span-2">
+  <div class="md:col-span-2">
     <button
       type="submit"
       id="rfq-submit"
-      class="w-full bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      class="w-full bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
       data-label={L.submit}
       data-label-sending={L.submitting}
     >
@@ -177,7 +177,7 @@ const errorClass = 'mt-1.5 hidden text-small font-medium text-ember-deep';
     Array.from(store.files).forEach((file, i) => {
       const li = document.createElement('li');
       li.className =
-        'flex items-center justify-between gap-3 border border-steel-100 bg-paper px-3 py-2 text-small';
+        'flex items-center justify-between gap-3 border border-steel-100 bg-paper px-3 py-2 text-body-sm';
       const span = document.createElement('span');
       span.className = 'truncate';
       span.textContent = `${file.name} · ${fmtSize(file.size)}`;

@@ -8,12 +8,12 @@ interface Props {
 const { logos } = Astro.props;
 ---
 
-<ul class="grid grid-cols-2 gap-px border border-steel-100 bg-line sm:grid-cols-3 lg:grid-cols-5">
+<ul class="grid grid-cols-2 gap-px border border-steel-100 bg-steel-100 md:grid-cols-5">
   {
     logos.map((logo) => (
       <li class="flex min-h-28 items-center justify-center bg-white p-6">
         {isTodo(logo.image) || !logo.image ? (
-          <span class="text-center text-small uppercase tracking-wide text-steel-600">{logo.name}</span>
+          <span class="text-center text-body-sm uppercase tracking-wide text-steel-600">{logo.name}</span>
         ) : (
           <img src={logo.image} alt={logo.name} loading="lazy" decoding="async" class="max-h-12 w-auto" width="160" height="48" />
         )}

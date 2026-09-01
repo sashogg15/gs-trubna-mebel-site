@@ -38,12 +38,12 @@ const facts = [
     label={`Case study photo — ${displayName}`}
   />
   <div>
-    <h3 class="font-heading text-h3 font-bold">
+    <h3 class="font-heading text-heading-2 font-semibold">
       {displayName}
       {item.anonymised && <span class="ml-2 align-middle text-label uppercase text-steel-600">(name under NDA)</span>}
     </h3>
     <p class="mt-4 text-body text-steel-600">{item.body}</p>
-    <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-small">
+    <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-body-sm">
       {
         facts.map((f) => (
           <div>

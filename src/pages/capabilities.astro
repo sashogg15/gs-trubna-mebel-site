@@ -92,9 +92,9 @@ const meta = {
     chains.map((chain: any) => (
       <Section id={chain.id} tone={chain.id === 'metal' ? 'tint-metal' : 'tint-wood'}>
         <div class="border-t-4 border-ink pt-6">
-          <h2 class="font-heading text-h1 font-bold uppercase">{chain.title}</h2>
+          <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{chain.title}</h2>
         </div>
-        <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="mt-6 grid gap-6 md:grid-cols-2">
           {chain.processes.map((proc: any) => (
             <article class="flex flex-col border border-steel-100 bg-white">
               {proc.image && (
@@ -107,7 +107,7 @@ const meta = {
               )}
               <div class="flex flex-1 flex-col px-6 py-6">
                 {/* proc.href becomes a link when the dedicated sub-page exists. */}
-                <h3 class="font-heading text-h3 font-bold">
+                <h3 class="font-heading text-heading-2 font-semibold">
                   {proc.href ? (
                     <a href={proc.href} class="hover:text-ember-deep">
                       {proc.title} →
@@ -120,7 +120,7 @@ const meta = {
                 {proc.todos.length > 0 && (
                   <ul class="mt-4 space-y-1">
                     {proc.todos.map((todo: string) => (
-                      <li class="text-small text-steel-600">{todo}</li>
+                      <li class="text-body-sm text-steel-600">{todo}</li>
                     ))}
                   </ul>
                 )}
@@ -134,12 +134,12 @@ const meta = {
 
   <!-- Complete programmes — the argument, given the most editorial weight. -->
   <Section id={t.complete.id} tone="graphite">
-    <div class="max-w-3xl">
+    <div class="max-w-prose">
       <p class="text-label uppercase text-steel-600">{t.complete.title}</p>
-      <p class="mt-6 font-heading text-h2 font-bold leading-snug">{t.complete.opening}</p>
+      <p class="mt-6 font-heading text-display-2-m font-bold md:text-display-2 leading-snug">{t.complete.opening}</p>
       <p class="mt-8 text-body text-steel-300">{t.complete.offer}</p>
     </div>
-    <div class="mt-12 grid items-start gap-10 lg:grid-cols-2">
+    <div class="mt-12 grid items-start gap-12 md:grid-cols-2">
       <div>
         <h3 class="text-label uppercase text-steel-300">{t.complete.removesHeading}</h3>
         <ul class="mt-4 divide-y divide-steel-600/40 border-b border-t border-steel-600/40">
@@ -164,8 +164,8 @@ const meta = {
   </Section>
 
   <Section>
-    <h2 class="font-heading text-h2 font-bold">{t.specTable.heading}</h2>
-    <div class="mt-10">
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.specTable.heading}</h2>
+    <div class="mt-6">
       <SpecTable caption={t.specTable.heading} rows={specRows} />
     </div>
   </Section>
