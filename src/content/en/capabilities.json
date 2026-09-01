@@ -19,9 +19,9 @@
         "todos": [],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-cutting.webp — REQUIRED SUBJECT: process shot, the LT5 cutting tube]]",
+          "src": "[[TODO: /images/cap-cutting.webp — REQUIRED SHOT: the LT5 cutting tube, process mid-cycle, landscape, medium crop]]",
           "alt": "Tube laser cutting",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -30,9 +30,9 @@
         "todos": [],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-bending.webp — REQUIRED SUBJECT: process shot, tube in the CNC bender]]",
+          "src": "[[TODO: /images/cap-bending.webp — REQUIRED SHOT: tube in the CNC bender, operator's hands in frame, landscape, medium crop]]",
           "alt": "Five-axis CNC tube bending",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -50,9 +50,9 @@
         ],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-welding.webp — REQUIRED SUBJECT: process shot, sparks at a welding cell]]",
+          "src": "[[TODO: /images/cap-welding.webp — REQUIRED SHOT: sparks at a welding cell, process mid-cycle, landscape, medium crop]]",
           "alt": "Robotic welding cell",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -64,9 +64,9 @@
         ],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-coating.webp — REQUIRED SUBJECT: parts on the powder coating conveyor]]",
+          "src": "[[TODO: /images/cap-coating.webp — REQUIRED SHOT: parts on the powder coating conveyor, landscape, wide crop]]",
           "alt": "Powder coating line",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       }
     ]
@@ -79,12 +79,14 @@
       {
         "title": "Panel cutting and nesting",
         "body": "CNC nesting and panel sawing with software-generated cutting plans, processing multiple panels per cycle. MDF, chipboard, plywood and solid timber.",
-        "todos": ["[[TODO: maximum panel dimensions]]"],
+        "todos": [
+          "[[TODO: maximum panel dimensions]]"
+        ],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-nesting.webp — REQUIRED SUBJECT: panels on the CNC nesting centre]]",
+          "src": "[[TODO: /images/cap-nesting.webp — REQUIRED SHOT: panels on the CNC nesting centre, process mid-cycle, landscape, medium crop]]",
           "alt": "CNC panel nesting",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -97,12 +99,14 @@
       {
         "title": "Edgebanding",
         "body": "Edgebanding at feed speeds {edgeSpeed} with pre-milling, glue application, edge trimming and polishing in one pass.",
-        "todos": ["[[TODO: edge material types supported — ABS, PVC, veneer, solid lipping]]"],
+        "todos": [
+          "[[TODO: edge material types supported — ABS, PVC, veneer, solid lipping]]"
+        ],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-edging.webp — REQUIRED SUBJECT: panel passing through the edgebander]]",
+          "src": "[[TODO: /images/cap-edging.webp — REQUIRED SHOT: panel passing through the edgebander, landscape, medium crop]]",
           "alt": "Edgebanding line",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -114,9 +118,9 @@
         ],
         "href": "",
         "image": {
-          "src": "[[TODO: /images/cap-spray.webp — REQUIRED SUBJECT: the SUPERFICI spray line running panels]]",
+          "src": "[[TODO: /images/cap-spray.webp — REQUIRED SHOT: the SUPERFICI spray line running panels, landscape, wide crop]]",
           "alt": "Automated spray painting line",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       }
     ]
@@ -136,27 +140,63 @@
     ],
     "close": "Short runs and full series on the same equipment. A model can launch as a market test and scale to full volume without changing supplier or re-tooling.",
     "image": {
-      "src": "[[TODO: /images/cap-complete.webp — REQUIRED SUBJECT: a metal frame and a wooden top together in production, or a packed finished product on a pallet]]",
+      "src": "[[TODO: /images/cap-complete.webp — REQUIRED SHOT: a metal frame and a wooden top together in production, or a packed finished product on a pallet, landscape, medium crop]]",
       "alt": "Metal frame and wooden seat in assembly",
-      "aspect": "3/2"
+      "aspect": "16/9"
     }
   },
   "specTable": {
     "heading": "Process parameters",
     "_comment": "No 'Minimum order quantity' row — omitted entirely by policy, a blank row invites the question. Values with {tokens} resolve from company.json.",
     "rows": [
-      { "label": "Materials — metal", "value": "{metalMaterials}" },
-      { "label": "Materials — panels", "value": "MDF, chipboard, plywood, solid timber" },
-      { "label": "Tube diameter range", "value": "{tubeRange}" },
-      { "label": "Max wall thickness", "value": "{maxWall}" },
-      { "label": "Cutting tolerance", "value": "{cutTolerance}" },
-      { "label": "General tolerances", "value": "{tolerances}" },
-      { "label": "Prototype lead time", "value": "{leadTimePrototype}" },
-      { "label": "Series lead time", "value": "{leadTimeSeries}" },
-      { "label": "Tooling lead time", "value": "{leadTimeTooling}" },
-      { "label": "Packing", "value": "{packing}" },
-      { "label": "Incoterms", "value": "{incoterms}" },
-      { "label": "Assembly", "value": "{assembly}" }
+      {
+        "label": "Materials — metal",
+        "value": "{metalMaterials}"
+      },
+      {
+        "label": "Materials — panels",
+        "value": "MDF, chipboard, plywood, solid timber"
+      },
+      {
+        "label": "Tube diameter range",
+        "value": "{tubeRange}"
+      },
+      {
+        "label": "Max wall thickness",
+        "value": "{maxWall}"
+      },
+      {
+        "label": "Cutting tolerance",
+        "value": "{cutTolerance}"
+      },
+      {
+        "label": "General tolerances",
+        "value": "{tolerances}"
+      },
+      {
+        "label": "Prototype lead time",
+        "value": "{leadTimePrototype}"
+      },
+      {
+        "label": "Series lead time",
+        "value": "{leadTimeSeries}"
+      },
+      {
+        "label": "Tooling lead time",
+        "value": "{leadTimeTooling}"
+      },
+      {
+        "label": "Packing",
+        "value": "{packing}"
+      },
+      {
+        "label": "Incoterms",
+        "value": "{incoterms}"
+      },
+      {
+        "label": "Assembly",
+        "value": "{assembly}"
+      }
     ]
   },
   "closingCta": {

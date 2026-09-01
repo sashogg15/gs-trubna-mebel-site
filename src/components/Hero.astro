@@ -1,4 +1,10 @@
 ---
+/**
+ * Hero: text block on paper, photograph full-strength below it.
+ * No text is ever overlaid on the photograph (§9) — the crop is unknown
+ * and legibility cannot be guaranteed, and a darkening overlay would
+ * cost the one asset that is genuinely ours.
+ */
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Props {
@@ -6,33 +12,34 @@ interface Props {
   subline: string;
   /** Smaller third line — establishes OEM/discretion; do not cut. */
   supportLine?: string;
+  /** Location line — keeps "where" above the fold (10-second test). */
+  locationLine?: string;
   ctaLabel: string;
   ctaHref: string;
   image: { src: string; alt: string; aspect: string };
 }
-const { headline, subline, supportLine, ctaLabel, ctaHref, image } = Astro.props;
+const { headline, subline, supportLine, locationLine, ctaLabel, ctaHref, image } = Astro.props;
 ---
 
-<section class="relative bg-graphite text-white">
-  <div class="absolute inset-0">
-    <ImagePlaceholder
-      src={image.src}
-      alt={image.alt}
-      aspect={image.aspect}
-      label="Factory photo — wide shot of a production hall (never product/lifestyle)"
-      eager={true}
-      class="h-full w-full opacity-40"
-    />
-  </div>
-  <div class="relative mx-auto max-w-site px-6 py-16 md:px-12 md:py-24">
+<section class="bg-paper">
+  <div class="mx-auto max-w-site px-6 py-16 md:px-12 md:py-24">
     <h1 class="max-w-4xl font-heading text-display-1-m font-bold md:text-display-1">{headline}</h1>
-    <p class="mt-6 max-w-prose text-body text-white">{subline}</p>
-    {supportLine && <p class="mt-4 max-w-prose text-body-sm text-steel-300">{supportLine}</p>}
+    <p class="mt-6 max-w-prose text-body-lg">{subline}</p>
+    {supportLine && <p class="mt-4 max-w-prose text-body-sm text-steel-600">{supportLine}</p>}
+    {locationLine && <p class="mt-2 max-w-prose text-body-sm text-steel-600">{locationLine}</p>}
     <a
       href={ctaHref}
-      class="mt-6 inline-block bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember"
+      class="mt-8 inline-block rounded-field bg-ember-bright px-8 py-4 text-body font-bold uppercase tracking-wide text-ink hover:bg-ember"
     >
       {ctaLabel}
     </a>
   </div>
+  <ImagePlaceholder
+    src={image.src}
+    alt={image.alt}
+    aspect={image.aspect}
+    label="Factory photo — wide shot of a production hall, machines and people at work, landscape, wide crop (never product/lifestyle)"
+    eager={true}
+    class="w-full"
+  />
 </section>

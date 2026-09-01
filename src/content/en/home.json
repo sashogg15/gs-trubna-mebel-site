@@ -10,9 +10,9 @@
     "supportLine": "Contract manufacturing for European furniture brands since 1990. 97% of what we make is exported — under our clients' names.",
     "ctaLabel": "Request a quote",
     "backgroundImage": {
-      "src": "[[TODO: /images/hero-hall.webp — REQUIRED SUBJECT: wide shot of a production hall, machines and people at work. Never a furnished interior or styled product shot.]]",
+      "src": "[[TODO: /images/hero-hall.webp — REQUIRED SHOT: wide shot of a production hall, machines and people at work, mid-ground subject, landscape, wide crop. Never a furnished interior or styled product shot.]]",
       "alt": "Production hall at GS Trubna Mebel, Dobrich",
-      "aspect": "16/7"
+      "aspect": "16/9"
     }
   },
   "capabilityBlocks": {
@@ -24,9 +24,9 @@
         "href": "/capabilities#metal",
         "linkLabel": "Metal capabilities",
         "image": {
-          "src": "[[TODO: /images/home-metal.webp — REQUIRED SUBJECT: machine/process shot, e.g. the LT5 cutting or sparks at a welding cell]]",
+          "src": "[[TODO: /images/home-metal.webp — REQUIRED SHOT: the LT5 cutting tube or sparks at a welding cell, process mid-cycle, landscape, medium crop]]",
           "alt": "Tube laser cutting at GS Trubna Mebel",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -35,9 +35,9 @@
         "href": "/capabilities#wood",
         "linkLabel": "Wood capabilities",
         "image": {
-          "src": "[[TODO: /images/home-wood.webp — REQUIRED SUBJECT: process shot, e.g. panels on the HOMAG nesting centre]]",
+          "src": "[[TODO: /images/home-wood.webp — REQUIRED SHOT: panels on the HOMAG nesting centre, process mid-cycle, landscape, medium crop]]",
           "alt": "Panel processing on the CNC nesting centre",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       },
       {
@@ -46,9 +46,9 @@
         "href": "/capabilities#complete-programmes",
         "linkLabel": "Complete programmes",
         "image": {
-          "src": "[[TODO: /images/home-complete.webp — REQUIRED SUBJECT: packed pallets ready for dispatch, or parts on the powder coating conveyor]]",
+          "src": "[[TODO: /images/home-complete.webp — REQUIRED SHOT: packed pallets ready for dispatch or parts on the powder conveyor, landscape, medium crop]]",
           "alt": "Packed pallets ready for dispatch",
-          "aspect": "3/2"
+          "aspect": "16/9"
         }
       }
     ]
@@ -126,9 +126,19 @@
     "heading": "Who we produce for",
     "body": "European furniture and contract brands. What we make carries their names, not ours — 97% of output leaves the factory under our clients' brands, and their names stay off our website unless they decide otherwise.",
     "stats": [
-      { "value": "97%", "label": "of output exported" },
-      { "value": "2+1", "label": "welding robots + sanding robot" },
-      { "value": "{years}", "label": "years in operation", "_note": "{years} computed at build from foundedYear" }
+      {
+        "value": "97%",
+        "label": "of output exported"
+      },
+      {
+        "value": "2+1",
+        "label": "welding robots + sanding robot"
+      },
+      {
+        "value": "{years}",
+        "label": "years in operation",
+        "_note": "{years} computed at build from foundedYear"
+      }
     ]
   },
   "family": {
