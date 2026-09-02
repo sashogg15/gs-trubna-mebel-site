@@ -17,10 +17,11 @@ const t = loadPage('capabilities');
 // commercial terms — and are interpolated into the copy at build time. A
 // limit is defined once in the data layer and can never diverge between
 // pages. A null in the machine data renders as an em dash, never a guess.
-const lt5 = findMachine('tube-cutting', 'BLM');
-const adige = area('tube-cutting')?.items.find((m) => /adige/i.test(m.model ?? ''));
-const crippa = findMachine('tube-bending', 'Crippa');
-const presses = area('punching-forming')?.items.find((m) => /press/i.test(m.name));
+const lt5 = findMachine('cutting', 'BLM');
+const adige = area('cutting')?.items.find((m) => /adige/i.test(m.model ?? ''));
+const crippa = findMachine('bending', 'Crippa');
+const presses = area('cutting')?.items.find((m) => /^press/i.test(m.name));
+const weldingRobots = (area('welding')?.items ?? []).filter((m) => /robot/i.test(m.control ?? '')).reduce((n, m) => n + (m.count ?? 0), 0);
 const fravol = findMachine('wood-machining', 'Fravol');
 const terms = company.productionTerms as Record<string, string>;
 
@@ -29,7 +30,8 @@ const vars: Record<string, string> = {
   cutTolerance: dash(adige?.tolerance),
   throughput: dash(adige?.capacity),
   bendRange: dash(crippa?.range),
-  pressForce: dash(presses?.range),
+  pressForce: dash(presses?.range).replace(/^Force /, ''),
+  weldingRobots: dash(weldingRobots || null),
   edgeSpeed: dash(fravol?.capacity).replace(/^Feed /, 'feed '),
   maxWall: terms.maxWallThickness,
   tolerances: terms.tolerances,

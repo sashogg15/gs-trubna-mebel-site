@@ -10,7 +10,7 @@ import CtaBand from '../components/CtaBand.astro';
 import { loadPage } from '../lib/content';
 import { nbspUnits } from '../lib/format';
 import company from '../data/company.json';
-import { findMachine, dash } from '../lib/machines';
+import { area, findMachine, dash } from '../lib/machines';
 
 const t = loadPage('home');
 
@@ -30,7 +30,10 @@ if (unconfirmed.length > 0) {
 
 const years = new Date().getFullYear() - company.identity.foundedYear;
 // Robot counts derive from company.json machine counts — never literals.
-const robots = `${dash(findMachine('welding', 'Fanuc')?.count)}+${dash(findMachine('sanding-metal', 'KUKA')?.count)}`;
+const robotCells = (area('welding')?.items ?? [])
+  .filter((x) => /robot/i.test(x.control ?? ''))
+  .reduce((n, x) => n + (x.count ?? 0), 0);
+const robots = `${dash(robotCells || null)}+${dash(findMachine('surface-coating', 'KUKA')?.count)}`;
 const proofStats = t.proofBand.stats.map((s: any) => ({
   ...s,
   value: s.value.replace('{years}', String(years)).replace('{robots}', robots),

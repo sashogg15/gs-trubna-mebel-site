@@ -98,7 +98,7 @@
   "repeatability": {
     "heading": "The same part, batch after batch",
     "lines": [
-      "Two Fanuc welding robots and a Kuka sanding robot run in the metal chain.",
+      "Three welding robot cells and a KUKA sanding robot run in the metal chain.",
       "Automatic tube cutting holds ±0.05 mm.",
       "Dies, jigs and welding fixtures are built in-house to the part — geometry does not drift between batches."
     ],
@@ -138,7 +138,7 @@
       },
       {
         "value": "{robots}",
-        "label": "welding robots + sanding robot",
+        "label": "welding robot cells + sanding robot",
         "_note": "{robots} derived at build from company.json machine counts"
       },
       {

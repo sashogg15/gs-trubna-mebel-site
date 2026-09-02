@@ -61,9 +61,17 @@ const chains = (['metal', 'wood'] as const).map((key) => {
 });
 
 // Robotics counts derive from company.json — never hardcoded (§2.3).
+// A named make resolves to that machine's count; an empty make counts every
+// robot-controlled row in the area. Both derive from company.json (§2.3).
 const roboticsStats = t.robotics.stats.map((s: any) => ({
   label: s.label,
-  value: dash(findMachine(s.area, s.make)?.count),
+  value: s.make
+    ? dash(findMachine(s.area, s.make)?.count)
+    : dash(
+        (area(s.area)?.items ?? [])
+          .filter((m) => /robot/i.test(m.control ?? ''))
+          .reduce((n, m) => n + (m.count ?? 0), 0) || null
+      ),
 }));
 ---
 

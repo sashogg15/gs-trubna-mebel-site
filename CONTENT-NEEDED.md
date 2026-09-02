@@ -13,7 +13,7 @@ unconfirmed figures, blocked pages).
 
 ---
 
-## 🚫 LAUNCH BLOCKERS — nothing goes live before these four
+## 🚫 LAUNCH BLOCKERS — nothing goes live before these
 
 1. **Enquiry email domain.** The old site published `office@gs-bg.eu` — a
    different domain from `gstrubnamebel.eu`. A buyer who submits a form on
@@ -23,9 +23,8 @@ unconfirmed figures, blocked pages).
    **No `gs-bg.eu` address may be published until decided.**
 2. **Sender mailbox for the form.** `website@gstrubnamebel.eu` must exist in
    cPanel or SuperHosting rejects every enquiry mail. See DEPLOY.md §3a.
-3. **Employees / production area conflict.** Old site: 66 employees,
-   5,000 m². Later statements: two ~9,000 m² sites, ~60 in production.
-   Both versions are blocked from publication until resolved.
+3. ~~Employees / production area conflict~~ — RESOLVED by the April 2026
+   presentation: 65+ employees, 9,000 m² production footprint.
 4. **Powder coating line.** An EU-funded project (~BGN 930,000) for a new
    powder coating facility + welding robot was approved. Is the listed line
    the existing one (new one separate) or the upgraded one? The equipment
@@ -43,7 +42,7 @@ unconfirmed figures, blocked pages).
 ## 1. Production floor
 
 **Machine park** — `company.json → machines` is a verbatim drop-in of the
-client's `machines.json` (2026-09-02). A `null` field renders as an em dash
+client's `machines.json` rebuilt from the April 2026 company profile presentation (primary source; the old website only where the presentation is silent). A `null` field renders as an em dash
 on `/equipment`; nothing is invented. Two corrections already applied in
 that export and NOT to be reverted from the old website: LT5 square tube is
 **12×12–100×100 mm** (old site: 120×120); the wide belt sander has **no
@@ -58,20 +57,41 @@ the columns are dropped only while they would be all dashes.
 **Still open (blocking):**
 - [ ] Powder coating line → launch blocker 4 (existing line vs new EU-funded one)
 
-**Null fields per machine (23 rows, from the data; `note` is optional and not counted):**
-- [ ] Tube cutting — Tube laser cutting (BLM Group LT5): tolerance, capacity
-- [ ] Tube cutting — Automatic tube cutting (BLM Group Adige): range
-- [ ] Tube cutting — Belt cutting, tubes, bars and profiles, mitre cuts: make, model, year, range, tolerance, capacity
-- [ ] Tube cutting — Abrasive disc cutting and angle grinding: make, model, year, range, tolerance, capacity
-- [ ] Tube bending — Tube bending, 5 axes (Crippa CA 532): year, tolerance, capacity
-- [ ] Tube bending — Hydraulic tube and profile bending, horizontal and vertical (Alfa): model, year, range, tolerance, capacity
-- [ ] Tube bending — Three-roll bending, contour bending and radius correction: make, model, year, control, range, tolerance, capacity
-- [ ] Punching and forming — Hydraulic punching, hole punching and embossing: make, model, year, range, tolerance, capacity
-- [ ] Punching and forming — Press, forming, bending, punching and cutting: make, model, year, control, tolerance, capacity
-- [ ] Welding — Robotic welding, two stations (Fanuc): model, year, range, tolerance, capacity
-- [ ] Metal sanding — Robotic sanding, automated infeed (KUKA): model, year, range, tolerance, capacity
-- [ ] Powder coating — Powder coating line, two stations: make, model, year, range, tolerance
-- [ ] Powder coating — Shot blasting, surface preparation: make, model, year, control, range, tolerance, capacity
+**Null fields per machine (44 rows, from the data; `note` is optional and not counted):**
+- [ ] Cutting — Tube laser cutting (BLM Group LT5): tolerance
+- [ ] Cutting — Automatic tube cutting (BLM Group Adige): range
+- [ ] Cutting — Horizontal saw, inclined frame (OL 330A): make, year, control, tolerance
+- [ ] Cutting — Horizontal saw, inclined frame (ZIP21): make, year, control, tolerance
+- [ ] Cutting — Universal cutter: make, model, year, control, tolerance
+- [ ] Cutting — Abrasive disc cutting and angle grinding: make, model, year, range, tolerance, capacity
+- [ ] Cutting — Press, forming, bending, punching and cutting (PE63A): make, year, control, tolerance
+- [ ] Cutting — Edge bending: make, model, year, control, range, tolerance, capacity
+- [ ] Cutting — Shot blasting: make, model, year, control, tolerance
+- [ ] Cutting — Trough vibratory finishing: make, model, year, control, tolerance, capacity
+- [ ] Cutting — Polishing: make, model, year, control, tolerance
+- [ ] Bending — 5-axis spatial bending centre (Crippa CA 532): year, tolerance
+- [ ] Bending — Tube bending, X and Y axis: make, model, year, tolerance
+- [ ] Bending — Double bending: make, model, year, tolerance
+- [ ] Bending — Three-roller bending: make, model, year, control, tolerance
+- [ ] Bending — Specialised bending: make, model, year, control, tolerance
+- [ ] Drilling and wire — Column drilling: make, model, year, control, range, tolerance
+- [ ] Drilling and wire — Hydraulic drilling: make, model, year, control, range, tolerance
+- [ ] Drilling and wire — Hydraulic punching, hole punching and embossing: make, model, year, range, tolerance, capacity
+- [ ] Drilling and wire — Wire bending: make, model, year, control, tolerance, capacity
+- [ ] Drilling and wire — Coning: make, model, year, control, tolerance
+- [ ] Drilling and wire — Nut inserting, thick nuts: make, model, year, control, tolerance, capacity
+- [ ] Welding — Welding robot (1360): make, year, range, tolerance
+- [ ] Welding — Welding robot (1420): make, year, range, tolerance
+- [ ] Welding — Welding robot (1860): make, year, range, tolerance
+- [ ] Welding — MIG / MAG welding: make, model, year, range, tolerance, capacity
+- [ ] Welding — TIG welding: make, model, year, range, tolerance, capacity
+- [ ] Welding — Brazing: make, model, year, range, tolerance, capacity
+- [ ] Welding — Laser welding: make, model, year, control, range, tolerance, capacity
+- [ ] Welding — Spot and press welding: make, model, year, control, range, tolerance, capacity
+- [ ] Surface and coating — Powder coating line: make, model, year, range, tolerance
+- [ ] Surface and coating — Spray degreasing and phosphating: make, model, year, control, range, tolerance, capacity
+- [ ] Surface and coating — Wet paint finishing: make, model, year, control, range, tolerance, capacity
+- [ ] Surface and coating — Robotic sanding (KUKA): model, year, range, tolerance, capacity
 - [ ] Wood machining — CNC nesting, two stations (HOMAG / Weeke): model, year, range, tolerance, capacity
 - [ ] Wood machining — CNC machining centre, two stations (HOMAG / Weeke Venture): year, range, tolerance, capacity
 - [ ] Wood machining — CNC panel saw (Mayer): model, year, range, tolerance, capacity
@@ -97,15 +117,13 @@ the columns are dropped only while they would be all dashes.
 ## 2. Galin / management
 
 **Decisions:**
-- [ ] Launch blockers 1 and 3 above (email domain; employees/area figures)
+- [ ] Launch blocker 1 above (email domain)
 - [ ] **Permission to name clients.** Old site listed 18 names incl.
       Calligaris and Norr11. Written permission per client → then flip
       `clients.permissionToDisplay` in company.json and fill `named[]`;
       the logo wall renders automatically. Until then Version B (no names).
 - [ ] Who reads enquiries + typical response time (RFQ page element and
       thank-you page step 3 — both auto-omitted from production until filled)
-- [ ] Confirm the two 2025-interview figures on the home page:
-      200,000 chairs/year · 35–45 t metal/month
 - [ ] Phone number for enquiries
 
 **For the blocked pages:**

@@ -46,9 +46,9 @@
       },
       {
         "title": "Welding",
-        "body": "Robotic welding on two Fanuc robots for repeatable seam geometry in series, plus manual welding for assemblies and prototypes.",
+        "body": "Robotic welding on {weldingRobots} robot cells for repeatable seam geometry in series, plus manual MIG/MAG and TIG welding and brazing for assemblies and prototypes.",
         "todos": [
-          "[[TODO: welding processes available — MIG / MAG / TIG — and whether welders hold EN ISO 9606-1 qualification]]"
+          "[[TODO: whether welders hold EN ISO 9606-1 qualification]]"
         ],
         "href": "",
         "image": {

@@ -39,8 +39,8 @@
     "rfqRecipientEmail": "[[TODO: mailbox that receives RFQ submissions — must be set in public/contact.php too; sender mailbox website@gstrubnamebel.eu must exist on the hosting (see DEPLOY.md)]]"
   },
   "keyFigures": {
-    "_comment": "Home page key-figures strip, large type. Four REAL figures only — a strip of four real numbers is stronger than six with two guesses; never invent a figure to fill a slot. Items with needsConfirmation:true came from a 2025 interview and trigger a build warning until confirmed.",
-    "_conflict": "EMPLOYEES AND PRODUCTION AREA ARE DELIBERATELY ABSENT: the old website published '66 employees' and '5,000 m²', which conflicts with later statements of two ~9,000 m² sites and ~60 people in production. Both figures are unusable until resolved with the company — see 'pending' below. Do not publish either number anywhere before that.",
+    "_comment": "Home page key-figures strip, large type — exactly four items, one per grid column. Four REAL figures only; never invent one to fill a slot. Figures below come from the April 2026 company profile presentation.",
+    "_conflict": "RESOLVED by the April 2026 presentation: production footprint 9,000 m² and 65+ skilled employees. These supersede the old website's '66 employees' and '5,000 m²'. Annual turnover appears in the presentation and is deliberately NOT published on this site.",
     "items": [
       {
         "value": "97",
@@ -49,18 +49,18 @@
         "needsConfirmation": false
       },
       {
-        "value": "200,000",
+        "value": "15,000",
         "unit": "",
-        "label": "chairs per year",
-        "needsConfirmation": true,
-        "source": "2025 interview"
+        "label": "chairs per month",
+        "needsConfirmation": false,
+        "source": "Company profile presentation, April 2026"
       },
       {
-        "value": "35–45",
+        "value": "40–60",
         "unit": "t",
         "label": "metal processed per month",
-        "needsConfirmation": true,
-        "source": "2025 interview"
+        "needsConfirmation": false,
+        "source": "Company profile presentation, April 2026"
       },
       {
         "value": "1990",
@@ -72,11 +72,13 @@
     "pending": [
       {
         "label": "employees",
-        "value": "[[TODO: employee count — old site said 66, later statements say ~60 in production; conflict unresolved]]"
+        "value": "65+",
+        "source": "Company profile presentation, April 2026"
       },
       {
         "label": "production area",
-        "value": "[[TODO: total production area — old site said 5,000 m², later statements say two ~9,000 m² sites; conflict unresolved]]"
+        "value": "9,000 m²",
+        "source": "Company profile presentation, April 2026"
       }
     ]
   },
@@ -121,14 +123,14 @@
   },
   "machinesStatus": {
     "_comment": "Status of the machine park data, kept OUTSIDE 'machines' so that overwriting 'machines' with a new machines.json export never loses it. 'machines' below is a verbatim drop-in: the same schema as the incoming file (areas keyed by slug, items with make/model/count/year/control/range/tolerance/capacity/note). null = not known yet and renders as an em dash — never invent a value.",
-    "source": "machines.json supplied by the client on 2026-09-02, corrected against the old website: LT5 square tube is 12×12–100×100 mm (old site wrongly said 120×120); LT5 wall thickness is null because it depends on laser power; the wide belt sander has no make (‘Centorrino’ on the old site was the supplier, not the manufacturer).",
+    "source": "April 2026 company profile presentation (primary source). The old website is used only where the presentation is silent — the named wood machines, and the ±0.05 mm cutting tolerance. Laser model written LT5, not the presentation's 'BL5': BLM Group has no BL5. Makes the presentation does not name are left null rather than carried over from the old site, because the groupings no longer match — the machine plates settle them.",
     "needsConfirmation": true,
-    "nextStep": "When the machine-plate photographs arrive, the client sends a new machines.json with the null fields filled; replace the whole 'machines' object with it.",
+    "nextStep": "Tolerance is 1 of 44 rows. When the machine-plate photographs arrive, a new machines.json fills make, model, year and tolerance; replace the whole 'machines' object.",
     "_confirm": "OPEN — powder coating line: an EU-funded project (~BGN 930,000) for a new powder coating facility + welding robot was approved. Is the listed line the existing one (new one separate) or the upgraded one? Do not publish until clarified."
   },
   "machines": {
-    "tube-cutting": {
-      "label": "Tube cutting",
+    "cutting": {
+      "label": "Cutting",
       "items": [
         {
           "name": "Tube laser cutting",
@@ -139,7 +141,7 @@
           "control": "CNC",
           "range": "Round tube Ø12–120 mm; square tube 12×12–100×100 mm; rectangular 10×12–120×70 mm; mild steel, stainless steel, aluminium, brass",
           "tolerance": null,
-          "capacity": null,
+          "capacity": "200 pcs/hour",
           "note": null
         },
         {
@@ -151,19 +153,43 @@
           "control": "CNC",
           "range": null,
           "tolerance": "±0.05 mm",
-          "capacity": "2,500–3,000 pcs per shift",
+          "capacity": "250 pcs/hour",
           "note": null
         },
         {
-          "name": "Belt cutting, tubes, bars and profiles, mitre cuts",
+          "name": "Horizontal saw, inclined frame",
+          "make": null,
+          "model": "OL 330A",
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "320 / 270 mm",
+          "tolerance": null,
+          "capacity": "300 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Horizontal saw, inclined frame",
+          "make": null,
+          "model": "ZIP21",
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "130 / 120 mm",
+          "tolerance": null,
+          "capacity": "200 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Universal cutter",
           "make": null,
           "model": null,
-          "count": 3,
+          "count": 2,
           "year": null,
-          "control": "Semi-automatic",
-          "range": null,
+          "control": null,
+          "range": "60 / 90 mm",
           "tolerance": null,
-          "capacity": null,
+          "capacity": "200 pcs/hour",
           "note": null
         },
         {
@@ -177,53 +203,161 @@
           "tolerance": null,
           "capacity": null,
           "note": null
-        }
-      ]
-    },
-    "tube-bending": {
-      "label": "Tube bending",
-      "items": [
+        },
         {
-          "name": "Tube bending, 5 axes",
-          "make": "Crippa",
-          "model": "CA 532",
-          "count": 1,
+          "name": "Press, forming, bending, punching and cutting",
+          "make": null,
+          "model": "PE63A",
+          "count": 3,
           "year": null,
-          "control": "CNC, 5 axes",
-          "range": "Max tube Ø32 mm; profiles up to 35×35 mm; left and right bending, variable radius",
+          "control": null,
+          "range": "Force 63 t",
           "tolerance": null,
-          "capacity": null,
+          "capacity": "220 pcs/hour",
           "note": null
         },
         {
-          "name": "Hydraulic tube and profile bending, horizontal and vertical",
-          "make": "Alfa",
-          "model": null,
-          "count": 6,
-          "year": null,
-          "control": "Semi-automatic",
-          "range": null,
-          "tolerance": null,
-          "capacity": null,
-          "note": null
-        },
-        {
-          "name": "Three-roll bending, contour bending and radius correction",
+          "name": "Edge bending",
           "make": null,
           "model": null,
-          "count": 2,
+          "count": 1,
           "year": null,
           "control": null,
           "range": null,
           "tolerance": null,
           "capacity": null,
+          "note": "In-house tooling"
+        },
+        {
+          "name": "Shot blasting",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "1,000 L",
+          "tolerance": null,
+          "capacity": "100 pcs/hour",
+          "note": "Three turbines, surface preparation"
+        },
+        {
+          "name": "Trough vibratory finishing",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "200 L",
+          "tolerance": null,
+          "capacity": null,
+          "note": null
+        },
+        {
+          "name": "Polishing",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "Ø200 mm",
+          "tolerance": null,
+          "capacity": "80 pcs/hour",
           "note": null
         }
       ]
     },
-    "punching-forming": {
-      "label": "Punching and forming",
+    "bending": {
+      "label": "Bending",
       "items": [
+        {
+          "name": "5-axis spatial bending centre",
+          "make": "Crippa",
+          "model": "CA 532",
+          "count": 1,
+          "year": null,
+          "control": "CNC, 5 axes",
+          "range": "Ø12–32 mm, wall 2.5 mm; left and right bending, variable radius",
+          "tolerance": null,
+          "capacity": "150 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Tube bending, X and Y axis",
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": "Semi-automatic",
+          "range": "Ø12–30 mm, wall 2 mm",
+          "tolerance": null,
+          "capacity": "150 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Double bending",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Semi-automatic",
+          "range": "Ø16–30 mm, wall 2 mm",
+          "tolerance": null,
+          "capacity": "200 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Three-roller bending",
+          "make": null,
+          "model": null,
+          "count": 2,
+          "year": null,
+          "control": null,
+          "range": "Ø12–40 mm, wall 2 mm",
+          "tolerance": null,
+          "capacity": "100 pcs/hour",
+          "note": "Contour bending and radius correction"
+        },
+        {
+          "name": "Specialised bending",
+          "make": null,
+          "model": null,
+          "count": 2,
+          "year": null,
+          "control": null,
+          "range": "30 × 15 × 1.4 mm",
+          "tolerance": null,
+          "capacity": "180 pcs/hour",
+          "note": null
+        }
+      ]
+    },
+    "drilling-wire": {
+      "label": "Drilling and wire",
+      "items": [
+        {
+          "name": "Column drilling",
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": "140 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Hydraulic drilling",
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": "180 pcs/hour",
+          "note": null
+        },
         {
           "name": "Hydraulic punching, hole punching and embossing",
           "make": null,
@@ -234,16 +368,40 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Quick tool change"
+          "note": "In-house tooling, quick tool change"
         },
         {
-          "name": "Press, forming, bending, punching and cutting",
+          "name": "Wire bending",
           "make": null,
           "model": null,
-          "count": 3,
+          "count": 2,
           "year": null,
           "control": null,
-          "range": "63 t",
+          "range": "Up to Ø12 mm",
+          "tolerance": null,
+          "capacity": null,
+          "note": null
+        },
+        {
+          "name": "Coning",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "Up to Ø30 mm, conic length 450 mm",
+          "tolerance": null,
+          "capacity": "80 pcs/hour",
+          "note": null
+        },
+        {
+          "name": "Nut inserting, thick nuts",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": "Up to Ø6 mm",
           "tolerance": null,
           "capacity": null,
           "note": null
@@ -254,53 +412,79 @@
       "label": "Welding",
       "items": [
         {
-          "name": "Robotic welding, two stations",
-          "make": "Fanuc",
-          "model": null,
-          "count": 2,
+          "name": "Welding robot",
+          "make": null,
+          "model": "1360",
+          "count": 1,
           "year": null,
           "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": "40 chairs/hour",
+          "note": "Serial chair cell"
+        },
+        {
+          "name": "Welding robot",
+          "make": null,
+          "model": "1420",
+          "count": 1,
+          "year": null,
+          "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": "30 chairs/hour",
+          "note": "Serial chair cell"
+        },
+        {
+          "name": "Welding robot",
+          "make": null,
+          "model": "1860",
+          "count": 1,
+          "year": null,
+          "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": "35 chairs/hour",
+          "note": "Serial chair cell"
+        },
+        {
+          "name": "MIG / MAG welding",
+          "make": null,
+          "model": null,
+          "count": 8,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Multi-position cells"
+        },
+        {
+          "name": "TIG welding",
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Precision joints"
+        },
+        {
+          "name": "Brazing",
+          "make": null,
+          "model": null,
+          "count": 5,
+          "year": null,
+          "control": "Manual",
           "range": null,
           "tolerance": null,
           "capacity": null,
           "note": null
-        }
-      ]
-    },
-    "sanding-metal": {
-      "label": "Metal sanding",
-      "items": [
-        {
-          "name": "Robotic sanding, automated infeed",
-          "make": "KUKA",
-          "model": null,
-          "count": 1,
-          "year": null,
-          "control": "Robot",
-          "range": null,
-          "tolerance": null,
-          "capacity": null,
-          "note": "Sensor-monitored"
-        }
-      ]
-    },
-    "powder-coating": {
-      "label": "Powder coating",
-      "items": [
-        {
-          "name": "Powder coating line, two stations",
-          "make": null,
-          "model": null,
-          "count": 1,
-          "year": null,
-          "control": "Automated line",
-          "range": null,
-          "tolerance": null,
-          "capacity": "Conveyor speed 0.75–2.0 m/min",
-          "note": "Pretreatment chamber, drying tunnel, powder chamber with 6 guns, gas oven, second powder chamber, second gas oven"
         },
         {
-          "name": "Shot blasting, surface preparation",
+          "name": "Laser welding",
           "make": null,
           "model": null,
           "count": 1,
@@ -309,7 +493,72 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Three turbines"
+          "note": null
+        },
+        {
+          "name": "Spot and press welding",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "High-volume joining"
+        }
+      ]
+    },
+    "surface-coating": {
+      "label": "Surface and coating",
+      "items": [
+        {
+          "name": "Powder coating line",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Automated line",
+          "range": null,
+          "tolerance": null,
+          "capacity": "100 chairs/hour",
+          "note": "Two stations, two-layer capable without re-hanging: pretreatment chamber, drying tunnel, powder chamber with 6 guns, gas oven, second powder chamber, second gas oven; conveyor speed 0.75–2.0 m/min"
+        },
+        {
+          "name": "Spray degreasing and phosphating",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Pre-treatment"
+        },
+        {
+          "name": "Wet paint finishing",
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Alternative finish system"
+        },
+        {
+          "name": "Robotic sanding",
+          "make": "KUKA",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Automated infeed, sensor-monitored"
         }
       ]
     },

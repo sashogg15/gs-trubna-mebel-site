@@ -2,7 +2,7 @@
   "_comment": "Copy for /equipment. Machine DATA is company.json → machines (a verbatim drop-in of the client's machines.json). This file holds only text: which areas belong to which chain, column headers, robotics labels. null in the data renders as an em dash. Robotics figures derive from machine counts at build time.",
   "meta": {
     "title": "Equipment — tube laser, robotic welding, CNC panel processing | GS Trubna Mebel",
-    "description": "The machine park: BLM Group tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres — two complete chains in one factory."
+    "description": "The machine park: BLM Group tube fibre laser, Crippa five-axis bending, three welding robot cells, HOMAG CNC centres — two complete chains in one factory."
   },
   "intro": {
     "heading": "Equipment",
@@ -15,18 +15,16 @@
       "sequence": [
         "Cutting",
         "Bending",
-        "Punching",
+        "Drilling and wire",
         "Welding",
-        "Blasting",
-        "Powder coating"
+        "Surface and coating"
       ],
       "areaKeys": [
-        "tube-cutting",
-        "tube-bending",
-        "punching-forming",
+        "cutting",
+        "bending",
+        "drilling-wire",
         "welding",
-        "sanding-metal",
-        "powder-coating"
+        "surface-coating"
       ]
     },
     "wood": {
@@ -47,15 +45,15 @@
   },
   "robotics": {
     "heading": "Robotics",
-    "body": "Two Fanuc welding robots and one KUKA sanding robot run in the metal chain. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
+    "body": "Three welding robot cells and one robotic sanding cell run in the metal chain, together welding over 100 chairs per hour. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
     "stats": [
       {
         "area": "welding",
-        "make": "Fanuc",
-        "label": "Fanuc welding robots"
+        "make": "",
+        "label": "welding robot cells"
       },
       {
-        "area": "sanding-metal",
+        "area": "surface-coating",
         "make": "KUKA",
         "label": "KUKA sanding robot"
       }

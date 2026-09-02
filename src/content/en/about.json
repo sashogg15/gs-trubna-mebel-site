@@ -11,11 +11,26 @@
     "heading": "Since 1990",
     "_comment": "One entry per milestone. Keep entries factual: year + what happened.",
     "items": [
-      { "year": "1990", "event": "[[TODO: founding — by whom, making what]]" },
-      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. first export client]]" },
-      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. second site opened]]" },
-      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. wood processing added]]" },
-      { "year": "[[TODO: year]]", "event": "[[TODO: milestone, e.g. solar installation commissioned]]" }
+      {
+        "year": "1990",
+        "event": "Founded in Dobrich. First production run; the company enters the Bulgarian furniture market."
+      },
+      {
+        "year": "1996",
+        "event": "Cabinet furniture launched and a dedicated production base acquired."
+      },
+      {
+        "year": "2001",
+        "event": "Major production facility acquired; manufacturing infrastructure scaled."
+      },
+      {
+        "year": "2008",
+        "event": "Reorganised as the GS Group; European modernisation projects launched."
+      },
+      {
+        "year": "Present",
+        "event": "Scaled export operations as an OEM supplier to European furniture brands."
+      }
     ]
   },
   "sites": {
