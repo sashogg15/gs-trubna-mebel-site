@@ -738,5 +738,32 @@
   "social": {
     "_comment": "Public profile URLs for JSON-LD sameAs. Leave [] entries out if none.",
     "linkedin": "[[TODO: LinkedIn company page URL, or remove]]"
+  },
+  "leadership": {
+    "_comment": "The three people who represent the company externally, used on /leadership. Names and titles confirmed by the client. 'decides' must state what the person actually signs off, not a description of their department — it is the only line on the page a buyer acts on. No personal email addresses: enquiries go to one shared mailbox all three read, so the page routes to /request-a-quote instead.",
+    "continuity": "Family-owned since 1990, with the second generation in operational management.",
+    "items": [
+      {
+        "name": "Galin Gospodinov",
+        "title": "Chief Executive Officer",
+        "decides": "[[TODO: what Galin signs off — e.g. investment, capacity commitments, contract terms]]",
+        "languages": "[[TODO: working languages, e.g. Bulgarian, English]]",
+        "photo": "[[TODO: photo — Galin Gospodinov on the production floor, landscape]]"
+      },
+      {
+        "name": "Roza Gospodinova",
+        "title": "Managing Director",
+        "decides": "[[TODO: what Roza signs off — e.g. commercial terms, order intake, scheduling]]",
+        "languages": "[[TODO: working languages]]",
+        "photo": "[[TODO: photo — Roza Gospodinova on the production floor, landscape]]"
+      },
+      {
+        "name": "Zhivko Gospodinov",
+        "title": "Production Director",
+        "decides": "Responsible for the whole of production across both the metal and wood chains.",
+        "languages": "[[TODO: working languages]]",
+        "photo": "[[TODO: photo — Zhivko Gospodinov on the production floor, landscape]]"
+      }
+    ]
   }
 }

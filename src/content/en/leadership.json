@@ -1,0 +1,29 @@
+{
+  "_comment": "Copy for /leadership. Names, titles and responsibilities live in company.json (leadership) — this file holds only headings and framing.",
+  "meta": {
+    "title": "Leadership",
+    "description": "The three people who represent GS Trubna Mebel: ownership, management and production."
+  },
+  "intro": {
+    "heading": "Leadership",
+    "body": "Three people represent the company to clients. Their names, what each of them decides and the languages they work in are below, so an enquiry reaches the person who can answer it."
+  },
+  "routing": {
+    "heading": "Who to contact",
+    "body": "Enquiries go to one mailbox that all three read, rather than to individual addresses — so a request is picked up whoever is on site. Send drawings, volumes and timeline through the quote request and it is routed on the same day.",
+    "ctaLabel": "Request a quote"
+  },
+  "labels": {
+    "decides": "Decides",
+    "languages": "Working languages"
+  },
+  "photoLabel": "Portrait, on the production floor",
+  "people": {
+    "heading": "Who decides what"
+  },
+  "closingCta": {
+    "heading": "Send a drawing.",
+    "body": "We come back with a manufacturability assessment and an indicative price.",
+    "ctaLabel": "Request a quote"
+  }
+}

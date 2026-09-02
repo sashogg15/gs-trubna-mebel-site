@@ -38,9 +38,11 @@
     "_comment": "Site data comes from company.json (sites.items)."
   },
   "people": {
-    "heading": "Ownership and team",
-    "body": "[[TODO: paragraph — family ownership, generation currently leading, team size, key roles a buyer would deal with]]",
-    "teamSizeNote": "Team size figure comes from company.json (keyFigures)."
+    "heading": "Ownership and management",
+    "body": "The company has been family-owned since 1990 and the second generation now runs operations. Three people represent it to clients — ownership, management and production. Their names, responsibilities and working languages are on the leadership page.",
+    "teamSizeNote": "Team size figure comes from company.json (keyFigures).",
+    "linkLabel": "Leadership",
+    "linkHref": "/leadership"
   },
   "position": {
     "heading": "One of the last in Europe",

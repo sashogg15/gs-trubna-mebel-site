@@ -1,0 +1,77 @@
+---
+/**
+ * /leadership — the three people who represent the company.
+ *
+ * The page's one job (§7) is accountability, not warmth: who owns the
+ * company, who manages it, who answers for production, what each of them
+ * decides, and in what languages. Anything that does not serve that is
+ * off this page.
+ *
+ * Portraits use the 4:3 machine-portrait ratio (§9) rather than a new
+ * headshot ratio, and the shot note keeps them in the workshop — so a
+ * portrait sits in the same register as the rest of the photography and
+ * the token system needs no extension.
+ */
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loadPage, isTodo } from '../lib/content';
+import company from '../data/company.json';
+
+const t = loadPage('leadership');
+const people = company.leadership.items;
+const continuity = company.leadership.continuity;
+---
+
+<Base meta={{ title: t.meta.title, description: t.meta.description, path: '/leadership' }}>
+  <Section>
+    <PageIntro heading={t.intro.heading} body={t.intro.body} />
+    <p class="mt-6 max-w-prose text-body-sm text-steel-600">{continuity}</p>
+  </Section>
+
+  <Section>
+    <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.people.heading}</h2>
+    <div class="mt-12 grid gap-12 md:grid-cols-3">
+      {
+        people.map((p) => (
+          <div>
+            <ImagePlaceholder
+              src={p.photo}
+              alt={`${p.name}, ${p.title}`}
+              aspect="4/3"
+              label={`4:3 — ${t.photoLabel}: ${p.name}, at work, machine or workpiece in frame, landscape`}
+            />
+            <h3 class="mt-6 font-heading text-heading-1 font-semibold">{p.name}</h3>
+            <p class="mt-1 text-body font-medium text-graphite">{p.title}</p>
+
+            <dl class="mt-6 border-t border-steel-100 pt-6">
+              <dt class="text-label font-medium uppercase text-steel-600">{t.labels.decides}</dt>
+              <dd class="mt-2 text-body text-ink">{isTodo(p.decides) ? '—' : p.decides}</dd>
+
+              <dt class="mt-6 text-label font-medium uppercase text-steel-600">{t.labels.languages}</dt>
+              <dd class="mt-2 text-body text-ink">{isTodo(p.languages) ? '—' : p.languages}</dd>
+            </dl>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-prose">
+      <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{t.routing.heading}</h2>
+      <p class="mt-6 text-body text-steel-600">{t.routing.body}</p>
+      <p class="mt-6">
+        <a href="/request-a-quote" class="text-body font-medium text-ember-deep underline underline-offset-4">
+          {t.routing.ctaLabel}
+        </a>
+      </p>
+    </div>
+  </Section>
+
+  <Section tone="graphite">
+    <CtaBand heading={t.closingCta.heading} body={t.closingCta.body} ctaLabel={t.closingCta.ctaLabel} />
+  </Section>
+</Base>
