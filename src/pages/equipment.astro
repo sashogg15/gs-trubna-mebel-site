@@ -31,22 +31,20 @@ const introBody = t.intro.body.replace('{count}', String(allMachines.length));
 // One spec table per production area (§7/§8). Every cell is derived from
 // company.json; null → em dash (§8), never blank, never invented.
 const C = t.table.columns;
-const columns = [C.machine, C.make, C.model, C.count, C.year, C.control, C.range, C.tolerance, C.capacity];
+const columns = [C.machine, C.make, C.model, C.count, C.control, C.range, C.capacity];
 const toRow = (m: Machine): string[] => [
-  dash(m.note),
+  m.name,
   dash(m.make),
   dash(m.model),
   dash(m.count),
-  dash(m.year),
   dash(m.control),
   nbspUnits(dash(m.range)),
-  nbspUnits(dash(m.tolerance)),
   nbspUnits(dash(m.capacity)),
 ];
 
 // Portraits: branded machines with CNC / robot / automated-line control.
 const isPortrait = (m: Machine) =>
-  !!m.make && /^(CNC|Robot|Automated)/i.test(m.control ?? '');
+  /^(CNC|Robot|Automated)/i.test(m.control ?? '');
 
 const chains = (['metal', 'wood'] as const).map((key) => {
   const areaList = (t.chains[key].areaKeys as string[])
@@ -100,7 +98,7 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
                   caption={`${chain.heading} — ${a.label}`}
                   columns={columns}
                   data={a.items.map(toRow)}
-                  numericCols={[3, 4]}
+                  numericCols={[3]}
                   ground={chain.ground}
                   scrollHint={t.table.scrollHint}
                 />
@@ -115,7 +113,7 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
                 {chain.portraits.map((m) => (
                   <ImagePlaceholder
                     aspect="4/3"
-                    label={`${t.portraits.photoLabel} — ${m.make}${m.model ? ' ' + m.model : ''}, machine label legible, landscape`}
+                    label={`${t.portraits.photoLabel} — ${m.make ? m.make + (m.model ? ' ' + m.model : '') : m.name}, machine label legible, landscape`}
                   />
                 ))}
               </div>

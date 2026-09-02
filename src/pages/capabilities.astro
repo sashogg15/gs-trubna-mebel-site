@@ -18,9 +18,9 @@ const t = loadPage('capabilities');
 // limit is defined once in the data layer and can never diverge between
 // pages. A null in the machine data renders as an em dash, never a guess.
 const lt5 = findMachine('tube-cutting', 'BLM');
-const adige = findMachine('tube-cutting', 'Adige') ?? area('tube-cutting')?.items[1];
+const adige = area('tube-cutting')?.items.find((m) => /adige/i.test(m.model ?? ''));
 const crippa = findMachine('tube-bending', 'Crippa');
-const presses = area('punching-forming')?.items.find((m) => /press/i.test(m.note ?? ''));
+const presses = area('punching-forming')?.items.find((m) => /press/i.test(m.name));
 const fravol = findMachine('wood-machining', 'Fravol');
 const terms = company.productionTerms as Record<string, string>;
 

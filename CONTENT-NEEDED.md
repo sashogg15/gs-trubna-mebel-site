@@ -51,35 +51,37 @@ make** (“Centorrino” was the supplier). LT5 wall thickness stays null — it
 depends on laser power.
 
 **Next step:** photograph the machine plates, fill the nulls, send a new
-`machines.json`; it replaces the whole `machines` object as-is.
+`machines.json`; it replaces the whole `machines` object as-is. Year and
+Tolerance return to the /equipment table automatically once populated —
+the columns are dropped only while they would be all dashes.
 
 **Still open (blocking):**
 - [ ] Powder coating line → launch blocker 4 (existing line vs new EU-funded one)
 
-**Null fields per machine (23 rows, from the data):**
-- [ ] Tube cutting — BLM Group LT5: tolerance, capacity
-- [ ] Tube cutting — BLM Group Adige: range
-- [ ] Tube cutting — Belt cutting machines: make, model, year, range, tolerance, capacity
+**Null fields per machine (23 rows, from the data; `note` is optional and not counted):**
+- [ ] Tube cutting — Tube laser cutting (BLM Group LT5): tolerance, capacity
+- [ ] Tube cutting — Automatic tube cutting (BLM Group Adige): range
+- [ ] Tube cutting — Belt cutting, tubes, bars and profiles, mitre cuts: make, model, year, range, tolerance, capacity
 - [ ] Tube cutting — Abrasive disc cutting and angle grinding: make, model, year, range, tolerance, capacity
-- [ ] Tube bending — Crippa CA 532: year, tolerance, capacity
-- [ ] Tube bending — Alfa: model, year, range, tolerance, capacity
-- [ ] Tube bending — Three-roll bending: make, model, year, control, range, tolerance, capacity
-- [ ] Punching and forming — Hydraulic punching: make, model, year, range, tolerance, capacity
-- [ ] Punching and forming — Presses: make, model, year, control, tolerance, capacity
-- [ ] Welding — Fanuc: model, year, range, tolerance, capacity
-- [ ] Metal sanding — KUKA: model, year, range, tolerance, capacity
-- [ ] Powder coating — Two stations: pretreatment chamber: make, model, year, range, tolerance
-- [ ] Powder coating — Shot blasting: make, model, year, control, range, tolerance, capacity
-- [ ] Wood machining — HOMAG / Weeke: model, year, range, tolerance, capacity
-- [ ] Wood machining — HOMAG / Weeke Venture: year, range, tolerance, capacity
-- [ ] Wood machining — Mayer: model, year, range, tolerance, capacity
-- [ ] Wood machining — Fravol: model, year, control, range, tolerance
-- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
-- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
-- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
-- [ ] Wood sanding and finishing — Wide belt sander: make, model, year, control, range, tolerance, capacity
-- [ ] Wood sanding and finishing — Slipcon: model, year, control, range, tolerance, capacity
-- [ ] Wood sanding and finishing — Superfici: model, year, range, tolerance, capacity
+- [ ] Tube bending — Tube bending, 5 axes (Crippa CA 532): year, tolerance, capacity
+- [ ] Tube bending — Hydraulic tube and profile bending, horizontal and vertical (Alfa): model, year, range, tolerance, capacity
+- [ ] Tube bending — Three-roll bending, contour bending and radius correction: make, model, year, control, range, tolerance, capacity
+- [ ] Punching and forming — Hydraulic punching, hole punching and embossing: make, model, year, range, tolerance, capacity
+- [ ] Punching and forming — Press, forming, bending, punching and cutting: make, model, year, control, tolerance, capacity
+- [ ] Welding — Robotic welding, two stations (Fanuc): model, year, range, tolerance, capacity
+- [ ] Metal sanding — Robotic sanding, automated infeed (KUKA): model, year, range, tolerance, capacity
+- [ ] Powder coating — Powder coating line, two stations: make, model, year, range, tolerance
+- [ ] Powder coating — Shot blasting, surface preparation: make, model, year, control, range, tolerance, capacity
+- [ ] Wood machining — CNC nesting, two stations (HOMAG / Weeke): model, year, range, tolerance, capacity
+- [ ] Wood machining — CNC machining centre, two stations (HOMAG / Weeke Venture): year, range, tolerance, capacity
+- [ ] Wood machining — CNC panel saw (Mayer): model, year, range, tolerance, capacity
+- [ ] Wood machining — Edgebander (Fravol): model, year, control, range, tolerance
+- [ ] Wood machining — Spindle moulder (Paoloni): model, year, range, tolerance, capacity
+- [ ] Wood machining — Thicknesser (Paoloni): model, year, range, tolerance, capacity
+- [ ] Wood machining — Combined jointer-thicknesser (Paoloni): model, year, range, tolerance, capacity
+- [ ] Wood sanding and finishing — Wide belt sander, calibrating and finish sanding: make, model, year, control, range, tolerance, capacity
+- [ ] Wood sanding and finishing — Brush sander (Slipcon): model, year, control, range, tolerance, capacity
+- [ ] Wood sanding and finishing — MDF spray painting line (Superfici): model, year, range, tolerance, capacity
 
 **Process limits (for /capabilities):**
 - [ ] Max wall thickness on the tube laser (depends on laser power)

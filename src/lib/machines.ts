@@ -8,6 +8,7 @@
 import company from '../data/company.json';
 
 export interface Machine {
+  name: string;
   make: string | null;
   model: string | null;
   count: number | null;

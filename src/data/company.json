@@ -131,6 +131,7 @@
       "label": "Tube cutting",
       "items": [
         {
+          "name": "Tube laser cutting",
           "make": "BLM Group",
           "model": "LT5",
           "count": 1,
@@ -138,9 +139,11 @@
           "control": "CNC",
           "range": "Round tube Ø12–120 mm; square tube 12×12–100×100 mm; rectangular 10×12–120×70 mm; mild steel, stainless steel, aluminium, brass",
           "tolerance": null,
-          "capacity": null
+          "capacity": null,
+          "note": null
         },
         {
+          "name": "Automatic tube cutting",
           "make": "BLM Group",
           "model": "Adige",
           "count": 1,
@@ -148,9 +151,11 @@
           "control": "CNC",
           "range": null,
           "tolerance": "±0.05 mm",
-          "capacity": "2,500–3,000 pcs per shift"
+          "capacity": "2,500–3,000 pcs per shift",
+          "note": null
         },
         {
+          "name": "Belt cutting, tubes, bars and profiles, mitre cuts",
           "make": null,
           "model": null,
           "count": 3,
@@ -159,9 +164,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Belt cutting machines, tubes, bars and profiles, mitre cuts"
+          "note": null
         },
         {
+          "name": "Abrasive disc cutting and angle grinding",
           "make": null,
           "model": null,
           "count": 4,
@@ -170,7 +176,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Abrasive disc cutting and angle grinding"
+          "note": null
         }
       ]
     },
@@ -178,6 +184,7 @@
       "label": "Tube bending",
       "items": [
         {
+          "name": "Tube bending, 5 axes",
           "make": "Crippa",
           "model": "CA 532",
           "count": 1,
@@ -185,9 +192,11 @@
           "control": "CNC, 5 axes",
           "range": "Max tube Ø32 mm; profiles up to 35×35 mm; left and right bending, variable radius",
           "tolerance": null,
-          "capacity": null
+          "capacity": null,
+          "note": null
         },
         {
+          "name": "Hydraulic tube and profile bending, horizontal and vertical",
           "make": "Alfa",
           "model": null,
           "count": 6,
@@ -196,9 +205,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Hydraulic tube and profile bending, horizontal and vertical, variable radius"
+          "note": null
         },
         {
+          "name": "Three-roll bending, contour bending and radius correction",
           "make": null,
           "model": null,
           "count": 2,
@@ -207,7 +217,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Three-roll bending, contour bending and radius correction"
+          "note": null
         }
       ]
     },
@@ -215,6 +225,7 @@
       "label": "Punching and forming",
       "items": [
         {
+          "name": "Hydraulic punching, hole punching and embossing",
           "make": null,
           "model": null,
           "count": 7,
@@ -223,9 +234,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Hydraulic punching, hole punching and embossing, quick tool change"
+          "note": "Quick tool change"
         },
         {
+          "name": "Press, forming, bending, punching and cutting",
           "make": null,
           "model": null,
           "count": 3,
@@ -234,7 +246,7 @@
           "range": "63 t",
           "tolerance": null,
           "capacity": null,
-          "note": "Presses, forming, bending, punching and cutting"
+          "note": null
         }
       ]
     },
@@ -242,6 +254,7 @@
       "label": "Welding",
       "items": [
         {
+          "name": "Robotic welding, two stations",
           "make": "Fanuc",
           "model": null,
           "count": 2,
@@ -250,7 +263,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Robotic welding, two stations"
+          "note": null
         }
       ]
     },
@@ -258,6 +271,7 @@
       "label": "Metal sanding",
       "items": [
         {
+          "name": "Robotic sanding, automated infeed",
           "make": "KUKA",
           "model": null,
           "count": 1,
@@ -266,7 +280,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Robotic sanding, automated infeed, sensor-monitored"
+          "note": "Sensor-monitored"
         }
       ]
     },
@@ -274,6 +288,7 @@
       "label": "Powder coating",
       "items": [
         {
+          "name": "Powder coating line, two stations",
           "make": null,
           "model": null,
           "count": 1,
@@ -282,9 +297,10 @@
           "range": null,
           "tolerance": null,
           "capacity": "Conveyor speed 0.75–2.0 m/min",
-          "note": "Two stations: pretreatment chamber, drying tunnel, powder chamber with 6 guns, gas oven, second powder chamber, second gas oven"
+          "note": "Pretreatment chamber, drying tunnel, powder chamber with 6 guns, gas oven, second powder chamber, second gas oven"
         },
         {
+          "name": "Shot blasting, surface preparation",
           "make": null,
           "model": null,
           "count": 1,
@@ -293,7 +309,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Shot blasting, three turbines, surface preparation before coating"
+          "note": "Three turbines"
         }
       ]
     },
@@ -301,6 +317,7 @@
       "label": "Wood machining",
       "items": [
         {
+          "name": "CNC nesting, two stations",
           "make": "HOMAG / Weeke",
           "model": null,
           "count": 1,
@@ -309,9 +326,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "CNC nesting, two stations: boring, milling and cutting of plywood, MDF and chipboard"
+          "note": "Boring, milling and cutting of plywood, MDF and chipboard"
         },
         {
+          "name": "CNC machining centre, two stations",
           "make": "HOMAG / Weeke",
           "model": "Venture",
           "count": 1,
@@ -320,9 +338,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "CNC machining centre, two stations: boring, sawing and cutting of MDF, chipboard, plywood and solid wood"
+          "note": "Boring, sawing and cutting of MDF, chipboard, plywood and solid wood"
         },
         {
+          "name": "CNC panel saw",
           "make": "Mayer",
           "model": null,
           "count": 1,
@@ -331,9 +350,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "CNC panel saw, automatic cutting plan generation"
+          "note": "Automatic cutting plan generation"
         },
         {
+          "name": "Edgebander",
           "make": "Fravol",
           "model": null,
           "count": 1,
@@ -342,9 +362,10 @@
           "range": null,
           "tolerance": null,
           "capacity": "Feed up to 20 m/min",
-          "note": "Edgebander: pre-milling, glue pot, edge trimming and polishing"
+          "note": "Pre-milling, glue pot, edge trimming and polishing"
         },
         {
+          "name": "Spindle moulder",
           "make": "Paoloni",
           "model": null,
           "count": 1,
@@ -353,9 +374,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Spindle moulder"
+          "note": null
         },
         {
+          "name": "Thicknesser",
           "make": "Paoloni",
           "model": null,
           "count": 1,
@@ -364,9 +386,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Thicknesser"
+          "note": null
         },
         {
+          "name": "Combined jointer-thicknesser",
           "make": "Paoloni",
           "model": null,
           "count": 1,
@@ -375,7 +398,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Combined jointer-thicknesser"
+          "note": null
         }
       ]
     },
@@ -383,6 +406,7 @@
       "label": "Wood sanding and finishing",
       "items": [
         {
+          "name": "Wide belt sander, calibrating and finish sanding",
           "make": null,
           "model": null,
           "count": 1,
@@ -391,9 +415,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Wide belt sander, calibrating and finish sanding of panels"
+          "note": null
         },
         {
+          "name": "Brush sander",
           "make": "Slipcon",
           "model": null,
           "count": 1,
@@ -402,9 +427,10 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Brush sander, 2 brush rollers and 2 oscillating brush discs"
+          "note": "2 brush rollers and 2 oscillating brush discs"
         },
         {
+          "name": "MDF spray painting line",
           "make": "Superfici",
           "model": null,
           "count": 1,
@@ -413,7 +439,7 @@
           "range": null,
           "tolerance": null,
           "capacity": null,
-          "note": "Automatic MDF spray painting line, 2 sets of oscillating guns, cleaning unit"
+          "note": "2 sets of oscillating guns, cleaning unit"
         }
       ]
     }
