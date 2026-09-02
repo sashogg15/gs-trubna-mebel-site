@@ -42,38 +42,53 @@ unconfirmed figures, blocked pages).
 
 ## 1. Production floor
 
-**Machine list (all 23 entries carry `needsConfirmation` in company.json):**
-- [ ] Is the machine list still current? The data is from the old site
-      (~2020) — anything retired, anything new to add?
-- [ ] Are the listed specs still correct?
+**Machine park** — `company.json → machines` is a verbatim drop-in of the
+client's `machines.json` (2026-09-02). A `null` field renders as an em dash
+on `/equipment`; nothing is invented. Two corrections already applied in
+that export and NOT to be reverted from the old website: LT5 square tube is
+**12×12–100×100 mm** (old site: 120×120); the wide belt sander has **no
+make** (“Centorrino” was the supplier). LT5 wall thickness stays null — it
+depends on laser power.
 
-**Two structural questions:**
-- [ ] Paoloni: are the thicknesser and the surface planer two separate
-      machines, or one combined planer-thicknesser? (Old site contradicted
-      itself.)
-- [ ] Powder coating line → launch blocker 4 above.
+**Next step:** photograph the machine plates, fill the nulls, send a new
+`machines.json`; it replaces the whole `machines` object as-is.
 
-**Missing values per machine:**
-- [ ] ADIGE tube cutting — exact model designation
-- [ ] Fanuc robotic welding (×2) — exact model, year, process (MIG/MAG/TIG)
-- [ ] Kuka robotic sanding — exact model, year
-- [ ] Band cutting (×3), additional cutting (×4), three-roll bending (×2),
-      presses 63 t (×3), shot blasting — manufacturer and year each
-- [ ] Alfa benders (×6), hydraulic punching (×7) — year
-- [ ] Powder coating line — line manufacturer, year, max part dimensions
-- [ ] HOMAG WEEKE nesting — year, count, max panel dimensions
-- [ ] HOMAG WEEKE Venture, Mayer saw, FRAVOL edgebander, Paoloni ×3,
-      Centorrino, Slip Con — year and count each
-- [ ] SUPERFICI spray line — year, max part dimensions, throughput
+**Still open (blocking):**
+- [ ] Powder coating line → launch blocker 4 (existing line vs new EU-funded one)
+
+**Null fields per machine (23 rows, from the data):**
+- [ ] Tube cutting — BLM Group LT5: tolerance, capacity
+- [ ] Tube cutting — BLM Group Adige: range
+- [ ] Tube cutting — Belt cutting machines: make, model, year, range, tolerance, capacity
+- [ ] Tube cutting — Abrasive disc cutting and angle grinding: make, model, year, range, tolerance, capacity
+- [ ] Tube bending — Crippa CA 532: year, tolerance, capacity
+- [ ] Tube bending — Alfa: model, year, range, tolerance, capacity
+- [ ] Tube bending — Three-roll bending: make, model, year, control, range, tolerance, capacity
+- [ ] Punching and forming — Hydraulic punching: make, model, year, range, tolerance, capacity
+- [ ] Punching and forming — Presses: make, model, year, control, tolerance, capacity
+- [ ] Welding — Fanuc: model, year, range, tolerance, capacity
+- [ ] Metal sanding — KUKA: model, year, range, tolerance, capacity
+- [ ] Powder coating — Two stations: pretreatment chamber: make, model, year, range, tolerance
+- [ ] Powder coating — Shot blasting: make, model, year, control, range, tolerance, capacity
+- [ ] Wood machining — HOMAG / Weeke: model, year, range, tolerance, capacity
+- [ ] Wood machining — HOMAG / Weeke Venture: year, range, tolerance, capacity
+- [ ] Wood machining — Mayer: model, year, range, tolerance, capacity
+- [ ] Wood machining — Fravol: model, year, control, range, tolerance
+- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
+- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
+- [ ] Wood machining — Paoloni: model, year, range, tolerance, capacity
+- [ ] Wood sanding and finishing — Wide belt sander: make, model, year, control, range, tolerance, capacity
+- [ ] Wood sanding and finishing — Slipcon: model, year, control, range, tolerance, capacity
+- [ ] Wood sanding and finishing — Superfici: model, year, range, tolerance, capacity
 
 **Process limits (for /capabilities):**
+- [ ] Max wall thickness on the tube laser (depends on laser power)
 - [ ] Welding processes offered + do welders hold EN ISO 9606-1?
 - [ ] Max part dimensions through the powder coating line
 - [ ] RAL range / client-specified powder brands — yes/no
 - [ ] Max panel dimensions (nesting/sawing)
 - [ ] Edge materials supported (ABS, PVC, veneer, solid lipping)
-- [ ] Spray line: finish types (matt/satin/gloss, lacquer systems,
-      client-specified systems yes/no) and max part dimensions
+- [ ] Spray line: finish types and max part dimensions
 
 ---
 

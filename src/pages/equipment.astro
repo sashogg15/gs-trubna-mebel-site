@@ -7,79 +7,65 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { loadPage } from '../lib/content';
 import { nbspUnits } from '../lib/format';
+import { area, allMachines, findMachine, dash, nullFieldCount, type Machine } from '../lib/machines';
 import company from '../data/company.json';
 
 const t = loadPage('equipment');
-const machines = company.machines.items as any[];
 
 // ---------------------------------------------------------------------------
-// Build-time warning: every machine still carrying needsConfirmation or a
-// [[TODO]] marker is listed in the build output so the whole list can be
-// confirmed with production before launch.
-const flagged = machines.filter(
-  (m) => m.needsConfirmation || JSON.stringify(m).includes('[[TODO')
-);
-if (flagged.length > 0) {
-  const lines = flagged.map((m) => {
-    const todos = (JSON.stringify(m).match(/\[\[TODO/g) || []).length;
-    const parts = [`  - ${m.name} (${m.manufacturer}${m.model ? ' ' + m.model : ''})`];
-    if (todos > 0) parts.push(`— ${todos} open [[TODO]]`);
-    if (m._confirm) parts.push(`— CONFIRM: ${m._confirm}`);
-    return parts.join(' ');
-  });
+// Build-time warning: the machine park is a client export with null fields
+// waiting on the machine-plate photographs. Every null renders as an em
+// dash; the count is printed so the distance to a complete table is visible.
+const status = company.machinesStatus;
+if (status.needsConfirmation || nullFieldCount() > 0) {
   console.warn(
-    `\n[equipment] ${flagged.length} of ${machines.length} machines need confirmation with production before launch:\n` +
-      lines.join('\n') +
-      '\n'
+    `\n[equipment] ${allMachines.length} machines, ${nullFieldCount()} fields still null (render as —). ` +
+      `Source: ${status.source}\n  CONFIRM: ${status._confirm}\n`
   );
 }
 // ---------------------------------------------------------------------------
 
 // {count} in the intro is computed from the data so it never diverges.
-const introBody = t.intro.body.replace('{count}', String(machines.length));
+const introBody = t.intro.body.replace('{count}', String(allMachines.length));
 
-// One spec table per production area (§7/§8): the table row is derived
-// entirely from company.json. "Working range and features" joins every
-// parameter except the tolerance, which gets its own column.
-const isTolerance = (name: string) => /tolerance/i.test(name);
-const toRow = (m: any): string[] => [
-  m.name,
-  m.manufacturer,
-  m.model,
-  String(m.count),
-  nbspUnits(
-    m.parameters
-      .filter((p: any) => !isTolerance(p.name))
-      .map((p: any) => `${p.name}: ${p.value}`)
-      .join('; ')
-  ),
-  nbspUnits(m.parameters.find((p: any) => isTolerance(p.name))?.value ?? ''),
+// One spec table per production area (§7/§8). Every cell is derived from
+// company.json; null → em dash (§8), never blank, never invented.
+const C = t.table.columns;
+const columns = [C.machine, C.make, C.model, C.count, C.year, C.control, C.range, C.tolerance, C.capacity];
+const toRow = (m: Machine): string[] => [
+  dash(m.note),
+  dash(m.make),
+  dash(m.model),
+  dash(m.count),
+  dash(m.year),
+  dash(m.control),
+  nbspUnits(dash(m.range)),
+  nbspUnits(dash(m.tolerance)),
+  nbspUnits(dash(m.capacity)),
 ];
 
-const C = t.table.columns;
-const tableColumns = [C.machine, C.make, C.model, C.count, C.workingRange, C.tolerance];
+// Portraits: branded machines with CNC / robot / automated-line control.
+const isPortrait = (m: Machine) =>
+  !!m.make && /^(CNC|Robot|Automated)/i.test(m.control ?? '');
 
-// Machines stay in company.json process order within each area.
-const chains = (['metal', 'wood'] as const).map((key) => ({
-  key,
-  heading: t.chains[key].heading,
-  sequence: t.chains[key].sequence,
-  ground: key === 'metal' ? ('tint-metal' as const) : ('tint-wood' as const),
-  areas: t.chains[key].areas
-    .map((area: any) => ({
-      label: area.label,
-      machines: machines.filter(
-        (m) => m.chain === key && area.categories.includes(m.category)
-      ),
-    }))
-    .filter((area: any) => area.machines.length > 0),
-  portraits: machines.filter((m) => m.chain === key && m.highlight),
-}));
+const chains = (['metal', 'wood'] as const).map((key) => {
+  const areaList = (t.chains[key].areaKeys as string[])
+    .map((k) => area(k))
+    .filter((a): a is NonNullable<typeof a> => !!a && a.items.length > 0);
+  return {
+    key,
+    heading: t.chains[key].heading,
+    sequence: t.chains[key].sequence as string[],
+    ground: key === 'metal' ? ('tint-metal' as const) : ('tint-wood' as const),
+    areas: areaList,
+    portraits: areaList.flatMap((a) => a.items.filter(isPortrait)),
+  };
+});
 
 // Robotics counts derive from company.json — never hardcoded (§2.3).
 const roboticsStats = t.robotics.stats.map((s: any) => ({
   label: s.label,
-  value: String(machines.find((m) => m.id === s.machineId)?.count ?? '—'),
+  value: dash(findMachine(s.area, s.make)?.count),
 }));
 ---
 
@@ -95,7 +81,7 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
           <div class="border-t-4 border-ink pt-6">
             <h2 class="font-heading text-display-2-m font-bold md:text-display-2">{chain.heading}</h2>
             <p class="mt-3 text-body text-steel-600">
-              {chain.sequence.map((step: string, i: number) => (
+              {chain.sequence.map((step, i) => (
                 <>
                   {i > 0 && (
                     <span class="mx-3 inline-block h-3 w-px bg-steel-300 align-middle" aria-hidden="true" />
@@ -106,15 +92,15 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
             </p>
           </div>
 
-          {chain.areas.map((area: any) => (
+          {chain.areas.map((a) => (
             <div class="mt-12">
-              <h3 class="font-heading text-heading-2 font-semibold">{area.label}</h3>
+              <h3 class="font-heading text-heading-2 font-semibold">{a.label}</h3>
               <div class="mt-6">
                 <SpecTable
-                  caption={`${chain.heading} — ${area.label}`}
-                  columns={tableColumns}
-                  data={area.machines.map(toRow)}
-                  numericCols={[3]}
+                  caption={`${chain.heading} — ${a.label}`}
+                  columns={columns}
+                  data={a.items.map(toRow)}
+                  numericCols={[3, 4]}
                   ground={chain.ground}
                   scrollHint={t.table.scrollHint}
                 />
@@ -126,10 +112,10 @@ const roboticsStats = t.robotics.stats.map((s: any) => ({
             <div class="mt-12">
               <h3 class="font-heading text-heading-2 font-semibold">{t.portraits.heading}</h3>
               <div class="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
-                {chain.portraits.map((m: any) => (
+                {chain.portraits.map((m) => (
                   <ImagePlaceholder
                     aspect="4/3"
-                    label={`${t.portraits.photoLabel} — ${m.manufacturer} ${m.model || m.name}, machine label legible, landscape`}
+                    label={`${t.portraits.photoLabel} — ${m.make}${m.model ? ' ' + m.model : ''}, machine label legible, landscape`}
                   />
                 ))}
               </div>

@@ -27,12 +27,16 @@ function contentReport() {
           todos += (readFileSync(extra, 'utf8').match(/\[\[TODO/g) ?? []).length;
         }
         const company = JSON.parse(readFileSync('src/data/company.json', 'utf8'));
+        const machines = Object.values(company.machines).flatMap((a) => a.items);
+        const nullFields = machines.reduce(
+          (n, m) => n + Object.values(m).filter((v) => v === null).length,
+          0
+        );
         const unconfirmed =
-          company.machines.items.filter((m) => m.needsConfirmation).length +
           company.keyFigures.items.filter((f) => f.needsConfirmation).length;
         console.warn(
           `\n[site] Launch distance: ${todos} open [[TODO]] markers · ` +
-            `${unconfirmed} unconfirmed figures · ` +
+            `${unconfirmed} unconfirmed figures · ${nullFields} null machine fields (render as —) · ` +
             `${BLOCKED_PAGES.length} pages blocked on internal data (${BLOCKED_PAGES.join(', ')}).\n` +
             `       Details: CONTENT-NEEDED.md · launch blockers listed at its top.\n`
         );

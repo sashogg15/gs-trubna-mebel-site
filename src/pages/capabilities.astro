@@ -8,32 +8,30 @@ import CtaBand from '../components/CtaBand.astro';
 import { loadPage } from '../lib/content';
 import { interpolate, nbspUnits } from '../lib/format';
 import company from '../data/company.json';
+import { area, findMachine, dash } from '../lib/machines';
 
 const t = loadPage('capabilities');
 
 // ---------------------------------------------------------------------------
-// Process limits come from company.json — machine parameters and commercial
-// terms — and are interpolated into the copy at build time. A limit is
-// defined once in the data layer and can never diverge between pages.
-const param = (id: string, name: string): string => {
-  const machine = (company.machines.items as any[]).find((m) => m.id === id);
-  const p = machine?.parameters.find((p: any) => p.name === name);
-  return p?.value ?? `[[TODO: missing parameter ${id} / ${name}]]`;
-};
-
+// Process limits come from company.json — the machine park and the
+// commercial terms — and are interpolated into the copy at build time. A
+// limit is defined once in the data layer and can never diverge between
+// pages. A null in the machine data renders as an em dash, never a guess.
+const lt5 = findMachine('tube-cutting', 'BLM');
+const adige = findMachine('tube-cutting', 'Adige') ?? area('tube-cutting')?.items[1];
+const crippa = findMachine('tube-bending', 'Crippa');
+const presses = area('punching-forming')?.items.find((m) => /press/i.test(m.note ?? ''));
+const fravol = findMachine('wood-machining', 'Fravol');
 const terms = company.productionTerms as Record<string, string>;
 
 const vars: Record<string, string> = {
-  tubeRange: param('blm-lt5', 'Round tube diameter'),
-  profileRange: param('blm-lt5', 'Profiles'),
-  maxWall: param('blm-lt5', 'Max wall thickness'),
-  metalMaterials: param('blm-lt5', 'Materials'),
-  cutTolerance: param('adige-cutting', 'Cutting tolerance'),
-  throughput: param('adige-cutting', 'Throughput'),
-  bendTube: param('crippa-ca532', 'Max tube diameter'),
-  bendProfile: param('crippa-ca532', 'Max profile'),
-  pressForce: param('presses-63t', 'Pressing force'),
-  edgeSpeed: param('fravol-edgebander', 'Feed speed'),
+  lt5Range: dash(lt5?.range),
+  cutTolerance: dash(adige?.tolerance),
+  throughput: dash(adige?.capacity),
+  bendRange: dash(crippa?.range),
+  pressForce: dash(presses?.range),
+  edgeSpeed: dash(fravol?.capacity).replace(/^Feed /, 'feed '),
+  maxWall: terms.maxWallThickness,
   tolerances: terms.tolerances,
   leadTimePrototype: terms.leadTimePrototype,
   leadTimeSeries: terms.leadTimeSeries,
@@ -60,7 +58,7 @@ const collect = (s: string) => {
 for (const chain of chains)
   for (const proc of chain.processes) {
     collect(text(proc.body));
-    proc.todos.forEach(collect);
+    proc.todos.forEach((todo: string) => collect(text(todo)));
     if (proc.image) collect(proc.image.src);
   }
 collect(t.complete.image.src);
@@ -120,7 +118,7 @@ const meta = {
                 {proc.todos.length > 0 && (
                   <ul class="mt-4 space-y-1">
                     {proc.todos.map((todo: string) => (
-                      <li class="text-body-sm text-steel-600">{todo}</li>
+                      <li class="text-body-sm text-steel-600">{text(todo)}</li>
                     ))}
                   </ul>
                 )}

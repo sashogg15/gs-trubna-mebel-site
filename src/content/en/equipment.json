@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy for /equipment. Machine DATA lives in company.json; this file holds the English text. The page renders ONE SPEC TABLE PER PRODUCTION AREA (design authority §7/§8) — 'areas' below group company.json machine categories into those tables, in process order. 'descriptions' are currently unused on the page (kept for the future per-operation process pages). Robotics stats derive their numbers from company.json machine counts at build time — never hardcode them here.",
+  "_comment": "Copy for /equipment. Machine DATA is company.json → machines (a verbatim drop-in of the client's machines.json). This file holds only text: which areas belong to which chain, column headers, robotics labels. null in the data renders as an em dash. Robotics figures derive from machine counts at build time.",
   "meta": {
     "title": "Equipment — tube laser, robotic welding, CNC panel processing | GS Trubna Mebel",
     "description": "The machine park: BLM Group tube fibre laser, Crippa five-axis bending, Fanuc welding robots, HOMAG CNC centres — two complete chains in one factory."
@@ -20,40 +20,13 @@
         "Blasting",
         "Powder coating"
       ],
-      "areas": [
-        {
-          "label": "Cutting",
-          "categories": [
-            "cutting"
-          ]
-        },
-        {
-          "label": "Bending",
-          "categories": [
-            "bending"
-          ]
-        },
-        {
-          "label": "Punching and forming",
-          "categories": [
-            "punching",
-            "forming"
-          ]
-        },
-        {
-          "label": "Welding",
-          "categories": [
-            "welding"
-          ]
-        },
-        {
-          "label": "Surface preparation and coating",
-          "categories": [
-            "sanding",
-            "surface-prep",
-            "coating"
-          ]
-        }
+      "areaKeys": [
+        "tube-cutting",
+        "tube-bending",
+        "punching-forming",
+        "welding",
+        "sanding-metal",
+        "powder-coating"
       ]
     },
     "wood": {
@@ -66,102 +39,31 @@
         "Sanding",
         "Painting"
       ],
-      "areas": [
-        {
-          "label": "Cutting and nesting",
-          "categories": [
-            "cutting",
-            "nesting"
-          ]
-        },
-        {
-          "label": "Machining and planing",
-          "categories": [
-            "machining",
-            "planing"
-          ]
-        },
-        {
-          "label": "Edgebanding",
-          "categories": [
-            "edging"
-          ]
-        },
-        {
-          "label": "Sanding",
-          "categories": [
-            "sanding"
-          ]
-        },
-        {
-          "label": "Painting",
-          "categories": [
-            "painting"
-          ]
-        }
+      "areaKeys": [
+        "wood-machining",
+        "wood-sanding-finishing"
       ]
     }
   },
-  "stageLabels": {
-    "cutting": "Cutting",
-    "bending": "Bending",
-    "punching": "Punching",
-    "forming": "Forming",
-    "welding": "Welding",
-    "sanding": "Sanding",
-    "surface-prep": "Surface preparation",
-    "coating": "Powder coating",
-    "nesting": "Nesting",
-    "machining": "Machining",
-    "edging": "Edgebanding",
-    "planing": "Planing",
-    "painting": "Painting"
-  },
-  "descriptions": {
-    "blm-lt5": "Cuts round tube from Ø10 to Ø120 mm and profiles from 15×15 to 120×120 mm, up to 5 mm wall, in carbon steel, stainless steel, aluminium, brass and alloy steels.",
-    "adige-cutting": "Cuts tube to ±0.05 mm at 2,500–3,000 pieces per shift, with automated tube feeding and a self-cleaning system.",
-    "band-cutting": "Semi-automatic and manual band saws with programmable automatic infeed and angled cuts.",
-    "disc-cutting": "Cutting with chrome-vanadium and abrasive discs, plus angle grinding.",
-    "crippa-ca532": "Bends tube up to Ø32 mm and profiles up to 35×35 mm on five CNC-programmed axes with automated infeed.",
-    "alfa-bending": "Hydraulic and semi-automated benders for horizontal, vertical and variable-radius bending of tube and profile.",
-    "three-roll-bending": "Contour bending, roundness correction and radius adjustment for coils, arcs and round profiles.",
-    "hydraulic-punching": "Die cutting, hole punching and embossing with a quick-change tooling system. Built to GS Trubna Mebel specification.",
-    "presses-63t": "63 t presses for forming, bending, punching and cutting.",
-    "fanuc-welding": "Two welding robots, each serving two stations so welding runs as a continuous process.",
-    "kuka-sanding": "Sands welded frames with automated infeed and sensor-based quality monitoring.",
-    "shot-blasting": "Three-turbine blasting with an overhead hook system for full surface access; prepares surfaces for coating adhesion.",
-    "powder-coating-line": "Conveyor line at 0.75–2.0 m/min: pretreatment, drying, a six-gun automated powder chamber and gas curing — with a second powder chamber and oven in line, so a second coat is applied without removing the part from the conveyor.",
-    "homag-nesting": "Boring, milling and cutting of plywood, timber panels, MDF and chipboard across two working stations.",
-    "homag-venture": "Drilling, sawing and cutting of MDF, chipboard, plywood and timber across two working stations.",
-    "mayer-panel-saw": "Panel sizing with integrated cutting-plan software and multi-panel processing.",
-    "fravol-edgebander": "Edgebanding at up to 20 m/min with pre-milling, glue pot, edge trimming and a polishing station.",
-    "paoloni-spindle-moulder": "Spindle moulder for profiling solid timber and panel components.",
-    "paoloni-thicknesser": "Three-phase thicknesser for dimensioning timber to thickness.",
-    "paoloni-surface-planer": "Surface planer for flattening and squaring timber faces.",
-    "centorrino-belt-sander": "Surface sanding and levelling in preparation for painting.",
-    "slipcon-brush-sander": "Two brush rollers and two oscillating brush discs for surface finishing.",
-    "superfici-spray-line": "Spray line with two sets of oscillating guns, low- and high-pressure regulation, a cleaning unit and a line supervision system."
-  },
   "robotics": {
     "heading": "Robotics",
-    "body": "Two Fanuc welding robots and one Kuka sanding robot run in the metal chain. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
+    "body": "Two Fanuc welding robots and one KUKA sanding robot run in the metal chain. Robotic welding and sanding hold the same geometry and surface finish from the first frame in a batch to the last — output does not depend on who is on shift.",
     "stats": [
       {
-        "machineId": "fanuc-welding",
+        "area": "welding",
+        "make": "Fanuc",
         "label": "Fanuc welding robots"
       },
       {
-        "machineId": "kuka-sanding",
-        "label": "Kuka sanding robot"
+        "area": "sanding-metal",
+        "make": "KUKA",
+        "label": "KUKA sanding robot"
       }
     ]
   },
   "labels": {
     "units": "units",
-    "unit": "unit",
-    "year": "Year",
-    "count": "Units",
-    "photoLabel": "Machine photo"
+    "unit": "unit"
   },
   "closingCta": {
     "heading": "Send a drawing. Get an assessment.",
@@ -174,13 +76,17 @@
       "make": "Make",
       "model": "Model",
       "count": "Count",
-      "workingRange": "Working range and features",
-      "tolerance": "Tolerance"
+      "year": "Year",
+      "control": "Control",
+      "range": "Working range",
+      "tolerance": "Tolerance",
+      "capacity": "Capacity"
     },
     "scrollHint": "Scroll sideways for the full table."
   },
   "portraits": {
     "heading": "On the floor",
-    "photoLabel": "Machine portrait"
+    "photoLabel": "Machine portrait",
+    "_comment": "Machine portraits (4:3) are shown for branded CNC/robot/automated-line machines."
   }
 }

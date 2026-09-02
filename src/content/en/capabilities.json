@@ -1,8 +1,8 @@
 {
-  "_comment": "Copy for /capabilities — written in processes and limits, not machines. Every numeric limit is a {token} resolved at build time from company.json (machine parameters / productionTerms), never a literal, so a corrected figure updates everywhere. Machines are referenced only as evidence, linked to /equipment. NO minimum order quantity, maximum, or volume threshold anywhere on this page — volume is discussed via the RFQ form. British English.",
+  "_comment": "Copy for /capabilities — processes and limits, not machines. Every limit is a {token} resolved at build time from company.json (machines + productionTerms), never a literal. Tokens: {lt5Range} {cutTolerance} {throughput} {bendRange} {pressForce} {edgeSpeed} {maxWall}. NO minimum order quantity anywhere on this page. British English.",
   "meta": {
     "title": "Capabilities — process limits in metal and wood | GS Trubna Mebel",
-    "description": "The process window: tube {tubeRange} cut to {cutTolerance}, five-axis bending, powder coating, CNC panel processing — metal + wood from one factory."
+    "description": "The process window: tube laser cutting to {cutTolerance}, five-axis bending, powder coating, CNC panel processing — metal + wood from one factory."
   },
   "intro": {
     "heading": "Capabilities",
@@ -15,8 +15,10 @@
     "processes": [
       {
         "title": "Cutting",
-        "body": "Tube {tubeRange} and profiles {profileRange}, up to {maxWall} wall thickness, in {metalMaterials}. Cutting tolerance to {cutTolerance} on automated tube cutting, at {throughput}.",
-        "todos": [],
+        "body": "Tube laser cutting — {lt5Range}. Cutting tolerance to {cutTolerance} on automated tube cutting, at {throughput}.",
+        "todos": [
+          "{maxWall}"
+        ],
         "href": "",
         "image": {
           "src": "[[TODO: /images/cap-cutting.webp — REQUIRED SHOT: the LT5 cutting tube, process mid-cycle, landscape, medium crop]]",
@@ -26,7 +28,7 @@
       },
       {
         "title": "Bending",
-        "body": "Five-axis CNC bending of tube up to {bendTube} and profiles up to {bendProfile}, for complex multi-plane geometries. Hydraulic and semi-automated bending for larger sections — horizontal, vertical and variable radius. Three-roll bending for coils, arcs and rolled profiles.",
+        "body": "Five-axis CNC bending — {bendRange}. Hydraulic and semi-automated bending for larger sections — horizontal, vertical and variable radius. Three-roll bending for coils, arcs and rolled profiles.",
         "todos": [],
         "href": "",
         "image": {
@@ -98,7 +100,7 @@
       },
       {
         "title": "Edgebanding",
-        "body": "Edgebanding at feed speeds {edgeSpeed} with pre-milling, glue application, edge trimming and polishing in one pass.",
+        "body": "Edgebanding at {edgeSpeed}, with pre-milling, glue application, edge trimming and polishing in one pass.",
         "todos": [
           "[[TODO: edge material types supported — ABS, PVC, veneer, solid lipping]]"
         ],
@@ -150,16 +152,8 @@
     "_comment": "No 'Minimum order quantity' row — omitted entirely by policy, a blank row invites the question. Values with {tokens} resolve from company.json.",
     "rows": [
       {
-        "label": "Materials — metal",
-        "value": "{metalMaterials}"
-      },
-      {
-        "label": "Materials — panels",
-        "value": "MDF, chipboard, plywood, solid timber"
-      },
-      {
-        "label": "Tube diameter range",
-        "value": "{tubeRange}"
+        "label": "Tube laser cutting range and materials",
+        "value": "{lt5Range}"
       },
       {
         "label": "Max wall thickness",
@@ -168,6 +162,14 @@
       {
         "label": "Cutting tolerance",
         "value": "{cutTolerance}"
+      },
+      {
+        "label": "Five-axis bending range",
+        "value": "{bendRange}"
+      },
+      {
+        "label": "Materials — panels",
+        "value": "MDF, chipboard, plywood, solid timber"
       },
       {
         "label": "General tolerances",

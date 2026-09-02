@@ -1,6 +1,5 @@
 {
   "_readme": "SINGLE SOURCE OF TRUTH for every company fact used anywhere on the site. A number is defined once here and never diverges between pages. Every '[[TODO: ...]]' value must be replaced with a verified figure from internal sources before launch — an empty marker is correct, an invented number is a failure. '_comment' keys describe what to supply and in what unit; they are ignored by the templates. Values marked 'from brief' came from the project brief and should still be confirmed.",
-
   "identity": {
     "_comment": "Legal and brand identity. Used in the footer, /legal, /about and the JSON-LD Organization schema. NOTE: the registered legal name is NOT the same as the trading name used in site copy — never guess it from the domain or trading name; take it exactly as recorded in the commercial register.",
     "brandName": "GS Trubna Mebel",
@@ -16,7 +15,6 @@
     "positioning": "Complete metal + wood programmes from a single European factory.",
     "positioningComment": "The core positioning sentence. Every page serves it. Edit only deliberately."
   },
-
   "contacts": {
     "_comment": "Public contact details. Used in footer, /legal, /request-a-quote and JSON-LD. Addresses come from the old site — [[TODO: confirm both addresses are current]] before launch.",
     "_emailBlocker": "LAUNCH BLOCKER: the old site published office@gs-bg.eu — a DIFFERENT domain from gstrubnamebel.eu. Cross-domain replies read as disorganised and hurt deliverability. Decide before launch: a mailbox on gstrubnamebel.eu for enquiries, or a documented reason to keep gs-bg.eu. Do NOT publish a gs-bg.eu address until decided.",
@@ -40,35 +38,70 @@
     },
     "rfqRecipientEmail": "[[TODO: mailbox that receives RFQ submissions — must be set in public/contact.php too; sender mailbox website@gstrubnamebel.eu must exist on the hosting (see DEPLOY.md)]]"
   },
-
   "keyFigures": {
     "_comment": "Home page key-figures strip, large type. Four REAL figures only — a strip of four real numbers is stronger than six with two guesses; never invent a figure to fill a slot. Items with needsConfirmation:true came from a 2025 interview and trigger a build warning until confirmed.",
     "_conflict": "EMPLOYEES AND PRODUCTION AREA ARE DELIBERATELY ABSENT: the old website published '66 employees' and '5,000 m²', which conflicts with later statements of two ~9,000 m² sites and ~60 people in production. Both figures are unusable until resolved with the company — see 'pending' below. Do not publish either number anywhere before that.",
     "items": [
-      { "value": "97", "unit": "%", "label": "of output exported", "needsConfirmation": false },
-      { "value": "200,000", "unit": "", "label": "chairs per year", "needsConfirmation": true, "source": "2025 interview" },
-      { "value": "35–45", "unit": "t", "label": "metal processed per month", "needsConfirmation": true, "source": "2025 interview" },
-      { "value": "1990", "unit": "", "label": "family-owned since", "needsConfirmation": false }
+      {
+        "value": "97",
+        "unit": "%",
+        "label": "of output exported",
+        "needsConfirmation": false
+      },
+      {
+        "value": "200,000",
+        "unit": "",
+        "label": "chairs per year",
+        "needsConfirmation": true,
+        "source": "2025 interview"
+      },
+      {
+        "value": "35–45",
+        "unit": "t",
+        "label": "metal processed per month",
+        "needsConfirmation": true,
+        "source": "2025 interview"
+      },
+      {
+        "value": "1990",
+        "unit": "",
+        "label": "family-owned since",
+        "needsConfirmation": false
+      }
     ],
     "pending": [
-      { "label": "employees", "value": "[[TODO: employee count — old site said 66, later statements say ~60 in production; conflict unresolved]]" },
-      { "label": "production area", "value": "[[TODO: total production area — old site said 5,000 m², later statements say two ~9,000 m² sites; conflict unresolved]]" }
+      {
+        "label": "employees",
+        "value": "[[TODO: employee count — old site said 66, later statements say ~60 in production; conflict unresolved]]"
+      },
+      {
+        "label": "production area",
+        "value": "[[TODO: total production area — old site said 5,000 m², later statements say two ~9,000 m² sites; conflict unresolved]]"
+      }
     ]
   },
-
   "clients": {
     "_comment": "BLOCKED — named client display is not permitted yet. The old site listed 18 client/partner names including Calligaris and Norr11; permission to show them has NOT been confirmed. Until it is, the home page and any proof band run Version B (no names, clients described by type only). When permission is confirmed: set permissionToDisplay true and fill named[] with {name, image} — the pages switch to the named logo wall (Version A) automatically, no rebuild.",
     "permissionToDisplay": false,
     "named": []
   },
-
   "markets": {
     "_comment": "Export markets. From brief: mainly Italy, Denmark and, through Danish clients, the US. Confirm and extend.",
-    "primary": ["Italy", "Denmark"],
-    "secondary": ["United States (through Danish clients)"],
-    "targetAudience": ["Denmark", "Italy", "Germany", "Sweden", "Netherlands"]
+    "primary": [
+      "Italy",
+      "Denmark"
+    ],
+    "secondary": [
+      "United States (through Danish clients)"
+    ],
+    "targetAudience": [
+      "Denmark",
+      "Italy",
+      "Germany",
+      "Sweden",
+      "Netherlands"
+    ]
   },
-
   "sites": {
     "_comment": "The two production sites. Areas in m². Used on /about and /sustainability.",
     "items": [
@@ -86,386 +119,305 @@
       }
     ]
   },
-
-  "machines": {
-    "_comment": "The machine park — primary credibility asset, shown on /equipment. Data extracted 2026-08 from the company's previous website (last updated ~2020): real, previously published figures, NOT invented. Machines may have been added or retired since, so every entry carries needsConfirmation:true until production confirms it — the build prints a warning listing them. 'chain' is metal|wood; items are listed in PROCESS ORDER within each chain and the page renders them in this order. 'category' is the process stage slug (labels in equipment.json stageLabels). 'highlight' machines lead the page with a large card. Descriptions are page copy and live in src/content/en/equipment.json keyed by 'id'. Where a value was not on the old site it is a [[TODO]] — do not infer.",
-    "items": [
-      {
-        "id": "blm-lt5",
-        "chain": "metal",
-        "category": "cutting",
-        "name": "Tube fibre laser cutting",
-        "manufacturer": "BLM Group",
-        "model": "LT5",
-        "year": 2019,
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Round tube diameter", "value": "Ø10–120 mm" },
-          { "name": "Profiles", "value": "15×15 to 120×120 mm" },
-          { "name": "Max wall thickness", "value": "5 mm" },
-          { "name": "Materials", "value": "carbon steel, stainless steel, aluminium, brass, alloy steels" }
-        ]
-      },
-      {
-        "id": "adige-cutting",
-        "chain": "metal",
-        "category": "cutting",
-        "name": "Automatic tube cutting",
-        "manufacturer": "ADIGE (BLM Group)",
-        "model": "[[TODO: exact ADIGE model designation]]",
-        "year": 2018,
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Cutting tolerance", "value": "±0.05 mm" },
-          { "name": "Throughput", "value": "2,500–3,000 pieces per shift" },
-          { "name": "Handling", "value": "automated tube feeder, self-cleaning system" }
-        ]
-      },
-      {
-        "id": "band-cutting",
-        "chain": "metal",
-        "category": "cutting",
-        "name": "Band cutting machines",
-        "manufacturer": "[[TODO: manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 3,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Operation", "value": "semi-automatic and manual" },
-          { "name": "Features", "value": "programmable automatic infeed, angled cuts" }
-        ]
-      },
-      {
-        "id": "disc-cutting",
-        "chain": "metal",
-        "category": "cutting",
-        "name": "Additional cutting machines",
-        "manufacturer": "[[TODO: manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 4,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Tooling", "value": "chrome-vanadium and abrasive discs, angle grinding" }
-        ]
-      },
-      {
-        "id": "crippa-ca532",
-        "chain": "metal",
-        "category": "bending",
-        "name": "Five-axis tube bending",
-        "manufacturer": "Crippa",
-        "model": "CA 532",
-        "year": 2015,
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Max tube diameter", "value": "Ø32 mm" },
-          { "name": "Max profile", "value": "35×35 mm" },
-          { "name": "Control", "value": "CNC programmed, automated infeed" }
-        ]
-      },
-      {
-        "id": "alfa-bending",
-        "chain": "metal",
-        "category": "bending",
-        "name": "Tube and profile bending",
-        "manufacturer": "Alfa",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 6,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Operation", "value": "hydraulic and semi-automated" },
-          { "name": "Bending", "value": "horizontal and vertical, variable radius" }
-        ]
-      },
-      {
-        "id": "three-roll-bending",
-        "chain": "metal",
-        "category": "bending",
-        "name": "Three-roll bending machines",
-        "manufacturer": "[[TODO: manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 2,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Operations", "value": "contour bending, roundness correction, radius adjustment" },
-          { "name": "Workpieces", "value": "coils, arcs, round profiles" }
-        ]
-      },
-      {
-        "id": "hydraulic-punching",
-        "chain": "metal",
-        "category": "punching",
-        "name": "Hydraulic punching machines",
-        "manufacturer": "custom-built to GS Trubna Mebel specification",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 7,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Operations", "value": "die cutting, hole punching, embossing" },
-          { "name": "Tooling", "value": "quick-change system" }
-        ]
-      },
-      {
-        "id": "presses-63t",
-        "chain": "metal",
-        "category": "forming",
-        "name": "Presses, 63 t",
-        "manufacturer": "[[TODO: manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 3,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Pressing force", "value": "63 t" },
-          { "name": "Operations", "value": "forming, bending, punching, cutting" }
-        ]
-      },
-      {
-        "id": "fanuc-welding",
-        "chain": "metal",
-        "category": "welding",
-        "name": "Robotic welding",
-        "manufacturer": "Fanuc",
-        "model": "[[TODO: exact Fanuc model designation]]",
-        "year": "[[TODO: year]]",
-        "count": 2,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Stations", "value": "two welding stations for continuous process" },
-          { "name": "Welding process", "value": "[[TODO: MIG / MAG / TIG]]" }
-        ]
-      },
-      {
-        "id": "kuka-sanding",
-        "chain": "metal",
-        "category": "sanding",
-        "name": "Robotic sanding",
-        "manufacturer": "Kuka",
-        "model": "[[TODO: exact Kuka model designation]]",
-        "year": "[[TODO: year]]",
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Handling", "value": "automated infeed" },
-          { "name": "Quality control", "value": "sensor-based monitoring" }
-        ]
-      },
-      {
-        "id": "shot-blasting",
-        "chain": "metal",
-        "category": "surface-prep",
-        "name": "Shot blasting machine",
-        "manufacturer": "[[TODO: manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 1,
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Turbines", "value": "3" },
-          { "name": "Handling", "value": "overhead hook system for full surface access" },
-          { "name": "Purpose", "value": "surface preparation for coating adhesion" }
-        ]
-      },
-      {
-        "id": "powder-coating-line",
-        "chain": "metal",
-        "category": "coating",
-        "name": "Automated powder coating line",
-        "manufacturer": "[[TODO: line manufacturer]]",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "_confirm": "IMPORTANT — an EU-funded project of approximately BGN 930,000 for a new powder coating facility and a welding robot was approved. Is this line the existing one (new one separate), or is this the upgraded line? DO NOT PUBLISH until clarified with production.",
-        "parameters": [
-          { "name": "Working stations", "value": "2" },
-          { "name": "Conveyor speed", "value": "0.75–2.0 m/min" },
-          { "name": "Line sequence", "value": "pretreatment chamber → drying tunnel → automated powder chamber (6 guns) → gas curing oven → second powder chamber → second gas oven" },
-          { "name": "Second coat", "value": "applied without removing the part from the conveyor" },
-          { "name": "Max part dimensions", "value": "[[TODO: maximum part dimensions]]" }
-        ]
-      },
-      {
-        "id": "homag-nesting",
-        "chain": "wood",
-        "category": "nesting",
-        "name": "CNC nesting centre",
-        "manufacturer": "HOMAG",
-        "model": "WEEKE",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Working stations", "value": "2" },
-          { "name": "Operations", "value": "boring, milling, cutting" },
-          { "name": "Materials", "value": "plywood, timber panels, MDF, chipboard" },
-          { "name": "Max panel dimensions", "value": "[[TODO: max panel dimensions]]" }
-        ]
-      },
-      {
-        "id": "homag-venture",
-        "chain": "wood",
-        "category": "machining",
-        "name": "CNC machining centre",
-        "manufacturer": "HOMAG",
-        "model": "WEEKE Venture",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Working stations", "value": "2" },
-          { "name": "Operations", "value": "drilling, sawing, cutting" },
-          { "name": "Materials", "value": "MDF, chipboard, plywood, timber" }
-        ]
-      },
-      {
-        "id": "mayer-panel-saw",
-        "chain": "wood",
-        "category": "cutting",
-        "name": "CNC panel saw",
-        "manufacturer": "Mayer",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Software", "value": "integrated cutting-plan software" },
-          { "name": "Processing", "value": "multi-panel" }
-        ]
-      },
-      {
-        "id": "fravol-edgebander",
-        "chain": "wood",
-        "category": "edging",
-        "name": "Edgebander",
-        "manufacturer": "FRAVOL",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Feed speed", "value": "up to 20 m/min" },
-          { "name": "Stations", "value": "pre-milling, glue pot, edge trimming, polishing" }
-        ]
-      },
-      {
-        "id": "paoloni-spindle-moulder",
-        "chain": "wood",
-        "category": "machining",
-        "name": "Spindle moulder",
-        "manufacturer": "Paoloni",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": []
-      },
-      {
-        "id": "paoloni-thicknesser",
-        "chain": "wood",
-        "category": "planing",
-        "name": "Thicknesser",
-        "manufacturer": "Paoloni",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Power supply", "value": "three-phase" }
-        ]
-      },
-      {
-        "id": "paoloni-surface-planer",
-        "chain": "wood",
-        "category": "planing",
-        "name": "Surface planer (jointer)",
-        "manufacturer": "Paoloni",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "_confirm": "Old site described this as a 'combined surfacer-thicknesser', which conflicts with the thicknesser being listed separately. [[TODO: confirm whether the thicknesser and surface planer are two separate machines or one combined planer-thicknesser.]]",
-        "parameters": []
-      },
-      {
-        "id": "centorrino-belt-sander",
-        "chain": "wood",
-        "category": "sanding",
-        "name": "Belt sander",
-        "manufacturer": "Centorrino",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Operations", "value": "surface sanding and levelling, preparation for painting" }
-        ]
-      },
-      {
-        "id": "slipcon-brush-sander",
-        "chain": "wood",
-        "category": "sanding",
-        "name": "Brush sanding machine",
-        "manufacturer": "Slip Con",
-        "model": "Perfection",
-        "year": "[[TODO: year]]",
-        "count": "[[TODO: count]]",
-        "highlight": false,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Tooling", "value": "2 brush rollers + 2 oscillating brush discs" }
-        ]
-      },
-      {
-        "id": "superfici-spray-line",
-        "chain": "wood",
-        "category": "painting",
-        "name": "Automated MDF spray painting line",
-        "manufacturer": "SUPERFICI",
-        "model": "",
-        "year": "[[TODO: year]]",
-        "count": 1,
-        "highlight": true,
-        "needsConfirmation": true,
-        "parameters": [
-          { "name": "Application", "value": "two sets of oscillating guns" },
-          { "name": "Pressure regulation", "value": "low and high" },
-          { "name": "Systems", "value": "cleaning unit, supervision system" },
-          { "name": "Max part dimensions / throughput", "value": "[[TODO: max part dimensions, throughput]]" }
-        ]
-      }
-    ]
+  "machinesStatus": {
+    "_comment": "Status of the machine park data, kept OUTSIDE 'machines' so that overwriting 'machines' with a new machines.json export never loses it. 'machines' below is a verbatim drop-in: the same schema as the incoming file (areas keyed by slug, items with make/model/count/year/control/range/tolerance/capacity/note). null = not known yet and renders as an em dash — never invent a value.",
+    "source": "machines.json supplied by the client on 2026-09-02, corrected against the old website: LT5 square tube is 12×12–100×100 mm (old site wrongly said 120×120); LT5 wall thickness is null because it depends on laser power; the wide belt sander has no make (‘Centorrino’ on the old site was the supplier, not the manufacturer).",
+    "needsConfirmation": true,
+    "nextStep": "When the machine-plate photographs arrive, the client sends a new machines.json with the null fields filled; replace the whole 'machines' object with it.",
+    "_confirm": "OPEN — powder coating line: an EU-funded project (~BGN 930,000) for a new powder coating facility + welding robot was approved. Is the listed line the existing one (new one separate) or the upgraded one? Do not publish until clarified."
   },
-
+  "machines": {
+    "tube-cutting": {
+      "label": "Tube cutting",
+      "items": [
+        {
+          "make": "BLM Group",
+          "model": "LT5",
+          "count": 1,
+          "year": 2019,
+          "control": "CNC",
+          "range": "Round tube Ø12–120 mm; square tube 12×12–100×100 mm; rectangular 10×12–120×70 mm; mild steel, stainless steel, aluminium, brass",
+          "tolerance": null,
+          "capacity": null
+        },
+        {
+          "make": "BLM Group",
+          "model": "Adige",
+          "count": 1,
+          "year": 2018,
+          "control": "CNC",
+          "range": null,
+          "tolerance": "±0.05 mm",
+          "capacity": "2,500–3,000 pcs per shift"
+        },
+        {
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": "Semi-automatic",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Belt cutting machines, tubes, bars and profiles, mitre cuts"
+        },
+        {
+          "make": null,
+          "model": null,
+          "count": 4,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Abrasive disc cutting and angle grinding"
+        }
+      ]
+    },
+    "tube-bending": {
+      "label": "Tube bending",
+      "items": [
+        {
+          "make": "Crippa",
+          "model": "CA 532",
+          "count": 1,
+          "year": null,
+          "control": "CNC, 5 axes",
+          "range": "Max tube Ø32 mm; profiles up to 35×35 mm; left and right bending, variable radius",
+          "tolerance": null,
+          "capacity": null
+        },
+        {
+          "make": "Alfa",
+          "model": null,
+          "count": 6,
+          "year": null,
+          "control": "Semi-automatic",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Hydraulic tube and profile bending, horizontal and vertical, variable radius"
+        },
+        {
+          "make": null,
+          "model": null,
+          "count": 2,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Three-roll bending, contour bending and radius correction"
+        }
+      ]
+    },
+    "punching-forming": {
+      "label": "Punching and forming",
+      "items": [
+        {
+          "make": null,
+          "model": null,
+          "count": 7,
+          "year": null,
+          "control": "Semi-automatic",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Hydraulic punching, hole punching and embossing, quick tool change"
+        },
+        {
+          "make": null,
+          "model": null,
+          "count": 3,
+          "year": null,
+          "control": null,
+          "range": "63 t",
+          "tolerance": null,
+          "capacity": null,
+          "note": "Presses, forming, bending, punching and cutting"
+        }
+      ]
+    },
+    "welding": {
+      "label": "Welding",
+      "items": [
+        {
+          "make": "Fanuc",
+          "model": null,
+          "count": 2,
+          "year": null,
+          "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Robotic welding, two stations"
+        }
+      ]
+    },
+    "sanding-metal": {
+      "label": "Metal sanding",
+      "items": [
+        {
+          "make": "KUKA",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Robot",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Robotic sanding, automated infeed, sensor-monitored"
+        }
+      ]
+    },
+    "powder-coating": {
+      "label": "Powder coating",
+      "items": [
+        {
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Automated line",
+          "range": null,
+          "tolerance": null,
+          "capacity": "Conveyor speed 0.75–2.0 m/min",
+          "note": "Two stations: pretreatment chamber, drying tunnel, powder chamber with 6 guns, gas oven, second powder chamber, second gas oven"
+        },
+        {
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Shot blasting, three turbines, surface preparation before coating"
+        }
+      ]
+    },
+    "wood-machining": {
+      "label": "Wood machining",
+      "items": [
+        {
+          "make": "HOMAG / Weeke",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "CNC",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "CNC nesting, two stations: boring, milling and cutting of plywood, MDF and chipboard"
+        },
+        {
+          "make": "HOMAG / Weeke",
+          "model": "Venture",
+          "count": 1,
+          "year": null,
+          "control": "CNC",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "CNC machining centre, two stations: boring, sawing and cutting of MDF, chipboard, plywood and solid wood"
+        },
+        {
+          "make": "Mayer",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "CNC",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "CNC panel saw, automatic cutting plan generation"
+        },
+        {
+          "make": "Fravol",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": "Feed up to 20 m/min",
+          "note": "Edgebander: pre-milling, glue pot, edge trimming and polishing"
+        },
+        {
+          "make": "Paoloni",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Spindle moulder"
+        },
+        {
+          "make": "Paoloni",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Thicknesser"
+        },
+        {
+          "make": "Paoloni",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Manual",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Combined jointer-thicknesser"
+        }
+      ]
+    },
+    "wood-sanding-finishing": {
+      "label": "Wood sanding and finishing",
+      "items": [
+        {
+          "make": null,
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Wide belt sander, calibrating and finish sanding of panels"
+        },
+        {
+          "make": "Slipcon",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": null,
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Brush sander, 2 brush rollers and 2 oscillating brush discs"
+        },
+        {
+          "make": "Superfici",
+          "model": null,
+          "count": 1,
+          "year": null,
+          "control": "Automated line",
+          "range": null,
+          "tolerance": null,
+          "capacity": null,
+          "note": "Automatic MDF spray painting line, 2 sets of oscillating guns, cleaning unit"
+        }
+      ]
+    }
+  },
   "certifications": {
     "_comment": "Certificates shown on /quality (cards) and the home proof band (names/logos). Add one object per certificate.",
     "items": [
@@ -479,7 +431,6 @@
       }
     ]
   },
-
   "productionTerms": {
     "_comment": "Commercial/production parameters shown in the /capabilities parameters table.",
     "_moqPolicy": "minimumOrderQuantity is NEVER published anywhere on the site — a published number is both a floor and a ceiling. Volume is discussed one-to-one via the RFQ form. The field stays here for internal reference only.",
@@ -491,9 +442,9 @@
     "tolerances": "[[TODO: standard tolerances held, or standard referenced]]",
     "packing": "[[TODO: packing options — bulk, retail-ready, flat-pack, client-specified]]",
     "incoterms": "[[TODO: which Incoterms are offered]]",
-    "assembly": "[[TODO: assembled, partly assembled, flat-pack — what is offered]]"
+    "assembly": "[[TODO: assembled, partly assembled, flat-pack — what is offered]]",
+    "maxWallThickness": "[[TODO: max wall thickness on the tube laser — depends on laser power, confirm with production]]"
   },
-
   "sustainability": {
     "_comment": "Data for /sustainability and the home proof band. Exact figures only.",
     "solarInstallations": [
@@ -509,7 +460,6 @@
     },
     "csrdReadiness": "[[TODO: statement on CSRD / Scope 3 supplier reporting readiness — what data can be provided to clients and in what format]]"
   },
-
   "social": {
     "_comment": "Public profile URLs for JSON-LD sameAs. Leave [] entries out if none.",
     "linkedin": "[[TODO: LinkedIn company page URL, or remove]]"
